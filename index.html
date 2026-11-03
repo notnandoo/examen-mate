@@ -1,125 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparación Examen de Matemática - Medicina</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col justify-between text-slate-800">
 
-const modulesData = {
-  1: {
-    id: 1,
-    title: "Módulo 1: Aritmética y Operaciones con Decimales",
-    colorClass: "bg-blue-600",
-    badgeClass: "bg-blue-100 text-blue-800 border-blue-200",
-    topics: ["Ley de Signos", "Operaciones Combinadas", "Multiplicación y División de Decimales"],
-    description: "Repaso de cálculo numérico básico, reglas de signos y operaciones combinadas con decimales.",
-    contentHtml: `
-      <div class="space-y-4">
-        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-          <h3 class="font-bold text-slate-800 text-base mb-2">1. Ley de Signos</h3>
-          <p class="text-sm mb-2"><strong>Suma y Resta:</strong> Signos iguales se suman y conservan su signo (+5 + 3 = +8; -7 - 4 = -11). Signos diferentes se restan y conservan el signo del mayor (-9 + 4 = -5).</p>
-          <p class="text-sm"><strong>Multiplicación y División:</strong> (+)·(+) = +  |  (-)·(-) = +  |  (+)·(-) = -  |  (-)·(+) = -</p>
-        </div>
-
-        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-          <h3 class="font-bold text-slate-800 text-base mb-2">2. Operaciones con Decimales</h3>
-          <p class="text-sm mb-2"><strong>Multiplicación:</strong> Multiplica ignorando los puntos y recorre el decimal al final sumando las cifras decimales de ambos factores.</p>
-          <p class="text-sm"><strong>División:</strong> Multiplica el divisor y el dividendo por una potencia de 10 para eliminar los decimales del divisor antes de operar.</p>
-        </div>
-
-        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-          <h4 class="font-bold text-blue-900 mb-1">Ejemplo Resuelto 1: Operaciones combinadas</h4>
-          <p class="text-sm text-blue-800 mb-2 font-mono">Calcular: -8 + (-3)(4) - (-15 ÷ 3)</p>
-          <p class="text-xs text-blue-700 leading-relaxed">
-            <strong>Paso 1:</strong> Multiplicación y división: (-3)(4) = -12 y (-15) ÷ 3 = -5.<br>
-            <strong>Paso 2:</strong> Sustituir: -8 + (-12) - (-5).<br>
-            <strong>Paso 3:</strong> Suprimir paréntesis: -8 - 12 + 5 = <strong>-15</strong>.
-          </p>
+  <!-- HEADER -->
+  <header class="bg-slate-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight">Preparación Examen de Matemática - Medicina</h1>
+        <p class="text-xs text-slate-400">Universidad de San Carlos de Guatemala</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg text-right">
+          <span id="general-progress-text" class="text-xs text-amber-400 font-semibold block">Progreso General</span>
+          <span id="general-progress-pct" class="text-lg font-bold">0% Completado</span>
         </div>
       </div>
-    `
-  },
-  2: {
-    id: 2,
-    title: "Módulo 2: Fracciones, Porcentajes y Proporciones",
-    colorClass: "bg-emerald-600",
-    badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    topics: ["Suma y resta de fracciones", "Multiplicación y división", "Porcentajes y proporciones"],
-    description: "Operaciones con fracciones heterogéneas y homogéneas, simplificación y problemas de proporcionalidad.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  },
-  3: {
-    id: 3,
-    title: "Módulo 3: Potencias, Raíces y Jerarquía",
-    colorClass: "bg-amber-600",
-    badgeClass: "bg-amber-100 text-amber-800 border-amber-200",
-    topics: ["Leyes de exponentes", "Radicación básica", "Signos de agrupación"],
-    description: "Manejo de potencias, raíces cuadradas exactas y orden estricto de jerarquía de operaciones.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  },
-  4: {
-    id: 4,
-    title: "Módulo 4: Álgebra e Inecuaciones",
-    colorClass: "bg-purple-600",
-    badgeClass: "bg-purple-100 text-purple-800 border-purple-200",
-    topics: ["Expresiones algebraicas", "Ecuaciones lineales", "Inecuaciones"],
-    description: "Simplificación de términos semejantes, despeje de incógnitas y resolución de inecuaciones.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  },
-  5: {
-    id: 5,
-    title: "Módulo 5: Regla de Tres y Conjuntos",
-    colorClass: "bg-rose-600",
-    badgeClass: "bg-rose-100 text-rose-800 border-rose-200",
-    topics: ["Regla de tres simple y compuesta", "Teoría de conjuntos", "Operaciones con conjuntos"],
-    description: "Planteamiento de problemas de proporcionalidad directa/inversa y operaciones de conjuntos.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  },
-  6: {
-    id: 6,
-    title: "Módulo 6: Geometría y Recta Numérica",
-    colorClass: "bg-cyan-600",
-    badgeClass: "bg-cyan-100 text-cyan-800 border-cyan-200",
-    topics: ["Perímetros y áreas", "Teorema de Pitágoras", "Recta numérica"],
-    description: "Cálculos geométricos básicos, áreas de figuras planas y ubicación de números reales.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  },
-  7: {
-    id: 7,
-    title: "Módulo 7: Gráficas, Series y Lógica",
-    colorClass: "bg-red-600",
-    badgeClass: "bg-red-100 text-red-800 border-red-200",
-    topics: ["Interpretación de gráficas", "Series numéricas", "Razonamiento lógico"],
-    description: "Análisis de datos estadísticos visuales, patrones numéricos y problemas lógicos de examen.",
-    contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
-  }
-};
+    </div>
+    <!-- Navegación de pestañas -->
+    <div class="bg-slate-950 border-t border-slate-800 px-4">
+      <div class="max-w-7xl mx-auto flex gap-6">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors">
+          Módulos de Estudio
+        </button>
+        <button onclick="switchTab('quizzes')" id="tab-quizzes" class="py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors">
+          Exámenes Cortos
+        </button>
+      </div>
+    </div>
+  </header>
 
-const quizzesData = {
-  1: {
-    title: "Examen Corto: Aritmética y Operaciones con Decimales",
-    questions: [
-      {
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    
+    <!-- VISTA 1: DASHBOARD DE MÓDULOS -->
+    <div id="view-dashboard" class="space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Temario Cronológico Oficial</h2>
+          <p class="text-sm text-slate-600">Selecciona un módulo para estudiar los conceptos clave y realizar su prueba corta.</p>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Módulos -->
+      <div id="modules-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Generado dinámicamente -->
+      </div>
+    </div>
+
+    <!-- VISTA 2: DETALLE DE LECCIÓN -->
+    <div id="view-lesson" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <button onclick="switchTab('dashboard')" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+          ← Volver a los Módulos
+        </button>
+        <span id="lesson-module-badge" class="px-3 py-1 text-xs font-semibold rounded-full"></span>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+        <h2 id="lesson-title" class="text-2xl font-bold text-slate-900 mb-6 pb-4 border-b border-slate-100"></h2>
+        
+        <!-- Contenido Teórico -->
+        <div id="lesson-content" class="space-y-6 text-slate-700 leading-relaxed">
+          <!-- Inyectado por JS -->
+        </div>
+
+        <!-- Botón para ir al Examen -->
+        <div class="mt-10 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-slate-500">¿Completaste la lectura y los ejemplos? Pon a prueba tus conocimientos.</p>
+          <button id="btn-open-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm transition-all transform hover:-translate-y-0.5">
+            Realizar Examen Corto del Módulo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISTA 3: HUB DE EXÁMENES CORTOS -->
+    <div id="view-quizzes" class="hidden space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">Banco de Exámenes Cortos</h2>
+        <p class="text-sm text-slate-600">Repasa tus calificaciones y repite las evaluaciones cuando lo necesites.</p>
+      </div>
+      <div id="quizzes-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Generado dinámicamente -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL DE EXAMEN CORTO -->
+  <div id="quiz-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+        <h3 id="modal-quiz-title" class="font-bold text-xl text-slate-900">Examen Corto</h3>
+        <button onclick="closeQuizModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">×</button>
+      </div>
+
+      <div id="quiz-body" class="space-y-6">
+        <!-- Preguntas inyectadas por JS -->
+      </div>
+
+      <div id="quiz-footer" class="pt-4 border-t border-slate-100 flex justify-end">
+        <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-sm transition-all">
+          Calificar Examen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs">
+    <p>Guía de Preparación de Matemática - Facultad de Ciencias Médicas (USAC)</p>
+    <p class="mt-1">Material estructurado conforme al temario oficial del examen de ingreso.</p>
+  </footer>
+
+  <!-- SCRIPT DE LÓGICA Y DATOS -->
+  <script>
+    // BASE DE DATOS DE MÓDULOS CRONOLÓGICOS
+    const modulesData = {
+      1: {
         id: 1,
-        question: "¿Cuál es el resultado de la expresión: -14 - 6 × (-3) + (-8) ÷ 2?",
-        options: ["-8", "0", "4", "8"],
-        correct: 1,
-        explanation: "Resolvemos multiplicaciones y divisiones primero: -6 × (-3) = +18 y (-8) ÷ 2 = -4. Resulta: -14 + 18 - 4 = 0."
+        title: "Módulo 1: Aritmética y Operaciones con Decimales",
+        colorClass: "bg-blue-600",
+        badgeClass: "bg-blue-100 text-blue-800 border-blue-200",
+        topics: ["Ley de Signos", "Operaciones Combinadas", "Multiplicación y División de Decimales"],
+        description: "Repaso de cálculo numérico básico, reglas de signos y operaciones combinadas con decimales.",
+        contentHtml: `
+          <div class="space-y-6">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+              <h3 class="font-bold text-slate-900 text-lg mb-3">1. Ley de Signos</h3>
+              <p class="text-sm mb-2"><strong>Suma y Resta:</strong> Signos iguales se suman y conservan su signo (+5 + 3 = +8; -7 - 4 = -11). Signos diferentes se restan (mayor menos menor) y conservan el signo del número con mayor valor absoluto (-9 + 4 = -5).</p>
+              <p class="text-sm"><strong>Multiplicación y División:</strong> (+)·(+) = +  |  (-)·(-) = +  |  (+)·(-) = -  |  (-)·(+) = -</p>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+              <h3 class="font-bold text-slate-900 text-lg mb-3">2. Operaciones con Decimales sin Calculadora</h3>
+              <p class="text-sm mb-2"><strong>Multiplicación:</strong> Realiza la multiplicación ignorando los puntos decimales. Al resultado final se le recorre el punto a la izquierda tantas posiciones como la suma total de cifras decimales de ambos factores.</p>
+              <p class="text-sm"><strong>División:</strong> Si el divisor tiene decimales, se multiplica tanto el dividendo como el divisor por una potencia de 10 (10, 100, 1000) hasta convertir el divisor en entero antes de operar en la casilla.</p>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl border border-blue-200">
+              <h4 class="font-bold text-blue-900 text-base mb-2">Ejemplo Resuelto 1: Operaciones combinadas con ley de signos</h4>
+              <p class="text-sm text-blue-800 mb-3 font-mono bg-blue-100/60 p-2 rounded">Calcular: -8 + (-3)(4) - (-15 ÷ 3)</p>
+              <div class="text-xs text-blue-900 space-y-1.5 leading-relaxed">
+                <p><strong>Paso 1:</strong> Resolver multiplicaciones y divisiones aplicando ley de signos:</p>
+                <p class="pl-4">• (-3) × (4) = -12  |  (-15) ÷ (3) = -5</p>
+                <p><strong>Paso 2:</strong> Sustituir en la expresión: -8 + (-12) - (-5)</p>
+                <p><strong>Paso 3:</strong> Suprimir signos de agrupación (un signo menos antes de un paréntesis cambia el signo interno): -8 - 12 + 5</p>
+                <p><strong>Paso 4:</strong> Operar de izquierda a derecha: -20 + 5 = <strong class="text-blue-950">-15</strong></p>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl border border-blue-200">
+              <h4 class="font-bold text-blue-900 text-base mb-2">Ejemplo Resuelto 2: División de decimales</h4>
+              <p class="text-sm text-blue-800 mb-3 font-mono bg-blue-100/60 p-2 rounded">Calcular: 1.44 ÷ 0.12</p>
+              <div class="text-xs text-blue-900 space-y-1.5 leading-relaxed">
+                <p><strong>Paso 1:</strong> Multiplicar ambos números por 100 para eliminar los decimales del divisor: 1.44 × 100 = 144 y 0.12 × 100 = 12.</p>
+                <p><strong>Paso 2:</strong> Efectuar la división directa de enteros: 144 ÷ 12 = <strong class="text-blue-950">12</strong>.</p>
+              </div>
+            </div>
+          </div>
+        `
       },
-      {
+      2: {
         id: 2,
-        question: "Un frasco contiene 0.75 L. Si se administran dosis de 0.05 L al día, ¿para cuántos días alcanza?",
-        options: ["10 días", "12 días", "15 días", "20 días"],
-        correct: 2,
-        explanation: "Dividimos 0.75 ÷ 0.05 multiplicando ambos por 100: 75 ÷ 5 = 15 días."
+        title: "Módulo 2: Fracciones, Porcentajes y Proporciones",
+        colorClass: "bg-emerald-600",
+        badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200",
+        topics: ["Suma y resta de fracciones", "Multiplicación y división", "Porcentajes y proporciones"],
+        description: "Operaciones con fracciones heterogéneas y homogéneas, simplificación y problemas de proporcionalidad.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
       },
-      {
+      3: {
         id: 3,
-        question: "El resultado exacto de evaluar 3.25 × 0.4 - 0.7 es:",
-        options: ["0.4", "0.5", "0.6", "0.8"],
-        correct: 2,
-        explanation: "Multiplicamos 3.25 × 0.4 = 1.30. Luego restamos: 1.3 - 0.7 = 0.6."
+        title: "Módulo 3: Potencias, Raíces y Jerarquía",
+        colorClass: "bg-amber-600",
+        badgeClass: "bg-amber-100 text-amber-800 border-amber-200",
+        topics: ["Leyes de exponentes", "Radicación básica", "Signos de agrupación"],
+        description: "Manejo de potencias, raíces cuadradas exactas y orden estricto de jerarquía de operaciones.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
+      },
+      4: {
+        id: 4,
+        title: "Módulo 4: Álgebra e Inecuaciones",
+        colorClass: "bg-purple-600",
+        badgeClass: "bg-purple-100 text-purple-800 border-purple-200",
+        topics: ["Expresiones algebraicas", "Ecuaciones lineales", "Inecuaciones"],
+        description: "Simplificación de términos semejantes, despeje de incógnitas y resolución de inecuaciones.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
+      },
+      5: {
+        id: 5,
+        title: "Módulo 5: Regla de Tres y Conjuntos",
+        colorClass: "bg-rose-600",
+        badgeClass: "bg-rose-100 text-rose-800 border-rose-200",
+        topics: ["Regla de tres simple y compuesta", "Teoría de conjuntos", "Operaciones con conjuntos"],
+        description: "Planteamiento de problemas de proporcionalidad directa/inversa y operaciones de conjuntos.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
+      },
+      6: {
+        id: 6,
+        title: "Módulo 6: Geometría y Recta Numérica",
+        colorClass: "bg-cyan-600",
+        badgeClass: "bg-cyan-100 text-cyan-800 border-cyan-200",
+        topics: ["Perímetros y áreas", "Teorema de Pitágoras", "Recta numérica"],
+        description: "Cálculos geométricos básicos, áreas de figuras planas y ubicación de números reales.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
+      },
+      7: {
+        id: 7,
+        title: "Módulo 7: Gráficas, Series y Lógica",
+        colorClass: "bg-red-600",
+        badgeClass: "bg-red-100 text-red-800 border-red-200",
+        topics: ["Interpretación de gráficas", "Series numéricas", "Razonamiento lógico"],
+        description: "Análisis de datos estadísticos visuales, patrones numéricos y problemas lógicos de examen.",
+        contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>`
       }
-    ]
-  },
-  2: { title: "Examen Corto 2", questions: [] },
-  3: { title: "Examen Corto 3", questions: [] },
-  4: { title: "Examen Corto 4", questions: [] },
-  5: { title: "Examen Corto 5", questions: [] },
-  6: { title: "Examen Corto 6", questions: [] },
-  7: { title: "Examen Corto 7", questions: [] }
-};
+    };
+
+    const quizzesData = {
+      1: {
+        title: "Examen Corto 1: Aritmética y Operaciones con Decimales",
+        questions: [
+          {
+            id: 1,
+            question: "¿Cuál es el resultado de la expresión: -14 - 6 × (-3) + (-8) ÷ 2?",
+            options: ["-8", "0", "4", "8"],
+            correct: 1,
+            explanation: "Resolvemos multiplicaciones y divisiones primero: -6 × (-3) = +18 y (-8) ÷ 2 = -4. La expresión resulta: -14 + 18 - 4 = 0."
+          },
+          {
+            id: 2,
+            question: "Un frasco de medicamento contiene 0.75 litros de solución oral. Si se administran dosis diarias de 0.05 litros, ¿para cuántos días alcanza el frasco?",
+            options: ["10 días", "12 días", "15 días", "20 días"],
+            correct: 2,
+            explanation: "Planteamos la división 0.75 ÷ 0.05. Multiplicamos dividendo y divisor por 100: 75 ÷ 5 = 15 días."
+          },
+          {
+            id: 3,
+            question: "El resultado exacto de evaluar 3.25 × 0.4 - 0.7 es:",
+            options: ["0.4", "0.5", "0.6", "0.8"],
+            correct: 2,
+            explanation: "Multiplicamos 3.25 × 0.4 = 1.30. Luego restamos: 1.3 - 0.7 = 0.6."
+          }
+        ]
+      },
+      2: { title: "Examen Corto 2: Fracciones y Porcentajes", questions: [] },
+      3: { title: "Examen Corto 3: Potencias y Raíces", questions: [] },
+      4: { title: "Examen Corto 4: Álgebra e Inecuaciones", questions: [] },
+      5: { title: "Examen Corto 5: Regla de Tres y Conjuntos", questions: [] },
+      6: { title: "Examen Corto 6: Geometría", questions: [] },
+      7: { title: "Examen Corto 7: Gráficas y Lógica", questions: [] }
+    };
+
+    // ESTADO Y PERSISTENCIA (LocalStorage)
+    let userProgress = JSON.parse(localStorage.getItem('cusam_progress')) || {};
+    let currentModuleId = null;
+
+    function saveProgress() {
+      localStorage.setItem('cusam_progress', JSON.stringify(userProgress));
+      updateGeneralProgress();
+    }
+
+    function updateGeneralProgress() {
+      const totalModules = Object.keys(modulesData).length;
+      let completedCount = 0;
+      for (let id in modulesData) {
+        if (userProgress[id] && userProgress[id].completed) completedCount++;
+      }
+      const pct = Math.round((completedCount / totalModules) * 100);
+      document.getElementById('general-progress-pct').innerText = `${pct}% Completado`;
+    }
+
+    // NAVEGACIÓN ENTRE PESTAÑAS
+    function switchTab(tab) {
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-lesson').classList.add('hidden');
+      document.getElementById('view-quizzes').classList.add('hidden');
+
+      document.getElementById('tab-dashboard').className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors";
+      document.getElementById('tab-quizzes').className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors";
+
+      if (tab === 'dashboard') {
+        document.getElementById('view-dashboard').classList.remove('hidden');
+        document.getElementById('tab-dashboard').className = "py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors";
+        renderDashboard();
+      } else if (tab === 'quizzes') {
+        document.getElementById('view-quizzes').classList.remove('hidden');
+        document.getElementById('tab-quizzes').className = "py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors";
+        renderQuizzesHub();
+      }
+    }
+
+    // RENDERIZAR DASHBOARD DE MÓDULOS
+    function renderDashboard() {
+      const grid = document.getElementById('modules-grid');
+      grid.innerHTML = '';
+
+      for (let id in modulesData) {
+        const mod = modulesData[id];
+        const prog = userProgress[id] || { completed: false, score: null };
+        
+        let statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 border border-slate-200">Pendiente</span>`;
+        if (prog.completed) {
+          statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">Completado (${prog.score}%)</span>`;
+        }
+
+        let topicsHtml = mod.topics.map(t => `<li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>${t}</li>`).join('');
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow";
+        card.innerHTML = `
+          <div>
+            <div class="${mod.colorClass} h-3 w-full"></div>
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-start gap-2">
+                <h3 class="font-bold text-lg text-slate-900">${mod.title}</h3>
+                ${statusBadge}
+              </div>
+              <p class="text-sm text-slate-600">${mod.description}</p>
+              <div class="space-y-1">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Temas clave:</span>
+                <ul class="text-xs text-slate-600 space-y-1">${topicsHtml}</ul>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button onclick="openLesson(${id})" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition-colors text-center block">
+              ${prog.completed ? 'Repasar Módulo' : 'Entrar al Módulo'}
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+    }
+
+    // ABRIR LECCIÓN
+    function openLesson(id) {
+      currentModuleId = id;
+      const mod = modulesData[id];
+
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-lesson').classList.remove('hidden');
+
+      document.getElementById('lesson-title').innerText = mod.title;
+      document.getElementById('lesson-module-badge').className = `px-3 py-1 text-xs font-semibold rounded-full ${mod.badgeClass}`;
+      document.getElementById('lesson-module-badge').innerText = `Módulo ${id}`;
+      document.getElementById('lesson-content').innerHTML = mod.contentHtml;
+
+      document.getElementById('btn-open-quiz').onclick = () => openQuizModal(id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // RENDERIZAR HUB DE EXÁMENES
+    function renderQuizzesHub() {
+      const container = document.getElementById('quizzes-list-container');
+      container.innerHTML = '';
+
+      for (let id in quizzesData) {
+        const quiz = quizzesData[id];
+        const mod = modulesData[id];
+        const prog = userProgress[id] || { completed: false, score: null };
+        const hasQuestions = quiz.questions && quiz.questions.length > 0;
+
+        const card = document.createElement('div');
+        card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4";
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start gap-2 mb-2">
+              <h3 class="font-bold text-slate-900 text-base">${quiz.title}</h3>
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-full ${prog.completed ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}">
+                ${prog.completed ? `Nota: ${prog.score}%` : 'Pendiente'}
+              </span>
+            </div>
+            <p class="text-xs text-slate-500">${hasQuestions ? `${quiz.questions.length} preguntas de evaluación` : 'Próximamente disponible'}</p>
+          </div>
+          <div>
+            <button onclick="openQuizModal(${id})" ${!hasQuestions ? 'disabled' : ''} class="w-full ${hasQuestions ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-slate-100 text-slate-400 cursor-not-allowed'} font-medium py-2 px-4 rounded-lg text-sm transition-colors">
+              ${prog.completed ? 'Repetir Examen' : 'Realizar Examen'}
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    // MODAL DE EXAMEN
+    let activeQuizId = null;
+
+    function openQuizModal(modId) {
+      activeQuizId = modId;
+      const quiz = quizzesData[modId];
+      if (!quiz.questions || quiz.questions.length === 0) {
+        alert("El examen corto para este módulo estará disponible próximamente.");
+        return;
+      }
+
+      document.getElementById('modal-quiz-title').innerText = quiz.title;
+      const body = document.getElementById('quiz-body');
+      body.innerHTML = '';
+
+      quiz.questions.forEach((q, qIndex) => {
+        let optionsHtml = '';
+        q.options.forEach((opt, optIndex) => {
+          optionsHtml += `
+            <label class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer text-sm">
+              <input type="radio" name="q_${q.id}" value="${optIndex}" class="text-blue-600 focus:ring-blue-500">
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+
+        const qDiv = document.createElement('div');
+        qDiv.className = "space-y-3 pb-4 border-b border-slate-100 last:border-none";
+        qDiv.innerHTML = `
+          <p class="font-semibold text-slate-800 text-sm">Pregunta ${qIndex + 1}: ${q.question}</p>
+          <div class="space-y-2">${optionsHtml}</div>
+          <div id="explanation-${q.id}" class="hidden text-xs p-3 rounded-lg mt-2"></div>
+        `;
+        body.appendChild(qDiv);
+      });
+
+      document.getElementById('btn-submit-quiz').style.display = 'block';
+      document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function closeQuizModal() {
+      document.getElementById('quiz-modal').classList.add('hidden');
+    }
+
+    function submitQuiz() {
+      const quiz = quizzesData[activeQuizId];
+      let correctCount = 0;
+      let allAnswered = true;
+
+      quiz.questions.forEach((q) => {
+        const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+        const expDiv = document.getElementById(`explanation-${q.id}`);
+        expDiv.classList.remove('hidden');
+
+        if (!selected) {
+          allAnswered = false;
+          expDiv.className = "text-xs p-3 rounded-lg mt-2 bg-amber-50 text-amber-800 border border-amber-200";
+          expDiv.innerText = "No respondiste esta pregunta.";
+          return;
+        }
+
+        const selectedVal = parseInt(selected.value);
+        if (selectedVal === q.correct) {
+          correctCount++;
+          expDiv.className = "text-xs p-3 rounded-lg mt-2 bg-emerald-50 text-emerald-800 border border-emerald-200";
+          expDiv.innerText = `¡Correcto! ${q.explanation}`;
+        } else {
+          expDiv.className = "text-xs p-3 rounded-lg mt-2 bg-rose-50 text-rose-800 border border-rose-200";
+          expDiv.innerText = `Incorrecto. ${q.explanation}`;
+        }
+      });
+
+      if (!allAnswered) {
+        alert("Por favor responde todas las preguntas antes de calificar.");
+        return;
+      }
+
+      const score = Math.round((correctCount / quiz.questions.length) * 100);
+      userProgress[activeQuizId] = { completed: true, score: score };
+      saveProgress();
+
+      document.getElementById('btn-submit-quiz').style.display = 'none';
+      alert(`Examen calificado con éxito. Tu nota: ${score}%`);
+    }
+
+    // Inicializar al cargar la página
+    window.onload = function() {
+      renderDashboard();
+      updateGeneralProgress();
+    };
+  </script>
+</body>
+</html>
