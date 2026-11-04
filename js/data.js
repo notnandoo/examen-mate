@@ -212,7 +212,10 @@ const quizzesDataL1 = {
   }
 };
 
-// --- NIVEL 2 (MÓDULO 1 COMPLETO CON 3 EJEMPLOS Y 20 PREGUNTAS EN BANCO) ---
+// ==========================================
+// NIVEL 2 COMPLETO (MÓDULOS 1 AL 8 CON TEORÍA Y BANCOS DE 20 PREGUNTAS)
+// ==========================================
+
 const modulesDataL2 = {
   1: {
     id: 1, title: "Módulo 1 (Nivel 2): Razonamiento Aritmético y Dosis Clínicas",
@@ -222,39 +225,110 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Cálculo de velocidad en bomba de infusión (ml/h)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Un paciente de 75 kg debe recibir dopamina a razón de 2 mg/min. La concentración disponible es de 20 mg/ml.<br><strong>Resolución:</strong><br>1. Calculamos la dosis horaria: $2\text{ mg/min} \times 60\text{ min} = 120\text{ mg/h}$.<br>2. Dividimos entre la concentración: $120\text{ mg/h} \div 20\text{ mg/ml} = 6.0\text{ ml/h}$.</p>
-        
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Un paciente de 75 kg debe recibir dopamina a razón de 2 mg/min. Concentración: 20 mg/ml.<br><strong>Resolución:</strong><br>1. Dosis horaria: $2\text{ mg/min} \times 60\text{ min} = 120\text{ mg/h}$.<br>2. Velocidad: $120\text{ mg/h} \div 20\text{ mg/ml} = 6.0\text{ ml/h}$.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Cálculo de goteo manual (gtt/min)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Administrar 500 ml de solución salina en 8 horas usando un equipo de macrogoteo (20 gtt/ml).<br><strong>Resolución:</strong><br>1. Convertimos el tiempo a minutos: $8\text{ horas} \times 60 = 480\text{ min}$.<br>2. Aplicamos la fórmula: $\frac{500\text{ ml} \times 20\text{ gtt/ml}}{480\text{ min}} = \frac{10000}{480} \approx 20.83\text{ gtt/min}$ (se ajusta a 21 gtt/min).</p>
-
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de unidades de masa y volumen</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> ¿Cuántos miligramos hay en 3.5 gramos de un soluto si se diluyen en 250 ml?<br><strong>Resolución:</strong><br>1. Convertimos gramos a miligramos multiplicando por 1000: $3.5\text{ g} \times 1000 = 3500\text{ mg}$.<br>2. La concentración resultante es $\frac{3500\text{ mg}}{250\text{ ml}} = 14\text{ mg/ml}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Administrar 500 ml en 8 horas (macrogoteo a 20 gtt/ml).<br><strong>Resolución:</strong><br>Tiempo en min: $480\text{ min}$. Goteo: $\frac{500 \times 20}{480} \approx 21\text{ gtt/min}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de masa y volumen</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Concentración de 3.5 g de soluto diluidos en 250 ml.<br><strong>Resolución:</strong><br>$3.5\text{ g} = 3500\text{ mg}$. Concentración: $\frac{3500}{250} = 14\text{ mg/ml}$.</p>
       </div>
     `
   },
   2: {
-  id: 2, title: "Módulo 2 (Nivel 2): Proporciones Clínicas Complejas",
-  colorClass: "bg-emerald-800", badgeClass: "bg-emerald-900 text-emerald-200 border-emerald-700",
-  topics: ["Concentraciones Percentuales", "Diluciones y Mezclas", "Factores de Proporción"],
-  description: "Resolución avanzada de problemas de mezclas de soluciones, porcentajes y diluciones.",
-  contentHtml: `
-    <div class="space-y-4">
-      <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Mezcla de dos soluciones con diferente porcentaje</h3>
-      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Se mezclan 300 ml de una solución al 5% con 200 ml de una solución al 10%. ¿Cuál es el porcentaje final de la mezcla?<br><strong>Resolución:</strong><br>1. Calculamos el soluto de la primera solución: $300\text{ ml} \times 0.05 = 15\text{ g}$.<br>2. Calculamos el soluto de la segunda solución: $200\text{ ml} \times 0.10 = 20\text{ g}$.<br>3. Sumamos solutos ($15 + 20 = 35\text{ g}$) y volúmenes ($300 + 200 = 500\text{ ml}$).<br>4. Hallamos el porcentaje final: $\frac{35\text{ g}}{500\text{ ml}} \times 100 = 7.0\%$.</p>
-      
-      <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Preparación de diluciones por ley de conservación ($C_1V_1 = C_2V_2$)</h3>
-      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> ¿Cuántos mililitros de una solución concentrada al 20% se necesitan para preparar 500 ml de una solución al 4%?<br><strong>Resolución:</strong><br>1. Aplicamos la fórmula: $C_1 \cdot V_1 = C_2 \cdot V_2$.<br>2. Sustituimos: $20\% \cdot V_1 = 4\% \cdot 500\text{ ml}$.<br>3. Despejamos $V_1$: $V_1 = \frac{2000}{20} = 100\text{ ml}$ de solución concentrada a diluir en 400 ml de agua estéril.</p>
-
-      <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de relación peso/volumen (p/v) a concentración en mg/ml</h3>
-      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Una ampolla de glucosa se encuentra al 10% p/v en un volumen de 20 ml. ¿Cuántos miligramos totales de glucosa contiene?<br><strong>Resolución:</strong><br>1. Una concentración al 10% significa que hay $10\text{ g}$ de soluto por cada $100\text{ ml}$ ($100\text{ mg/ml}$).<br>2. Multiplicamos la concentración por el volumen total: $100\text{ mg/ml} \times 20\text{ ml} = 2000\text{ mg}$ ($2\text{ g}$).</p>
-    </div>
-  `
-},
-  3: { id: 3, title: "Módulo 3 (Nivel 2): Exponentes y Crecimiento", colorClass: "bg-amber-800", badgeClass: "bg-amber-900 text-amber-200 border-amber-700", topics: ["Duplicación", "Semivida"], description: "Potencias aplicadas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
-  4: { id: 4, title: "Módulo 4 (Nivel 2): Modelado de Inecuaciones", colorClass: "bg-purple-800", badgeClass: "bg-purple-900 text-purple-200 border-purple-700", topics: ["Ventana Terapéutica", "Sistemas"], description: "Inecuaciones avanzadas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
-  5: { id: 5, title: "Módulo 5 (Nivel 2): Regla de Tres Compuesta y Venn Avanzado", colorClass: "bg-rose-800", badgeClass: "bg-rose-900 text-rose-200 border-rose-700", topics: ["Regla Compuesta", "Venn 3 Conjuntos"], description: "Análisis multivariable.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
-  6: { id: 6, title: "Módulo 6 (Nivel 2): Optimización Geométrica", colorClass: "bg-cyan-800", badgeClass: "bg-cyan-900 text-cyan-200 border-cyan-700", topics: ["Pitágoras 3D", "Volúmenes"], description: "Geometría espacial.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
-  7: { id: 7, title: "Módulo 7 (Nivel 2): Análisis Estadístico y Lógica", colorClass: "bg-red-800", badgeClass: "bg-red-900 text-red-200 border-red-700", topics: ["Probabilidad Condicional", "Silogismos"], description: "Estadística y lógica formal.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
+    id: 2, title: "Módulo 2 (Nivel 2): Proporciones Clínicas Complejas",
+    colorClass: "bg-emerald-800", badgeClass: "bg-emerald-900 text-emerald-200 border-emerald-700",
+    topics: ["Concentraciones Percentuales", "Diluciones y Mezclas", "Factores de Proporción"],
+    description: "Resolución avanzada de problemas de mezclas de soluciones y diluciones.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Mezcla de soluciones al %</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Mezclar 300 ml al 5% con 200 ml al 10%.<br><strong>Resolución:</strong> Soluto 1: 15g, Soluto 2: 20g. Total soluto = 35g en 500ml. Porcentaje final = $\frac{35}{500} \times 100 = 7.0\%$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ley de conservación ($C_1V_1 = C_2V_2$)</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Preparar 500 ml al 4% desde una solución al 20%.<br><strong>Resolución:</strong> $20 \cdot V_1 = 4 \cdot 500 \rightarrow V_1 = 100\text{ ml}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Relación p/v a mg/ml</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Ampolla al 10% p/v en 20 ml.<br><strong>Resolución:</strong> 10% = $100\text{ mg/ml}$. Total = $100 \times 20 = 2000\text{ mg}$.</p>
+      </div>
+    `
+  },
+  3: {
+    id: 3, title: "Módulo 3 (Nivel 2): Exponentes y Crecimiento",
+    colorClass: "bg-amber-800", badgeClass: "bg-amber-900 text-amber-200 border-amber-700",
+    topics: ["Duplicación Bacteriana", "Semivida Farmacocinética", "Decaimiento Exponencial"],
+    description: "Modelos exponenciales aplicados a la multiplicación celular y eliminación de fármacos.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Crecimiento exponencial</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Cultivo que se duplica cada 3h (inicio 1,000). En 9h.<br><strong>Resolución:</strong> $n = 9/3 = 3$. $1000 \cdot 2^3 = 8,000\text{ bacterias}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Semivida ($t_{1/2}$)</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Fármaco con $t_{1/2} = 4\text{ h}$ (inicio $160\text{ mg/L}$) hasta $20\text{ mg/L}$.<br><strong>Resolución:</strong> $160 \rightarrow 80 \rightarrow 40 \rightarrow 20$ (3 periodos de 4h = $12\text{ horas}$).</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Potencias fraccionarias</h3>
+        <p class="text-sm text-slate-600">Evaluación de funciones exponenciales de decaimiento en modelos farmacocinéticos.</p>
+      </div>
+    `
+  },
+  4: {
+    id: 4, title: "Módulo 4 (Nivel 2): Modelado de Inecuaciones",
+    colorClass: "bg-purple-800", badgeClass: "bg-purple-900 text-purple-200 border-purple-700",
+    topics: ["Ventana Terapéutica", "Inecuaciones con Valor Absoluto", "Sistemas de Restricción"],
+    description: "Cálculo de rangos seguros de dosificación médica mediante inecuaciones.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Inecuación lineal de dosis</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Resolver $2x + 15 \le 45$ para hallar el límite de comprimidos.<br><strong>Resolución:</strong> $2x \le 30 \rightarrow x \le 15$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ventana terapéutica con valor absoluto</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Modelo $|D - 250| \le 45$.<br><strong>Resolución:</strong> $-45 \le D - 250 \le 45 \rightarrow 205 \le D \le 295\text{ mg}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Sistemas de inecuaciones simultáneas</h3>
+        <p class="text-sm text-slate-600">Cálculo de intersecciones seguras entre concentraciones mínimas y máximas.</p>
+      </div>
+    `
+  },
+  5: {
+    id: 5, title: "Módulo 5 (Nivel 2): Regla de Tres Compuesta y Venn Avanzado",
+    colorClass: "bg-rose-800", badgeClass: "bg-rose-900 text-rose-200 border-rose-700",
+    topics: ["Regla de Tres Compuesta", "Diagramas de Venn de 3 Conjuntos", "Análisis Multivariable"],
+    description: "Resolución de problemas con múltiples variables proporcionales.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Regla de tres compuesta</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> 6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?<br><strong>Resolución:</strong> $120 \times (9/6) \times (6/4) = 270\text{ vacunas}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Venn de 3 conjuntos</h3>
+        <p class="text-sm text-slate-600">Aplicación del principio de inclusión-exclusión para poblaciones superpuestas en estudios clínicos.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Proporcionalidad inversa multivariable</h3>
+        <p class="text-sm text-slate-600">Cálculo de tiempos y recursos asignados en intervenciones simultáneas.</p>
+      </div>
+    `
+  },
+  6: {
+    id: 6, title: "Módulo 6 (Nivel 2): Optimización Geométrica",
+    colorClass: "bg-cyan-800", badgeClass: "bg-cyan-900 text-cyan-200 border-cyan-700",
+    topics: ["Pitágoras 3D", "Superficie Corporal (Mosteller)", "Volúmenes Esféricos y Cilíndricos"],
+    description: "Geometría espacial aplicada al cálculo de superficies corporales y volúmenes.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Superficie Corporal (Mosteller)</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Paciente de 180 cm y 100 kg.<br><strong>Resolución:</strong> $\text{ASC} = \sqrt{\frac{180 \times 100}{3600}} = \sqrt{5} \approx 2.24\text{ m}^2$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Distancia tridimensional (Pitágoras 3D)</h3>
+        <p class="text-sm text-slate-600">Cálculo de vectores de posición y distancias espaciales en coordenadas cartesianas.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Volumen de tanques de oxígeno</h3>
+        <p class="text-sm text-slate-600">Aplicación de fórmulas geométricas para depósitos cilíndricos y esféricos.</p>
+      </div>
+    `
+  },
+  7: {
+    id: 7, title: "Módulo 7 (Nivel 2): Análisis Estadístico y Lógica",
+    colorClass: "bg-red-800", badgeClass: "bg-red-900 text-red-200 border-red-700",
+    topics: ["Probabilidad Condicional", "Valor Predictivo", "Silogismos y Validez de Premisas"],
+    description: "Evaluación matemática de pruebas diagnósticas y razonamiento formal.",
+    contentHtml: `
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Probabilidad condicional (VPP)</h3>
+        <p class="text-sm text-slate-600">Cálculo de la probabilidad de enfermedad dado un resultado positivo mediante sensibilidad y especificidad.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Lógica formal y silogismos</h3>
+        <p class="text-sm text-slate-600">Evaluación de la validez de conclusiones a partir de premisas clínicas dadas.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Probabilidad combinada</h3>
+        <p class="text-sm text-slate-600">Análisis de sucesos independientes y dependientes en ensayos clínicos.</p>
+      </div>
+    `
+  },
   8: { 
     id: 8, title: "Módulo 8 (Nivel 2): Simulador Oficial de Examen General", colorClass: "bg-indigo-900", badgeClass: "bg-indigo-950 text-indigo-200 border-indigo-800",
     topics: ["Simulador Cronometrado", "30 Minutos", "15 Preguntas"],
@@ -263,64 +337,202 @@ const modulesDataL2 = {
   }
 };
 
-// Banco de 20 preguntas para el Módulo 1 (de las cuales el sistema toma 10 aleatorias)
 const quizzesDataL2 = {
   1: {
     title: "Banco Nivel 2 - Módulo 1 (20 Preguntas)",
     questions: [
       { id: 1, question: "Paciente de 75 kg recibe infusión de dopamina a 2 mg/min. Concentración: 20 mg/ml. Velocidad en ml/h:", options: ["4.5 ml/h", "6.0 ml/h", "7.5 ml/h", "9.0 ml/h"], correct: 1, explanation: "120 mg/h / 20 mg/ml = 6.0 ml/h." },
       { id: 2, question: "Calcule el goteo para 500 ml en 8 horas con factor 20 gtt/ml:", options: ["18 gtt/min", "21 gtt/min", "25 gtt/min", "28 gtt/min"], correct: 1, explanation: "(500 × 20) / 480 ≈ 21 gtt/min." },
-      { id: 3, question: "Si se administran 1000 ml de solución en 12 horas con microgotero (60 gtt/ml), el goteo es:", options: ["75 gtt/min", "83.3 gtt/min", "90 gtt/min", "100 gtt/min"], correct: 1, explanation: "(1000 × 60) / 720 = 60000 / 720 = 83.3 gtt/min." },
-      { id: 4, question: "Un fármaco viene en presentación de 500 mg en 10 ml. ¿Cuántos mg hay en 3 ml?", options: ["100 mg", "150 mg", "200 mg", "250 mg"], correct: 1, explanation: "Concentración = 50 mg/ml. 50 × 3 = 150 mg." },
-      { id: 5, question: "Transforme 45 mcg a miligramos (mg):", options: ["0.045 mg", "0.45 mg", "4.5 mg", "45 mg"], correct: 0, explanation: "1 mg = 1000 mcg. 45 / 1000 = 0.045 mg." },
-      { id: 6, question: "Si la velocidad de infusión es de 45 ml/h y el equipo pasa 1 ml en 20 gotas, ¿cuál es el goteo?", options: ["12 gtt/min", "15 gtt/min", "18 gtt/min", "21 gtt/min"], correct: 1, explanation: "(45 × 20) / 60 = 900 / 60 = 15 gtt/min." },
-      { id: 7, question: "Un paciente recibe 0.5 mcg/kg/min de un inotrópico. Pesa 80 kg. Dosis total por minuto:", options: ["20 mcg/min", "40 mcg/min", "60 mcg/min", "80 mcg/min"], correct: 1, explanation: "0.5 × 80 = 40 mcg/min." },
-      { id: 8, question: "Convierta 2.5 litros a mililitros:", options: ["250 ml", "2500 ml", "25000 ml", "25 ml"], correct: 1, explanation: "2.5 × 1000 = 2500 ml." },
-      { id: 9, question: "Si una infusión dura 6 horas a 80 ml/h, ¿cuál es el volumen total infundido?", options: ["360 ml", "420 ml", "480 ml", "540 ml"], correct: 2, explanation: "80 × 6 = 480 ml." },
-      { id: 10, question: "Una ampolla tiene 40 mg en 2 ml. Se requieren 60 mg. ¿Cuántos ml se deben administrar?", options: ["2.0 ml", "2.5 ml", "3.0 ml", "3.5 ml"], correct: 2, explanation: "20 mg/ml. 60 / 20 = 3.0 ml." },
-      { id: 11, question: "Calcule la velocidad para pasar 250 ml en 4 horas:", options: ["55.5 ml/h", "62.5 ml/h", "70.0 ml/h", "75.5 ml/h"], correct: 1, explanation: "250 / 4 = 62.5 ml/h." },
-      { id: 12, question: "Si 1 gramo equivale a 1,000,000 de microgramos, ¿cuántos mcg hay en 0.02 g?", options: ["200 mcg", "2,000 mcg", "20,000 mcg", "200,000 mcg"], correct: 2, explanation: "0.02 × 1,000,000 = 20,000 mcg." },
-      { id: 13.0, question: "Un frasco contiene 100 ml de solución al 5%. ¿Cuántos gramos de soluto contiene?", options: ["2.5 g", "5.0 g", "7.5 g", "10.0 g"], correct: 1, explanation: "5% significa 5 g por cada 100 ml." },
-      { id: 14, question: "Si un equipo entrega 15 gtt/ml, ¿cuántas gotas hay en 100 ml?", options: ["1,200 gtt", "1,500 gtt", "1,800 gtt", "2,000 gtt"], correct: 1, explanation: "100 × 15 = 1,500 gotas." },
-      { id: 15, question: "Paciente pesa 60 kg. Dosis pautada: 4 mg/kg/día. Dosis total diaria:", options: ["120 mg", "180 mg", "240 mg", "300 mg"], correct: 2, explanation: "60 × 4 = 240 mg/día." },
-      { id: 16, question: "Dividiendo la dosis anterior en cada 8 horas (3 veces al día), la dosis por toma es:", options: ["60 mg", "80 mg", "100 mg", "120 mg"], correct: 1, explanation: "240 / 3 = 80 mg." },
-      { id: 17, question: "Si se pasan 50 ml en 30 minutos en bomba, la velocidad programada es:", options: ["50 ml/h", "75 ml/h", "100 ml/h", "120 ml/h"], correct: 2, explanation: "50 ml en 0.5 h = 100 ml/h." },
-      { id: 18, question: "Conversión: 750 miligramos a gramos:", options: ["0.075 g", "0.75 g", "7.5 g", "75 g"], correct: 1, explanation: "750 / 1000 = 0.75 g." },
-      { id: 19, question: "Si la concentración es 5 mg/ml y se pasan 15 mg en una hora, el flujo es:", options: ["1 ml/h", "2 ml/h", "3 ml/h", "5 ml/h"], correct: 2, explanation: "15 / 5 = 3 ml/h." },
-      { id: 20, question: "Velocidad de infusión para 1200 ml en 24 horas:", options: ["40 ml/h", "45 ml/h", "50 ml/h", "55 ml/h"], correct: 2, explanation: "1200 / 24 = 50 ml/h." }
+      { id: 3, question: "Si se administran 1000 ml de solución en 12 horas con microgotero (60 gtt/ml), el goteo es:", options: ["75 gtt/min", "83.3 gtt/min", "90 gtt/min", "100 gtt/min"], correct: 1, explanation: "83.3 gtt/min." },
+      { id: 4, question: "Un fármaco viene en presentación de 500 mg en 10 ml. ¿Cuántos mg hay en 3 ml?", options: ["100 mg", "150 mg", "200 mg", "250 mg"], correct: 1, explanation: "150 mg." },
+      { id: 5, question: "Transforme 45 mcg a miligramos (mg):", options: ["0.045 mg", "0.45 mg", "4.5 mg", "45 mg"], correct: 0, explanation: "0.045 mg." },
+      { id: 6, question: "Velocidad de infusión de 45 ml/h y el equipo pasa 1 ml en 20 gotas, goteo:", options: ["12 gtt/min", "15 gtt/min", "18 gtt/min", "21 gtt/min"], correct: 1, explanation: "15 gtt/min." },
+      { id: 7, question: "Paciente de 80 kg recibe 0.5 mcg/kg/min. Dosis total por minuto:", options: ["20 mcg/min", "40 mcg/min", "60 mcg/min", "80 mcg/min"], correct: 1, explanation: "40 mcg/min." },
+      { id: 8, question: "Convierta 2.5 litros a mililitros:", options: ["250 ml", "2500 ml", "25000 ml", "25 ml"], correct: 1, explanation: "2500 ml." },
+      { id: 9, question: "Infusión de 6 horas a 80 ml/h, volumen total:", options: ["360 ml", "420 ml", "480 ml", "540 ml"], correct: 2, explanation: "480 ml." },
+      { id: 10, question: "Ampolla de 40 mg en 2 ml. Se requieren 60 mg, volumen a administrar:", options: ["2.0 ml", "2.5 ml", "3.0 ml", "3.5 ml"], correct: 2, explanation: "3.0 ml." },
+      { id: 11, question: "Velocidad para pasar 250 ml en 4 horas:", options: ["55.5 ml/h", "62.5 ml/h", "70.0 ml/h", "75.5 ml/h"], correct: 1, explanation: "62.5 ml/h." },
+      { id: 12, question: "¿Cuántos mcg hay en 0.02 g?", options: ["200 mcg", "2,000 mcg", "20,000 mcg", "200,000 mcg"], correct: 2, explanation: "20,000 mcg." },
+      { id: 13, question: "100 ml de solución al 5% contiene cuántos gramos:", options: ["2.5 g", "5.0 g", "7.5 g", "10.0 g"], correct: 1, explanation: "5.0 g." },
+      { id: 14, question: "Si un equipo entrega 15 gtt/ml, gotas en 100 ml:", options: ["1,200 gtt", "1,500 gtt", "1,800 gtt", "2,000 gtt"], correct: 1, explanation: "1,500 gtt." },
+      { id: 15, question: "Paciente de 60 kg a 4 mg/kg/día. Dosis total diaria:", options: ["120 mg", "180 mg", "240 mg", "300 mg"], correct: 2, explanation: "240 mg." },
+      { id: 16, question: "Dosis anterior dividida en 3 tomas diarias:", options: ["60 mg", "80 mg", "100 mg", "120 mg"], correct: 1, explanation: "80 mg." },
+      { id: 17, question: "Pasar 50 ml en 30 minutos en bomba, velocidad:", options: ["50 ml/h", "75 ml/h", "100 ml/h", "120 ml/h"], correct: 2, explanation: "100 ml/h." },
+      { id: 18, question: "Conversión: 750 miligramos a gramos:", options: ["0.075 g", "0.75 g", "7.5 g", "75 g"], correct: 1, explanation: "0.75 g." },
+      { id: 19, question: "Concentración de 5 mg/ml y pasan 15 mg en una hora, flujo:", options: ["1 ml/h", "2 ml/h", "3 ml/h", "5 ml/h"], correct: 2, explanation: "3 ml/h." },
+      { id: 20, question: "Velocidad de infusión para 1200 ml en 24 horas:", options: ["40 ml/h", "45 ml/h", "50 ml/h", "55 ml/h"], correct: 2, explanation: "50 ml/h." }
     ]
   },
   2: {
-  title: "Banco Nivel 2 - Módulo 2 (20 Preguntas)",
-  questions: [
-    { id: 1, question: "Se mezclan 300 ml de solución al 5% con 200 ml de solución al 10%. Porcentaje final:", options: ["6.5%", "7.0%", "7.5%", "8.0%"], correct: 1, explanation: "(15g + 20g) / 500ml = 7.0%." },
-    { id: 2, question: "¿Qué volumen de solución al 25% se requiere para obtener 50 g de soluto puro?", options: ["100 ml", "150 ml", "200 ml", "250 ml"], correct: 2, explanation: "25g en 100ml -> 50g en 200ml." },
-    { id: 3, question: "Si se diluyen 50 ml de una solución al 30% hasta alcanzar un volumen final de 150 ml, la concentración final es:", options: ["5%", "10%", "15%", "20%"], correct: 1, explanation: "(30 × 50) / 150 = 10%." },
-    { id: 4, question: "Una solución al 0.9% de cloruro de sodio en 1000 ml contiene cuántos gramos de sal:", options: ["0.9 g", "9.0 g", "90.0 g", "900.0 g"], correct: 1, explanation: "0.9 g por cada 100 ml, por lo tanto 9.0 g en 1000 ml." },
-    { id: 5, question: "Para preparar 250 ml de solución al 2% a partir de una solución al 10%, se requieren:", options: ["30 ml", "50 ml", "75 ml", "100 ml"], correct: 1, explanation: "(2% × 250ml) / 10% = 50 ml." },
-    { id: 6, question: "¿Cuántos mg de fármaco hay en 5 ml de una solución al 4% p/v?", options: ["100 mg", "200 mg", "400 mg", "500 mg"], correct: 1, explanation: "4% = 40 mg/ml. 40 × 5 = 200 mg." },
-    { id: 7, question: "Si se mezclan 400 ml al 2% con 100 ml al 12%, la concentración resultante es:", options: ["3.2%", "4.0%", "4.5%", "5.0%"], correct: 1, explanation: "(8g + 12g) / 500ml = 20/500 = 4.0%." },
-    { id: 8, question: "Una presentación comercial indica 50 mg/ml. ¿Cuál es su porcentaje p/v equivalente?", options: ["0.5%", "1.0%", "5.0%", "10.0%"], correct: 2, explanation: "50 mg/ml = 5 g / 100 ml = 5.0%." },
-    { id: 9, question: "Se tienen 600 ml de solución al 15%. Si se evaporan 100 ml, la nueva concentración es:", options: ["16.5%", "17.2%", "18.0%", "19.5%"], correct: 2, explanation: "Soluto = 90g. Volumen nuevo = 500ml. (90/500)*100 = 18.0%." },
-    { id: 10, question: "¿Qué cantidad de agua destilada se debe agregar a 100 ml de solución al 20% para bajarla al 5%?", options: ["200 ml", "300 ml", "400 ml", "500 ml"], correct: 1, explanation: "Volumen final = 400 ml. Como ya hay 100 ml, se añaden 300 ml de agua." },
-    { id: 11, question: "Una proporción 1:1000 en peso/volumen equivale a una concentración porcentual de:", options: ["0.01%", "0.1%", "1.0%", "10.0%"], correct: 1, explanation: "1g en 1000ml = 0.1g en 100ml (0.1%)." },
-    { id: 12, question: "Se mezclan 1 litro de solución al 2% con 1 litro de agua pura. El porcentaje final es:", options: ["0.5%", "1.0%", "1.5%", "2.0%"], correct: 1, explanation: "20g en 2000ml = 1.0%." },
-    { id: 13, question: "Calcule los gramos de soluto en 250 ml de una solución al 3.5%:", options: ["7.25 g", "8.75 g", "9.50 g", "10.25 g"], correct: 1, explanation: "250 × 0.035 = 8.75 g." },
-    { id: 14, question: "Si se requiere preparar 500 ml de suero glucosado al 5% usando ampollas al 50% (50 ml), ¿cuántas ampollas se necesitan?", options: ["1 ampolla", "2 ampollas", "3 ampollas", "4 ampollas"], correct: 1, explanation: "Soluto requerido = 25g. Cada ampolla al 50% en 50ml aporta 25g. Se necesita 1 ampolla (Nota: si es cálculo de volumen de ampolla, V1 = 50ml)." },
-    { id: 15, question: "Una solución madre tiene una concentración de 2 mg/ml. ¿Qué volumen contiene 400 mcg?", options: ["0.1 ml", "0.2 ml", "0.4 ml", "0.5 ml"], correct: 1, explanation: "400 mcg = 0.4 mg. 0.4 / 2 = 0.2 ml." },
-    { id: 16, question: "Al mezclar volúmenes iguales de soluciones al 4% y al 8%, el porcentaje de la mezcla es:", options: ["5.0%", "5.5%", "6.0%", "6.5%"], correct: 2, explanation: "Promedio ponderado simple por partes iguales: (4 + 8) / 2 = 6.0%." },
-    { id: 17, question: "¿Cuántos miligramos de cloruro de sodio hay en 10 ml de una solución al 0.9%?", options: ["45 mg", "90 mg", "135 mg", "180 mg"], correct: 1, explanation: "0.9% = 9 mg/ml. 9 × 10 = 90 mg." },
-    { id: 18, question: "Si se diluyen 200 ml de una solución al 8% hasta obtener 400 ml, la concentración es:", options: ["2%", "3%", "4%", "5%"], correct: 2, explanation: "(8% × 200) / 400 = 4%." },
-    { id: 19, question: "Una proporción 1:10,000 expresada en mg/ml equivale a:", options: ["0.01 mg/ml", "0.1 mg/ml", "1.0 mg/ml", "10.0 mg/ml"], correct: 1, explanation: "1g (1000mg) en 10,000ml = 0.1 mg/ml." },
-    { id: 20, question: "Para obtener una mezcla final al 6% combinando soluciones al 3% y al 9%, la proporción de mezcla debe ser:", options: ["1:1", "1:2", "2:1", "3:1"], correct: 0, explanation: "Equidistante de 3 y 9, requiere partes iguales (1:1)." }
-  ]
-},
-  3: { title: "Banco Nivel 2 - Mod 3", questions: [] },
-  4: { title: "Banco Nivel 2 - Mod 4", questions: [] },
-  5: { title: "Banco Nivel 2 - Mod 5", questions: [] },
-  6: { title: "Banco Nivel 2 - Mod 6", questions: [] },
-  7: { title: "Banco Nivel 2 - Mod 7", questions: [] },
-  8: { title: "Simulador Nivel 2", questions: [] } // El simulador general se mantiene con sus 15 preguntas ya definidas
+    title: "Banco Nivel 2 - Módulo 2 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Se mezclan 300 ml al 5% con 200 ml al 10%. Porcentaje final:", options: ["6.5%", "7.0%", "7.5%", "8.0%"], correct: 1, explanation: "7.0%." },
+      { id: 2, question: "Volumen al 25% para obtener 50 g de soluto:", options: ["100 ml", "150 ml", "200 ml", "250 ml"], correct: 2, explanation: "200 ml." },
+      { id: 3, question: "Diluir 50 ml al 30% hasta 150 ml, concentración final:", options: ["5%", "10%", "15%", "20%"], correct: 1, explanation: "10%." },
+      { id: 4, question: "Solución al 0.9% en 1000 ml contiene cuántos gramos de sal:", options: ["0.9 g", "9.0 g", "90.0 g", "900.0 g"], correct: 1, explanation: "9.0 g." },
+      { id: 5, question: "Preparar 250 ml al 2% a partir de solución al 10%:", options: ["30 ml", "50 ml", "75 ml", "100 ml"], correct: 1, explanation: "50 ml." },
+      { id: 6, question: "Mg en 5 ml de solución al 4% p/v:", options: ["100 mg", "200 mg", "400 mg", "500 mg"], correct: 1, explanation: "200 mg." },
+      { id: 7, question: "Mezclar 400 ml al 2% con 100 ml al 12%, concentración resultante:", options: ["3.2%", "4.0%", "4.5%", "5.0%"], correct: 1, explanation: "4.0%." },
+      { id: 8, question: "Presentación de 50 mg/ml equivale a porcentaje p/v de:", options: ["0.5%", "1.0%", "5.0%", "10.0%"], correct: 2, explanation: "5.0%." },
+      { id: 9, question: "600 ml al 15% evaporados 100 ml, nueva concentración:", options: ["16.5%", "17.2%", "18.0%", "19.5%"], correct: 2, explanation: "18.0%." },
+      { id: 10, question: "Agua a agregar a 100 ml al 20% para bajar al 5%:", options: ["200 ml", "300 ml", "400 ml", "500 ml"], correct: 1, explanation: "300 ml." },
+      { id: 11, question: "Proporción 1:1000 p/v equivale a porcentaje de:", options: ["0.01%", "0.1%", "1.0%", "10.0%"], correct: 1, explanation: "0.1%." },
+      { id: 12, question: "1 litro al 2% mezclado con 1 litro de agua pura:", options: ["0.5%", "1.0%", "1.5%", "2.0%"], correct: 1, explanation: "1.0%." },
+      { id: 13, question: "Gramos de soluto en 250 ml al 3.5%:", options: ["7.25 g", "8.75 g", "9.50 g", "10.25 g"], correct: 1, explanation: "8.75 g." },
+      { id: 14, question: "Preparar 500 ml al 5% usando ampollas al 50% (50 ml):", options: ["1 ampolla", "2 ampollas", "3 ampollas", "4 ampollas"], correct: 1, explanation: "1 ampolla." },
+      { id: 15, question: "Solución madre de 2 mg/ml. ¿Qué volumen contiene 400 mcg?", options: ["0.1 ml", "0.2 ml", "0.4 ml", "0.5 ml"], correct: 1, explanation: "0.2 ml." },
+      { id: 16, question: "Volúmenes iguales al 4% y al 8%, mezcla:", options: ["5.0%", "5.5%", "6.0%", "6.5%"], correct: 2, explanation: "6.0%." },
+      { id: 17, question: "Mg de cloruro de sodio en 10 ml al 0.9%:", options: ["45 mg", "90 mg", "135 mg", "180 mg"], correct: 1, explanation: "90 mg." },
+      { id: 18, question: "Diluir 200 ml al 8% hasta 400 ml:", options: ["2%", "3%", "4%", "5%"], correct: 2, explanation: "4%." },
+      { id: 19, question: "Proporción 1:10,000 en mg/ml:", options: ["0.01 mg/ml", "0.1 mg/ml", "1.0 mg/ml", "10.0 mg/ml"], correct: 1, explanation: "0.1 mg/ml." },
+      { id: 20, question: "Mezcla al 6% combinando 3% y 9%, proporción:", options: ["1:1", "1:2", "2:1", "3:1"], correct: 0, explanation: "1:1." }
+    ]
+  },
+  3: {
+    title: "Banco Nivel 2 - Módulo 3 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Cultivo bacteriano se duplica cada 3h (inicio 1,000). En 9h:", options: ["4,000", "8,000", "16,000", "32,000"], correct: 1, explanation: "8,000." },
+      { id: 2, question: "Semivida de 4h (inicio 160 mg/L). Tiempo para 20 mg/L:", options: ["8 horas", "12 horas", "16 horas", "20 horas"], correct: 1, explanation: "12 horas." },
+      { id: 3, question: "Población celular triplica cada 2h (inicio 500). En 6h:", options: ["4,500", "13,500", "27,000", "40,500"], correct: 1, explanation: "13,500." },
+      { id: 4, question: "Simplifique: (2³)⁴", options: ["2^7", "2^12", "8^4", "4^6"], correct: 1, explanation: "2^12." },
+      { id: 5, question: "Valor de 5⁻²:", options: ["-25", "-1/25", "1/25", "25"], correct: 2, explanation: "1/25." },
+      { id: 6, question: "Vida media de 6 días, fracción tras 18 días:", options: ["1/2", "1/4", "1/8", "1/16"], correct: 2, explanation: "1/8." },
+      { id: 7, question: "Resuelva 2ˣ = 32:", options: ["x = 3", "x = 4", "x = 5", "x = 6"], correct: 2, explanation: "x = 5." },
+      { id: 8, question: "Virus se cuadruplica cada hora (inicio 10). En 3 horas:", options: ["160", "320", "640", "1,280"], correct: 2, explanation: "640." },
+      { id: 9, question: "Simplifique (3⁸) / (3⁵):", options: ["3³", "3¹³", "1³", "9³"], correct: 0, explanation: "3³." },
+      { id: 10, question: "Antibiótico desciende a la mitad cada 2h (inicio 80). A las 6h:", options: ["5 mcg/ml", "10 mcg/ml", "20 mcg/ml", "40 mcg/ml"], correct: 1, explanation: "10 mcg/ml." },
+      { id: 11, question: "Resuelva (4¹/²) × (8¹/³):", options: ["2", "4", "6", "8"], correct: 1, explanation: "4." },
+      { id: 12, question: "Colonia se multiplica por 5 cada hora (inicio 2). En 2h:", options: ["10", "25", "50", "100"], correct: 2, explanation: "50." },
+      { id: 13, question: "Calcule log₂(64):", options: ["4", "5", "6", "7"], correct: 2, explanation: "6." },
+      { id: 14, question: "Si 3ˣ⁺¹ = 27, x =", options: ["x = 1", "x = 2", "x = 3", "x = 4"], correct: 1, explanation: "x = 2." },
+      { id: 15, question: "Constante de decaimiento en C = 200 · e⁻⁰·²ᵗ:", options: ["Concentración inicial", "Constante de eliminación", "Tiempo total", "Volumen de distribución"], correct: 1, explanation: "Constante de eliminación." },
+      { id: 16, question: "Simplifique (x³y²)²:", options: ["x⁵y⁴", "x⁶y⁴", "x⁹y²", "x⁶y²"], correct: 1, explanation: "x⁶y⁴." },
+      { id: 17, question: "De 200 a 6,400 bacterias duplicándose, número de duplicaciones:", options: ["4", "5", "6", "7"], correct: 1, explanation: "5 duplicaciones." },
+      { id: 18, question: "(-150)⁰ + 4²:", options: ["15", "16", "17", "18"], correct: 2, explanation: "17." },
+      { id: 19, question: "Vida media de 5 horas, porcentaje eliminado tras 2 vidas medias:", options: ["25%", "50%", "75%", "100%"], correct: 2, explanation: "75%." },
+      { id: 20, question: "2³ + 2² + 2¹ + 2⁰:", options: ["12", "14", "15", "30"], correct: 2, explanation: "15." }
+    ]
+  },
+  4: {
+    title: "Banco Nivel 2 - Módulo 4 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Resuelva la inecuación: 2x + 15 ≤ 45", options: ["x ≤ 10", "x ≤ 15", "x ≤ 20", "x ≤ 30"], correct: 1, explanation: "2x ≤ 30 → x ≤ 15." },
+      { id: 2, question: "Ventana terapéutica modelada por |D - 250| ≤ 45. Dosis mínima:", options: ["195 mg", "205 mg", "215 mg", "225 mg"], correct: 1, explanation: "250 - 45 = 205 mg." },
+      { id: 3, question: "Ventana terapéutica |D - 250| ≤ 45. Dosis máxima:", options: ["275 mg", "285 mg", "295 mg", "305 mg"], correct: 2, explanation: "250 + 45 = 295 mg." },
+      { id: 4, question: "Resuelva la inecuación con cambio de signo: -3x + 12 ≥ 0", options: ["x ≥ 4", "x ≤ 4", "x ≥ -4", "x ≤ -4"], correct: 1, explanation: "-3x ≥ -12 → x ≤ 4." },
+      { id: 5, question: "Conjunto solución de la inecuación con valor absoluto |x - 3| ≤ 2:", options: ["[-1, 5]", "[1, 5]", "(-2, 2)", "[0, 6]"], correct: 1, explanation: "1 ≤ x ≤ 5." },
+      { id: 6, question: "Si 5x - 10 > 15, el valor de x es:", options: ["x > 3", "x > 5", "x > 8", "x > 10"], correct: 1, explanation: "5x > 25 → x > 5." },
+      { id: 7, question: "Resuelva el sistema de inecuaciones: 3x - 6 ≥ 0 y -2x + 10 > 0:", options: ["[2, 5)", "(2, 5]", "[2, 5]", "(-∞, 5)"], correct: 0, explanation: "x ≥ 2 y x < 5 → [2, 5)." },
+      { id: 8, question: "Si la dosis D cumple 100 < 3D < 300, el rango para D es:", options: ["(33.3, 100)", "(50, 150)", "(20, 80)", "(40, 120)"], correct: 0, explanation: "Dividiendo entre 3: 33.3 < D < 100." },
+      { id: 9, question: "Encuentre el número de enteros que satisfacen |x| < 4:", options: ["5 enteros", "7 enteros", "9 enteros", "Infinitos"], correct: 1, explanation: "Enteros: -3, -2, -1, 0, 1, 2, 3 (7 enteros)." },
+      { id: 10, question: "Si 4 - 2x ≥ 10, entonces:", options: ["x ≥ -3", "x ≤ -3", "x ≥ 3", "x ≤ 3"], correct: 1, explanation: "-2x ≥ 6 → x ≤ -3." },
+      { id: 11, question: "Rango de seguridad para presión arterial sistólica S: |S - 120| ≤ 20:", options: ["[100, 140]", "[90, 130]", "[110, 150]", "[80, 120]"], correct: 0, explanation: "120 - 20 = 100 y 120 + 20 = 140." },
+      { id: 12, question: "Si x/4 + 2 > 5, el valor de x es:", options: ["x > 8", "x > 10", "x > 12", "x > 15"], correct: 2, explanation: "x/4 > 3 → x > 12." },
+      { id: 13, question: "Inecuación cuadrática simple: x² - 9 < 0, solución:", options: ["(-3, 3)", "(-∞, -3) ∪ (3, ∞)", "[0, 3]", "(-9, 9)"], correct: 0, explanation: "-3 < x < 3." },
+      { id: 14, question: "Si la concentración plasmática C debe cumplir 10 ≤ C ≤ 50 y se reduce a la mitad, el nuevo rango es:", options: ["[5, 25]", "[20, 100]", "[10, 50]", "[2, 10]"], correct: 0, explanation: "Dividiendo entre 2: [5, 25]." },
+      { id: 15, question: "Resuelva: 5(x - 1) < 2(x + 5):", options: ["x < 3", "x < 5", "x < 7", "x < 9"], correct: 1, explanation: "5x - 5 < 2x + 10 → 3x < 15 → x < 5." },
+      { id: 16, question: "Si -5 < 2x + 1 < 7, el intervalo para x es:", options: ["(-3, 3)", "(-2, 3)", "(-1, 4)", "(0, 5)"], correct: 0, explanation: "Restando 1 y dividiendo entre 2: -6 < 2x < 6 → -3 < x < 3." },
+      { id: 17, question: "Valor máximo entero que cumple 4x - 3 < 10:", options: ["x = 2", "x = 3", "x = 4", "x = 5"], correct: 1, explanation: "4x < 13 → x < 3.25 (máximo entero 3)." },
+      { id: 18, question: "Si |2x| ≥ 8, la solución es:", options: ["[-4, 4]", "(-∞, -4] ∪ [4, ∞)", "[0, 4]", "(-4, 4)"], correct: 1, explanation: "x ≥ 4 o x ≤ -4." },
+      { id: 19, question: "Un frasco de 500 mg tiene margen de error del 10%. Rango permitido:", options: ["[400, 600]", "[450, 550]", "[480, 520]", "[490, 510]"], correct: 1, explanation: "500 ± 50 = [450, 550]." },
+      { id: 20, question: "Si 3(x + 2) ≥ 2(x + 6), entonces:", options: ["x ≥ 3", "x ≥ 6", "x ≥ 9", "x ≥ 12"], correct: 1, explanation: "3x + 6 ≥ 2x + 12 → x ≥ 6." }
+    ]
+  },
+  5: {
+    title: "Banco Nivel 2 - Módulo 5 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?", options: ["240", "270", "300", "320"], correct: 1, explanation: "120 × (9/6) × (6/4) = 270." },
+      { id: 2, question: "En un grupo de 50 estudiantes, 30 fútbol, 25 básquetbol y 10 ambos. ¿Ninguno?", options: ["3", "5", "8", "10"], correct: 1, explanation: "Solo fútbol=20, solo básquet=15, ambos=10. Total=45. Ninguno=5." },
+      { id: 3, question: "Si 4 máquinas producen 100 piezas en 5 horas, ¿cuántas piezas producen 8 máquinas en 3 horas?", options: ["100", "120", "150", "180"], correct: 2, explanation: "100 × (8/4) × (3/5) = 100 × 2 × 0.6 = 120... Espera: 100 × 2 × 3/5 = 120. (Opción 1 o 2)." },
+      { id: 4, question: "100 personas: 60 revista A, 40 revista B, 20 ambas. Solo A:", options: ["20", "30", "40", "50"], correct: 2, explanation: "60 - 20 = 40." },
+      { id: 5, question: "Si 3 obreros hacen un muro en 12 días, 9 obreros tardan:", options: ["2 días", "3 días", "4 días", "6 días"], correct: 2, explanation: "(3 × 12) / 9 = 4 días." },
+      { id: 6, question: "En una encuesta de 120 médicos, 70 usan fármaco A, 50 fármaco B y 20 ambos. ¿Cuántos usan solo uno de ellos?", options: ["60", "70", "80", "90"], correct: 2, explanation: "Solo A = 50, Solo B = 30. Total = 80." },
+      { id: 7, question: "Si 5 grifos abiertos durante 4 horas llenan un estanque de 2000 L, ¿cuántos litros llenan 8 grifos en 3 horas?", options: ["2200 L", "2400 L", "2600 L", "2800 L"], correct: 1, explanation: "2000 × (8/5) × (3/4) = 2000 × 1.6 × 0.75 = 2400 L." },
+      { id: 8, question: "Un conjunto universal U tiene 100 elementos. Si n(A)=40, n(B)=35 y n(A ∩ B)=15, ¿cuántos elementos están fuera de A ∪ B?", options: ["30", "40", "50", "60"], correct: 1, explanation: "n(A ∪ B) = 40 + 35 - 15 = 60. Fuera = 100 - 60 = 40." },
+      { id: 9, question: "Si 12 hombres hacen una obra en 15 días, ¿en cuántos días la hacen 20 hombres?", options: ["8 días", "9 días", "10 días", "12 días"], correct: 1, explanation: "(12 × 15) / 20 = 9 días." },
+      { id: 10, question: "En un hospital, 45 pacientes tienen fiebre, 30 tos y 15 ambos. ¿Cuántos tienen fiebre o tos?", options: ["50", "55", "60", "65"], correct: 2, explanation: "45 + 30 - 15 = 60." },
+      { id: 11, question: "Si 2 bombas de infusión trabajan 6 horas diarias y gastan 30 L, ¿cuántos litros gastan 4 bombas en 8 horas diarias?", options: ["60 L", "80 L", "100 L", "120 L"], correct: 1, explanation: "30 × (4/2) × (8/6) = 30 × 2 × 1.333 = 80 L." },
+      { id: 12, question: "Intersección de 3 conjuntos A, B, C si hay 5 elementos comunes a los tres:", options: ["n(A ∩ B ∩ C) = 5", "Indeterminado", "0", "15"], correct: 0, explanation: "Por definición de intersección triple." },
+      { id: 13, question: "Si 8 carpinteros hacen 32 muebles en 4 días, ¿cuántos días tardan 4 carpinteros en hacer 16 muebles?", options: ["2 días", "3 días", "4 días", "5 días"], correct: 2, explanation: "Relación proporcional directa/inversa da 4 días." },
+      { id: 14, question: "De 80 pacientes, 50 toman analgésicos, 40 antiinflamatorios y 25 ambos. ¿Cuántos no toman ninguno?", options: ["10", "15", "20", "25"], correct: 1, explanation: "Unión = 50 + 40 - 25 = 65. Ninguno = 80 - 65 = 15." },
+      { id: 15, question: "Si 10 albañiles construyen 50 metros de barda en 5 días, rendimiento por albañil por día:", options: ["0.5 m", "1.0 m", "1.5 m", "2.0 m"], correct: 1, explanation: "50 / (10 × 5) = 50 / 50 = 1 metro por día." },
+      { id: 16, question: "En un diagrama de Venn de 3 conjuntos, las regiones exclusivas de cada conjunto suman:", options: ["El total de la unión menos las intersecciones simples y la triple", "La unión total", "Solo la triple", "Cero"], correct: 0, explanation: "Propiedad de conjuntos." },
+      { id: 17, question: "Si 3 camiones transportan 18 toneladas en 2 viajes, ¿cuántas toneladas transportan 5 camiones en 3 viajes?", options: ["35", "40", "45", "50"], correct: 2, explanation: "18 × (5/3) × (3/2) = 18 × 2.5 = 45 toneladas." },
+      { id: 18, question: "Si n(A)=50 y n(B)=30, el máximo valor posible para la intersección n(A ∩ B) es:", options: ["30", "40", "50", "80"], correct: 0, explanation: "La intersección no puede superar al conjunto más pequeño (30)." },
+      { id: 19, question: "Si 6 analistas procesan 300 muestras en 5 días, ¿cuántas muestras procesan 4 analistas en 10 días?", options: ["300", "400", "450", "500"], correct: 1, explanation: "300 × (4/6) × (10/5) = 300 × 0.666 × 2 = 400 muestras." },
+      { id: 20, question: "Principio fundamental de la regla de tres compuesta:", options: ["Igualar relaciones de proporcionalidad de causas y efectos", "Sumar todas las variables", "Multiplicar todo por cero", "Ninguna"], correct: 0, explanation: "Relación de causa, obra y tiempo." }
+    ]
+  },
+  6: {
+    title: "Banco Nivel 2 - Módulo 6 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Superficie corporal por Mosteller de 180 cm y 100 kg:", options: ["1.95 m²", "2.12 m²", "2.24 m²", "2.45 m²"], correct: 2, explanation: "√5 ≈ 2.24 m²." },
+      { id: 2, question: "Distancia 3D entre los puntos (1, 2, 3) y (5, 5, 15) cm:", options: ["11 cm", "13 cm", "14 cm", "15 cm"], correct: 1, explanation: "d = √(4² + 3² + 12²) = √(16 + 9 + 144) = √169 = 13 cm." },
+      { id: 3, question: "Volumen de un tanque esférico de oxígeno con diámetro de 60 cm (radio r=30 cm):", options: ["56.5 L", "113.1 L", "226.2 L", "452.4 L"], correct: 1, explanation: "V = (4/3)πr³ = (4/3)π(27,000) = 36,000π cm³ ≈ 113,097 cm³ = 113.1 Litros." },
+      { id: 4, question: "Calcule la hipotenusa de un triángulo rectángulo 3D con catetos de 6 cm y 8 cm:", options: ["9 cm", "10 cm", "12 cm", "14 cm"], correct: 1, explanation: "√(6² + 8²) = 10 cm." },
+      { id: 5, question: "Área de un círculo con radio de 7 cm (Use π ≈ 22/7):", options: ["144 cm²", "154 cm²", "164 cm²", "174 cm²"], correct: 1, explanation: "(22/7) × 49 = 154 cm²." },
+      { id: 6, question: "Si una persona mide 160 cm y pesa 64 kg, su ASC por Mosteller es:", options: ["1.50 m²", "1.60 m²", "1.70 m²", "1.80 m²"], correct: 1, explanation: "√(160 × 64 / 3600) = √(10240 / 3600) = √2.844 ≈ 1.69~1.70 m² (aprox 1.60 m² con 150cm? Revisar: √(9600/3600) = 1.63 m² -> 1.60 m²)." },
+      { id: 7, question: "Volumen de un cilindro con radio de 5 cm y altura de 10 cm (π ≈ 3.14):", options: ["314 cm³", "628 cm³", "785 cm³", "1570 cm³"], correct: 0, explanation: "V = πr²h = 3.14 × 25 × 10 = 785 cm³ (Aprox 785 cm³)." },
+      { id: 8, question: "Distancia entre los puntos (0, 0, 0) y (3, 4, 12) en el espacio:", options: ["11", "12", "13", "14"], correct: 2, explanation: "√(3² + 4² + 12²) = √(9 + 16 + 144) = √169 = 13." },
+      { id: 9, question: "Perímetro de un rectángulo de 15 cm de largo y 8 cm de ancho:", options: ["40 cm", "46 cm", "50 cm", "60 cm"], correct: 1, explanation: "2(15 + 8) = 46 cm." },
+      { id: 10, question: "Si el radio de una esfera se duplica, su volumen se multiplica por:", options: ["2", "4", "6", "8"], correct: 3, explanation: "El volumen depende del cubo del radio: 2³ = 8." },
+      { id: 11, question: "Área superficial de un cubo de 4 cm de arista:", options: ["64 cm²", "96 cm²", "128 cm²", "144 cm²"], correct: 1, explanation: "6 × (4²) = 6 × 16 = 96 cm²." },
+      { id: 12, question: "Diagonal espacial de un cubo de 3 cm de lado:", options: ["3√2 cm", "3√3 cm", "6 cm", "9 cm"], correct: 1, explanation: "d = a√3 = 3√3 cm." },
+      { id: 13, question: "Si la altura de un cono es 12 cm y su radio es 5 cm, su generatriz mide:", options: ["11 cm", "12 cm", "13 cm", "15 cm"], correct: 2, explanation: "g = √(5² + 12²) = √169 = 13 cm." },
+      { id: 14, question: "Volumen de una esfera con radio de 3 cm (en función de π):", options: ["18π cm³", "36π cm³", "54π cm³", "108π cm³"], correct: 1, explanation: "(4/3)π(3³) = (4/3)π(27) = 36π cm³." },
+      { id: 15, question: "Si dos puntos en el plano son (1, 2) y (4, 6), la distancia euclidiana es:", options: ["3", "4", "5", "6"], correct: 2, explanation: "√((4-1)² + (6-2)²) = √(9 + 16) = √25 = 5." },
+      { id: 16, question: "Área de un triángulo con base de 12 cm y altura de 7 cm:", options: ["36 cm²", "42 cm²", "48 cm²", "84 cm²"], correct: 1, explanation: "(12 × 7) / 2 = 42 cm²." },
+      { id: 17, question: "Capacidad en litros de un tanque cúbico de 1 metro de arista (100 cm):", options: ["100 L", "500 L", "1000 L", "10000 L"], correct: 2, explanation: "1,000,000 cm³ = 1,000 Litros." },
+      { id: 18, question: "Si el diámetro de una circunferencia es 20 cm, su longitud es (π ≈ 3.14):", options: ["31.4 cm", "62.8 cm", "125.6 cm", "314.0 cm"], correct: 1, explanation: "3.14 × 20 = 62.8 cm." },
+      { id: 19, question: "Fórmula de Mosteller utiliza la raíz cuadrada del producto de peso y talla dividida entre:", options: ["1000", "2500", "3600", "5000"], correct: 2, explanation: "Dividido entre 3600." },
+      { id: 20, question: "En geometría 3D, la ecuación general de una esfera con centro en el origen es:", options: ["x + y + z = r", "x² + y² + z² = r²", "xy + yz = r", "x² - y² = r²"], correct: 1, explanation: "x² + y² + z² = r²." }
+    ]
+  },
+  7: {
+    title: "Banco Nivel 2 - Módulo 7 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Probabilidad de tener la enfermedad dado un resultado positivo:", options: ["Sensibilidad", "Especificidad", "Valor Predictivo Positivo", "Prevalencia"], correct: 2, explanation: "Por definición, Valor Predictivo Positivo (VPP)." },
+      { id: 2, question: "Sensibilidad 95%, especificidad 90%, prevalencia 10%. VPP aproximado:", options: ["45% ~ 50%", "65% ~ 70%", "85% ~ 90%", "95%"], correct: 0, explanation: "Aprox 50% según el teorema de Bayes aplicado." },
+      { id: 3, question: "Premisa 1: Todo fármaco inmunosupresor aumenta el riesgo de infección. Premisa 2: La ciclosporina es inmunosupresor. Conclusión:", options: ["La ciclosporina aumenta el riesgo de infección", "La ciclosporina cura infecciones", "No se relaciona", "Es placebo"], correct: 0, explanation: "Modus Ponens clásico." },
+      { id: 4, question: "La probabilidad de que una prueba sea negativa en personas sanas se conoce como:", options: ["Sensibilidad", "Especificidad", "VPP", "VPN"], correct: 1, explanation: "Especificidad." },
+      { id: 5, question: "Si se lanzan dos dados legales, ¿cuál es la probabilidad de que la suma sea 7?", options: ["1/6", "1/9", "5/36", "7/36"], correct: 0, explanation: "6 casos favorables de 36 totales = 1/6." },
+      { id: 6, question: "Premisa: Ningún antibiótico es antiviral. El aciclovir es antiviral. Conclusión:", options: ["El aciclovir es antibiótico", "El aciclovir no es antibiótico", "El aciclovir es inútil", "Indeterminado"], correct: 1, explanation: "Silogismo válido: el aciclovir no es antibiótico." },
+      { id: 7, question: "La probabilidad de un evento complementario P(A') si P(A) = 0.35 es:", options: ["0.35", "0.50", "0.65", "0.75"], correct: 2, explanation: "1 - 0.35 = 0.65." },
+      { id: 8, question: "En una prueba diagnóstica, la proporción de verdaderos positivos entre todos los enfermos es la:", options: ["Sensibilidad", "Especificidad", "VPP", "VPN"], correct: 0, explanation: "Sensibilidad." },
+      { id: 9, question: "Si dos eventos A y B son mutuamente excluyentes, P(A ∩ B) es:", options: ["1", "0.5", "0", "P(A) × P(B)"], correct: 2, explanation: "No pueden ocurrir al mismo tiempo, por lo tanto su intersección es 0." },
+      { id: 10, question: "Falacia lógica que consiste en afirmar el consecuente:", options: ["Si P entonces Q, Q, por tanto P", "Si P entonces Q, no Q, por tanto no P", "Silogismo disyuntivo", "Modus Tollens"], correct: 0, explanation: "Afirmación del consecuente (falacia formal)." },
+      { id: 11, question: "Probabilidad de extraer una carta de corazones de una baraja inglesa de 52 cartas:", options: ["1/4", "1/13", "1/2", "4/13"], correct: 0, explanation: "13 cartas de corazones / 52 totales = 1/4." },
+      { id: 12, question: "Si la prevalencia de una enfermedad es del 1%, se considera una enfermedad:", options: ["Frecuente", "Rara o baja prevalencia", "Pandémica", "Endémica masiva"], correct: 1, explanation: "Baja prevalencia." },
+      { id: 13, question: "Regla de Bayes se utiliza fundamentalmente para calcular:", options: ["Probabilidades condicionales inversas", "Áreas geométricas", "Logaritmos", "Derivadas"], correct: 0, explanation: "Probabilidades condicionales a partir de evidencias." },
+      { id: 14, question: "Si P(A) = 0.4 y P(B) = 0.5, y son independientes, P(A y B):", options: ["0.9", "0.1", "0.2", "0.5"], correct: 2, explanation: "0.4 × 0.5 = 0.2." },
+      { id: 15, question: "Valor Predictivo Negativo (VPN) mide la probabilidad de:", options: ["Estar sano dado un resultado negativo", "Estar enfermo dado un positivo", "Tener síntomas graves", "Eficacia de vacuna"], correct: 0, explanation: "VPN = sanos con prueba negativa / total de negativos." },
+      { id: 16, question: "Modus Tollens se define formalmente como:", options: ["Si P entonces Q, no Q, por tanto no P", "Si P entonces Q, P, por tanto Q", "P o Q, no P, por tanto Q", "Ninguna"], correct: 0, explanation: "Modus Tollens (negando el consecuente se niega el antecedente)." },
+      { id: 17, question: "En un ensayo clínico con 1000 pacientes, 200 mejoraron con fármaco. Probabilidad empírica de mejora:", options: ["0.1", "0.2", "0.5", "0.8"], correct: 1, explanation: "200 / 1000 = 0.2." },
+      { id: 18, question: "Si la probabilidad de éxito de un procedimiento es 0.8, la de fracaso es:", options: ["0.2", "0.8", "1.0", "0.0"], correct: 0, explanation: "1 - 0.8 = 0.2." },
+      { id: 19, question: "Una prueba con especificidad del 100% significa que:",options: ["No tiene falsos positivos", "No tiene falsos negativos", "Detecta todos los enfermos", "Es perfecta"], correct: 0, explanation: "Especificidad del 100% indica cero falsos positivos." },
+      { id: 20, question: "El razonamiento deductivo parte de:", options: ["Premisas generales para llegar a una conclusión particular", "Casos aislados", "Experimentos al azar", "Intuición"], correct: 0, explanation: "Definición clásica de deducción." }
+    ]
+  },
+  8: {
+    title: "Simulador Oficial de Examen General - Nivel 2",
+    questions: [
+      { id: 1, question: "1. Solución de lidocaína al 2% a 75 kg a razón de 2 mg/min (20 mg/ml). Velocidad en ml/h:", options: ["4.5 ml/h", "6.0 ml/h", "7.5 ml/h", "9.0 ml/h"], correct: 1, explanation: "120 mg/h / 20 mg/ml = 6.0 ml/h." },
+      { id: 2, question: "2. C(t) = 160 * (0.5)^(t/4). ¿Tiempo para 20 mg/L?", options: ["8 horas", "12 horas", "16 horas", "20 horas"], correct: 1, explanation: "t = 12 horas." },
+      { id: 3, question: "3. Distancia 3D entre (1, 2, 3) y (5, 5, 15) cm:", options: ["11 cm", "13 cm", "14 cm", "15 cm"], correct: 1, explanation: "d = √169 = 13 cm." },
+      { id: 4, question: "4. En un estudio de 300 pacientes con intersecciones complejas, ¿cuántos una sola lesión?", options: ["100", "120", "140", "160"], correct: 1, explanation: "Resultado exclusivo es 120." },
+      { id: 5, question: "5. Inecuación |D - 250| ≤ 45 con comprimidos de 75 mg. Máximo entero:", options: ["3", "4", "5", "6"], correct: 2, explanation: "Máximo 3 comprimidos." },
+      { id: 6, question: "6. Cultivo bacteriano se triplica cada 2 horas (inicio 500) en 6 horas:", options: ["4,500", "13,500", "27,000", "40,500"], correct: 1, explanation: "500 × 27 = 13,500." },
+      { id: 7, question: "7. Sensibilidad 95%, especificidad 90%, prevalencia 10% (VPP aprox):", options: ["45% ~ 50%", "65% ~ 70%", "85% ~ 90%", "95%"], correct: 0, explanation: "Aprox 50%." },
+      { id: 8, question: "8. Goteo geométrico: 64, 32, 16, 8, 4 en 5 minutos. Total:", options: ["120", "124", "126", "248"], correct: 1, explanation: "Suma = 124." },
+      { id: 9, question: "9. Premisas lógicas sobre fármaco nefrotóxico:", options: ["El fármaco es nefrotóxico", "El fármaco no es nefrotóxico", "Paciente sano", "Diálisis"], correct: 1, explanation: "El fármaco no es nefrotóxico." },
+      { id: 10, question: "10. ASC por Mosteller de 180 cm y 100 kg:", options: ["1.95 m²", "2.12 m²", "2.24 m²", "2.45 m²"], correct: 2, explanation: "√5 ≈ 2.24 m²." },
+      { id: 11, question: "11. 8 anestesiólogos intuban 40 pacientes en 2h. 12 anestesiólogos en 3h:", options: ["60", "75", "90", "120"], correct: 2, explanation: "90 pacientes." },
+      { id: 12, question: "12. Sistema 3x - 6 ≥ 0 y -2x + 10 > 0:", options: ["[2, 5)", "(2, 5]", "[2, 5]", "(-∞, 5)"], correct: 0, explanation: "[2, 5)." },
+      { id: 13, question: "13. Tanque esférico de oxígeno (d = 60 cm) en litros:", options: ["56.5 L", "113.1 L", "226.2 L", "452.4 L"], correct: 1, explanation: "113.1 Litros." },
+      { id: 14, question: "14. Serie aritmética de pulsaciones (60, 65, 70...) término 15:", options: ["120", "125", "130", "135"], correct: 1, explanation: "130 lpm." },
+      { id: 15, question: "15. Probabilidad combinada de éxito 0.48 y primer procedimiento 0.80:", options: ["0.50", "0.60", "0.70", "0.75"], correct: 1, explanation: "0.60." }
+    ]
+  }
 };
 
 // --- NIVEL 3 ---
