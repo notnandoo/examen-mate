@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparación Examen de Matemática - Medicina</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col justify-between text-slate-800">
+
+  <!-- HEADER -->
+  <header class="bg-slate-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight">Preparación Examen de Matemática - Medicina</h1>
+        <p class="text-xs text-slate-400">Facultad de Ciencias Médicas - CUSAM</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <div id="exam-timer-box" class="hidden bg-rose-950 border border-rose-700 px-4 py-2 rounded-lg text-center animate-pulse">
+          <span class="text-xs text-rose-300 font-semibold block">Tiempo Restante</span>
+          <span id="exam-timer-display" class="text-lg font-mono font-bold text-white">30:00</span>
+        </div>
+        <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg text-right">
+          <span id="header-progress-label" class="text-xs text-amber-400 font-semibold block">Progreso Nivel 1</span>
+          <span id="general-progress-pct" class="text-lg font-bold">0% Completado</span>
+        </div>
+      </div>
+    </div>
+    <!-- Navegación -->
+    <div class="bg-slate-950 border-t border-slate-800 px-4 flex flex-col sm:flex-row justify-between items-center">
+      <div class="max-w-7xl mx-auto flex gap-6 w-full overflow-x-auto">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors whitespace-nowrap">Módulos de Estudio</button>
+        <button onclick="switchTab('quizzes')" id="tab-quizzes" class="py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap">Banco de Exámenes</button>
+        <button onclick="switchTab('grades')" id="tab-grades" class="py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap">Mis Calificaciones</button>
+      </div>
+      <!-- SELECTOR DE NIVELES CON CLICS SECRETOS -->
+      <div class="p-2 flex items-center gap-2">
+        <span class="text-xs text-slate-400 font-medium">Nivel:</span>
+        <div class="bg-slate-900 p-1 rounded-lg border border-slate-800 flex gap-1">
+          <button onclick="handleLevel1Click()" id="btn-lvl-1" class="px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all">Nivel 1</button>
+          <button onclick="handleLevel2Click()" id="btn-lvl-2" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all" title="Completa el Nivel 1">Nivel 2 🔒</button>
+          <button onclick="handleLevel3Click()" id="btn-lvl-3" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all" title="Completa el Nivel 2 (Módulo 8)">Nivel 3 🔒</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    
+    <!-- DASHBOARD -->
+    <div id="view-dashboard" class="space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div>
+          <h2 id="dashboard-title" class="text-2xl font-bold text-slate-900">Temario Cronológico Oficial - Nivel 1</h2>
+          <p id="dashboard-subtitle" class="text-sm text-slate-600">Completa cada módulo y obtén al menos 70 puntos para desbloquear el siguiente.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-xs text-amber-900 font-medium flex items-center gap-2">
+          <span>💡</span> <span id="level-banner-text">Estás cursando fundamentos y cálculo operativo directo.</span>
+        </div>
+      </div>
+      <div id="modules-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- LECCIÓN -->
+    <div id="view-lesson" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <button onclick="switchTab('dashboard')" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">← Volver al Vestíbulo</button>
+        <span id="lesson-module-badge" class="px-3 py-1 text-xs font-semibold rounded-full"></span>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-6">
+        <h2 id="lesson-title" class="text-2xl font-bold text-slate-900 pb-4 border-b border-slate-100"></h2>
+        <div id="lesson-content" class="space-y-6 text-slate-700 leading-relaxed"></div>
+        <div id="lesson-action-container" class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-slate-500">Se requiere nota mínima de 70% para aprobar y avanzar.</p>
+          <button id="btn-open-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm transition-all">Entrar al Examen Corto →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXAMEN -->
+    <div id="view-quiz-runner" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-5 rounded-xl shadow-sm border border-slate-200 gap-4">
+        <div>
+          <h2 id="quiz-runner-title" class="text-xl font-bold text-slate-900">Evaluación del Módulo</h2>
+          <p class="text-xs text-slate-500">Responde las preguntas. Mínimo para aprobar: 70%</p>
+        </div>
+        <button onclick="exitQuizRunner()" class="text-sm font-semibold text-slate-600 hover:text-slate-900 px-4 py-2 border border-slate-300 rounded-lg">← Salir</button>
+      </div>
+      <div id="quiz-runner-body" class="space-y-6"></div>
+      <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+        <p class="text-xs text-slate-500">Revisa tus respuestas antes de calificar.</p>
+        <button onclick="submitQuizRunner()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl shadow-sm">Calificar Examen</button>
+      </div>
+    </div>
+
+    <!-- RESULTADOS -->
+    <div id="view-quiz-results" class="hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div class="space-y-2 text-center sm:text-left">
+          <span id="results-badge" class="px-3 py-1 text-xs font-bold rounded-full"></span>
+          <h2 id="results-title" class="text-2xl font-bold text-slate-900">Resultados de la Evaluación</h2>
+          <p id="results-subtitle" class="text-sm text-slate-600"></p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="retryActiveQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-5 py-2.5 rounded-xl text-sm">Repetir</button>
+          <button onclick="switchTab('dashboard')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm">Ir a Módulos</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANCO DE EXÁMENES -->
+    <div id="view-quizzes" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Banco de Exámenes y Resoluciones</h2>
+          <p class="text-sm text-slate-600">Las resoluciones paso a paso se habilitan al aprobar con al menos 70%.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="renderQuizzesHub(1)" id="btn-bank-l1" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-slate-950">Nivel 1</button>
+          <button onclick="renderQuizzesHub(2)" id="btn-bank-l2" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700">Nivel 2</button>
+          <button onclick="renderQuizzesHub(3)" id="btn-bank-l3" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700">Nivel 3 (Élite)</button>
+        </div>
+      </div>
+      <div id="quizzes-list-container" class="space-y-6"></div>
+    </div>
+
+    <!-- CALIFICACIONES -->
+    <div id="view-grades" class="hidden space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900">Apartado de Calificaciones</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><span class="text-xs font-semibold text-slate-400">Promedio</span><p id="stats-avg-score" class="text-3xl font-extrabold text-slate-900 mt-1">0%</p></div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><span class="text-xs font-semibold text-slate-400">Aprobados</span><p id="stats-passed-count" class="text-3xl font-extrabold text-emerald-600 mt-1">0 / 7</p></div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><span class="text-xs font-semibold text-slate-400">Desbloqueados</span><p id="stats-unlocked-count" class="text-3xl font-extrabold text-blue-600 mt-1">1 / 7</p></div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead><tr class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase bg-slate-50"><th class="py-3 px-6">Módulo</th><th class="py-3 px-6">Evaluación</th><th class="py-3 px-6">Nota</th><th class="py-3 px-6">Estado</th><th class="py-3 px-6 text-right">Acción</th></tr></thead>
+          <tbody id="grades-table-body" class="divide-y divide-slate-100 text-sm text-slate-700"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs">
+    <p>Guía de Preparación de Matemática - Facultad de Ciencias Médicas - CUSAM</p>
+  </footer>
+
+  <!-- SCRIPT INTEGRADO Y COMPLETO -->
+  <script>
+    let currentLevel = 1;
+    let activeQuizId = null;
+    let currentQuizQuestionsSubset = [];
+    let examTimerInterval = null;
+    let secondsRemaining = 1800;
+
+    let l1Clicks = 0, l2Clicks = 0, l3Clicks = 0;
+    let timer1 = null, timer2 = null, timer3 = null;
+
+    function handleLevel1Click() {
+      l1Clicks++; clearTimeout(timer1);
+      timer1 = setTimeout(() => { l1Clicks = 0; }, 2000);
+      if (l1Clicks >= 11) {
+        l1Clicks = 0;
+        userProgressL1 = {1:{passed:true, score:100}, 2:{passed:true, score:100}, 3:{passed:true, score:100}, 4:{passed:true, score:100}, 5:{passed:true, score:100}, 6:{passed:true, score:100}, 7:{passed:true, score:100}};
+        localStorage.setItem('cusam_progress_l1', JSON.stringify(userProgressL1));
+        renderDashboard(); updateGeneralProgress(); checkLevelsUnlockStatus();
+        alert("🔓 [Modo Dios] ¡Nivel 1 completado al 100%!");
+      } else { switchLevel(1); }
+    }
+
+    function handleLevel2Click() {
+      l2Clicks++; clearTimeout(timer2);
+      timer2 = setTimeout(() => { l2Clicks = 0; }, 2000);
+      if (l2Clicks >= 11) {
+        l2Clicks = 0;
+        userProgressL1 = {1:{passed:true, score:100}, 2:{passed:true, score:100}, 3:{passed:true, score:100}, 4:{passed:true, score:100}, 5:{passed:true, score:100}, 6:{passed:true, score:100}, 7:{passed:true, score:100}};
+        userProgressL2 = {1:{passed:true, score:100}, 2:{passed:true, score:100}, 3:{passed:true, score:100}, 4:{passed:true, score:100}, 5:{passed:true, score:100}, 6:{passed:true, score:100}, 7:{passed:true, score:100}, 8:{passed:true, score:100}};
+        localStorage.setItem('cusam_progress_l1', JSON.stringify(userProgressL1));
+        localStorage.setItem('cusam_progress_l2', JSON.stringify(userProgressL2));
+        switchLevel(2); renderDashboard(); updateGeneralProgress(); checkLevelsUnlockStatus();
+        alert("🔓 [Modo Dios] ¡Nivel 2 completado al 100%!");
+      } else { switchLevel(2); }
+    }
+
+    function handleLevel3Click() {
+      l3Clicks++; clearTimeout(timer3);
+      timer3 = setTimeout(() => { l3Clicks = 0; }, 2000);
+      if (l3Clicks >= 11) {
+        l3Clicks = 0;
+        userProgressL3 = {1:{passed:true, score:100}, 2:{passed:true, score:100}, 3:{passed:true, score:100}, 4:{passed:true, score:100}, 5:{passed:true, score:100}};
+        localStorage.setItem('cusam_progress_l3', JSON.stringify(userProgressL3));
+        switchLevel(3); renderDashboard(); updateGeneralProgress(); checkLevelsUnlockStatus();
+        alert("🔓 [Modo Dios] ¡Nivel 3 completado al 100%!");
+      } else { switchLevel(3); }
+    }
+
+    const modulesDataL1 = {
+      1: { id: 1, title: "Módulo 1: Aritmética y Operaciones con Decimales", colorClass: "bg-blue-600", badgeClass: "bg-blue-100 text-blue-800 border-blue-200", topics: ["Ley de Signos", "Decimales"], description: "Cálculo numérico básico.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Fundamentos y leyes de signos en operaciones combinadas.</p></div>` },
+      2: { id: 2, title: "Módulo 2: Fracciones, Porcentajes y Proporciones", colorClass: "bg-emerald-600", badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200", topics: ["Fracciones", "Porcentajes"], description: "Operaciones con quebrados y %.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Dominio de quebrados y proporciones directas.</p></div>` },
+      3: { id: 3, title: "Módulo 3: Potencias, Raíces y Jerarquía", colorClass: "bg-amber-600", badgeClass: "bg-amber-100 text-amber-800 border-amber-200", topics: ["Exponentes", "PEMDAS"], description: "Leyes de exponentes.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Jerarquía estricta de operaciones.</p></div>` },
+      4: { id: 4, title: "Módulo 4: Álgebra e Inecuaciones", colorClass: "bg-purple-600", badgeClass: "bg-purple-100 text-purple-800 border-purple-200", topics: ["Despeje", "Inecuaciones"], description: "Expresiones algebraicas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Despeje de fórmulas y resolución de inecuaciones.</p></div>` },
+      5: { id: 5, title: "Módulo 5: Regla de Tres y Conjuntos", colorClass: "bg-rose-600", badgeClass: "bg-rose-100 text-rose-800 border-rose-200", topics: ["Regla de Tres", "Venn"], description: "Proporcionalidad y conjuntos.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Diagramas de Venn y problemas de conjuntos.</p></div>` },
+      6: { id: 6, title: "Módulo 6: Geometría y Recta Numérica", colorClass: "bg-cyan-600", badgeClass: "bg-cyan-100 text-cyan-800 border-cyan-200", topics: ["Áreas", "Pitágoras"], description: "Cálculos geométricos.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Teorema de Pitágoras y áreas de figuras planas.</p></div>` },
+      7: { id: 7, title: "Módulo 7: Gráficas, Series y Lógica", colorClass: "bg-red-600", badgeClass: "bg-red-100 text-red-800 border-red-200", topics: ["Gráficas", "Lógica"], description: "Razonamiento lógico.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Interpretación estadística y silogismos lógicos.</p></div>` }
+    };
+
+    const modulesDataL2 = {
+      1: { id: 1, title: "Módulo 1 (Nivel 2): Razonamiento Aritmético y Dosis Clínicas", colorClass: "bg-blue-800", badgeClass: "bg-blue-900 text-blue-200 border-blue-700", topics: ["Infusiones", "Conversiones"], description: "Cálculo aritmético clínico.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Lección avanzada de infusiones y conversiones.</p></div>` },
+      2: { id: 2, title: "Módulo 2 (Nivel 2): Proporciones Clínicas Complejas", colorClass: "bg-emerald-800", badgeClass: "bg-emerald-900 text-emerald-200 border-emerald-700", topics: ["Concentraciones", "Diluciones"], description: "Proporciones avanzadas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Cálculo de concentraciones porcentuales.</p></div>` },
+      3: { id: 3, title: "Módulo 3 (Nivel 2): Exponentes y Crecimiento Bacteriano", colorClass: "bg-amber-800", badgeClass: "bg-amber-900 text-amber-200 border-amber-700", topics: ["Duplicación", "Semivida"], description: "Potencias en bacteriología.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Modelado exponencial de colonias.</p></div>` },
+      4: { id: 4, title: "Módulo 4 (Nivel 2): Modelado de Inecuaciones Médicas", colorClass: "bg-purple-800", badgeClass: "bg-purple-900 text-purple-200 border-purple-700", topics: ["Ventana Terapéutica", "Sistemas"], description: "Inecuaciones farmacológicas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Cálculo de rangos seguros de dosificación.</p></div>` },
+      5: { id: 5, title: "Módulo 5 (Nivel 2): Regla de Tres Compuesta y Venn Avanzado", colorClass: "bg-rose-800", badgeClass: "bg-rose-900 text-rose-200 border-rose-700", topics: ["Regla Compuesta", "Venn 3 Conjuntos"], description: "Análisis multivariable.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Problemas complejos de personal y diagramas de 3 conjuntos.</p></div>` },
+      6: { id: 6, title: "Módulo 6 (Nivel 2): Optimización Geométrica Hospitalaria", colorClass: "bg-cyan-800", badgeClass: "bg-cyan-900 text-cyan-200 border-cyan-700", topics: ["Pitágoras 3D", "Volúmenes", "ASC Mosteller"], description: "Geometría espacial médica.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Cálculo de áreas corporales y volúmenes de tanques.</p></div>` },
+      7: { id: 7, title: "Módulo 7 (Nivel 2): Análisis Estadístico y Lógica de Ensayos", colorClass: "bg-red-800", badgeClass: "bg-red-900 text-red-200 border-red-700", topics: ["Probabilidad Condicional", "Silogismos"], description: "Estadística y lógica formal.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Evaluación de ensayos clínicos y validez de premisas.</p></div>` },
+      8: { 
+        id: 8, title: "Módulo 8 (Nivel 2): Simulador Oficial de Examen General", colorClass: "bg-indigo-900", badgeClass: "bg-indigo-950 text-indigo-200 border-indigo-800",
+        topics: ["Simulador Oficial Cronometrado", "30 Minutos", "15 Preguntas de Alta Complejidad"],
+        description: "Evaluación integradora cronometrada que desbloquea el Nivel 3 al aprobar con al menos 70 puntos.",
+        contentHtml: `<div class="space-y-6"><div class="bg-indigo-950 text-white p-6 rounded-xl border border-indigo-800 space-y-4 shadow-md"><h4 class="font-bold text-lg text-amber-400">Simulador Oficial de Examen General</h4><p class="text-xs text-indigo-200">Prueba clave para desbloquear el Nivel 3 (Élite).</p></div></div>`
+      }
+    };
+
+    const modulesDataL3 = {
+      1: { id: 1, title: "Módulo 1 (Nivel 3): Cálculo Farmacológico Extremo y Perfusión", colorClass: "bg-emerald-950", badgeClass: "bg-emerald-950 text-emerald-200 border-emerald-800", topics: ["Infusiones Complejas"], description: "Perfusión continua.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Entrenamiento de élite avanzado.</p></div>` },
+      2: { id: 2, title: "Módulo 2 (Nivel 3): Funciones Exponenciales, Logarítmicas y Farmacocinética", colorClass: "bg-emerald-950", badgeClass: "bg-emerald-950 text-emerald-200 border-emerald-800", topics: ["Semivida"], description: "Farmacocinética.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Modelado matemático avanzado.</p></div>` },
+      3: { id: 3, title: "Módulo 3 (Nivel 3): Modelado Algebraico Avanzado y Sistemas Complejos", colorClass: "bg-emerald-950", badgeClass: "bg-emerald-950 text-emerald-200 border-emerald-800", topics: ["Sistemas Lineales"], description: "Sistemas complejos.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Balances electrolíticos y optimización.</p></div>` },
+      4: { id: 4, title: "Módulo 4 (Nivel 3): Geometría Analítica, Trigonometría y Espacio 3D", colorClass: "bg-emerald-950", badgeClass: "bg-emerald-950 text-emerald-200 border-emerald-800", topics: ["Vectores"], description: "Trigonometría espacial.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Radioterapia y posicionamiento 3D.</p></div>` },
+      5: { id: 5, title: "Módulo 5 (Nivel 3): Seminario de Casos Clínicos Complejos", colorClass: "bg-slate-950", badgeClass: "bg-slate-950 text-white border-slate-700", topics: ["Razonamiento Clínico Global"], description: "Módulo culminante.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Seminario de análisis y discusión.</p></div>` }
+    };
+
+    const quizzesDataL1 = {
+      1: { title: "Examen Corto 1", questions: [{ id: 1, question: "Resultado de -14 - 6×(-3) + (-8)÷2", options: ["-8", "0", "4", "8"], correct: 1, explanation: "-14 + 18 - 4 = 0." }] },
+      2: { title: "Examen Corto 2", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] },
+      3: { title: "Examen Corto 3", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] },
+      4: { title: "Examen Corto 4", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] },
+      5: { title: "Examen Corto 5", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] },
+      6: { title: "Examen Corto 6", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] },
+      7: { title: "Examen Corto 7", questions: [{ id: 1, question: "Pregunta 1", options: ["A", "B", "C", "D"], correct: 0, explanation: "Explicación." }] }
+    };
+
+    const quizzesDataL2 = {
+      1: { title: "Banco Nivel 2 - Mod 1", questions: [{ id: 1, question: "Infusión dopamina...", options: ["A", "B", "26.25 ml/h", "D"], correct: 2, explanation: "Resolución." }] },
+      2: { title: "Banco Nivel 2 - Mod 2", questions: [{ id: 1, question: "Mezcla de soluciones...", options: ["A", "2.95%", "C", "D"], correct: 1, explanation: "Resolución." }] },
+      3: { title: "Banco Nivel 2 - Mod 3", questions: [{ id: 1, question: "Duplicación bacteriana...", options: ["A", "B", "8,000", "D"], correct: 2, explanation: "Resolución." }] },
+      4: { title: "Banco Nivel 2 - Mod 4", questions: [{ id: 1, question: "Ventana terapéutica digoxina...", options: ["1 ≤ x ≤ 4", "B", "C", "D"], correct: 0, explanation: "Resolución." }] },
+      5: { title: "Banco Nivel 2 - Mod 5", questions: [{ id: 1, question: "Regla compuesta médicos...", options: ["2 días", "B", "C", "D"], correct: 0, explanation: "Resolución." }] },
+      6: { title: "Banco Nivel 2 - Mod 6", questions: [{ id: 1, question: "Distancia sonda 3D...", options: ["A", "11 cm", "C", "D"], correct: 1, explanation: "Resolución." }] },
+      7: { title: "Banco Nivel 2 - Mod 7", questions: [{ id: 1, question: "Probabilidad condicional ensayo...", options: ["12 / 27", "B", "C", "D"], correct: 0, explanation: "Resolución." }] },
+      8: {
+        title: "Simulador Oficial de Examen General - Nivel 2",
+        questions: [
+          { id: 1, question: "1. (CUSAM Élite) Solución de lidocaína al 2% a 75 kg a razón de 2 mg/min (20 mg/ml). Velocidad en ml/h:", options: ["4.5 ml/h", "6.0 ml/h", "7.5 ml/h", "9.0 ml/h"], correct: 1, explanation: "120 mg/h / 20 mg/ml = 6.0 ml/h." },
+          { id: 2, question: "2. C(t) = 160 * (0.5)^(t/4). ¿Tiempo para 20 mg/L?", options: ["8 horas", "12 horas", "16 horas", "20 horas"], correct: 1, explanation: "t = 12 horas." },
+          { id: 3, question: "3. Distancia 3D entre (1, 2, 3) y (5, 5, 15) cm:", options: ["11 cm", "13 cm", "14 cm", "15 cm"], correct: 1, explanation: "d = √169 = 13 cm." },
+          { id: 4, question: "4. En un estudio de 300 pacientes con intersecciones complejas, ¿cuántos una sola lesión?", options: ["100", "120", "140", "160"], correct: 1, explanation: "Resultado exclusivo es 120." },
+          { id: 5, question: "5. Inecuación |D - 250| ≤ 45 con comprimidos de 75 mg. Máximo entero:", options: ["3", "4", "5", "6"], correct: 2, explanation: "Máximo 3 comprimidos." },
+          { id: 6, question: "6. Cultivo bacteriano se triplica cada 2 horas (inicio 500) en 6 horas:", options: ["4,500", "13,500", "27,000", "40,500"], correct: 1, explanation: "500 × 27 = 13,500." },
+          { id: 7, question: "7. Sensibilidad 95%, especificidad 90%, prevalencia 10% (VPP aprox):", options: ["45% ~ 50%", "65% ~ 70%", "85% ~ 90%", "95%"], correct: 0, explanation: "Aprox 50%." },
+          { id: 8, question: "8. Goteo geométrico: 64, 32, 16, 8, 4 en 5 minutos. Total:", options: ["120", "124", "126", "248"], correct: 1, explanation: "Suma = 124." },
+          { id: 9, question: "9. Premisas lógicas (Modus Tollens sobre fármaco nefrotóxico):", options: ["El fármaco es nefrotóxico", "El fármaco no es nefrotóxico", "Paciente sano", "Diálisis"], correct: 1, explanation: "El fármaco no es nefrotóxico." },
+          { id: 10, question: "10. ASC por Mosteller de 180 cm y 100 kg:", options: ["1.95 m²", "2.12 m²", "2.24 m²", "2.45 m²"], correct: 2, explanation: "√5 ≈ 2.24 m²." },
+          { id: 11, question: "11. 8 anestesiólogos intuban 40 pacientes en 2h. 12 anestesiólogos en 3h:", options: ["60", "75", "90", "120"], correct: 2, explanation: "90 pacientes." },
+          { id: 12, question: "12. Sistema 3x - 6 ≥ 0 y -2x + 10 > 0:", options: ["[2, 5)", "(2, 5]", "[2, 5]", "(-∞, 5)"], correct: 0, explanation: "[2, 5)." },
+          { id: 13, question: "13. Tanque esférico de oxígeno (d = 60 cm) en litros:", options: ["56.5 L", "113.1 L", "226.2 L", "452.4 L"], correct: 1, explanation: "113.1 Litros." },
+          { id: 14, question: "14. Serie aritmética de pulsaciones (60, 65, 70...) término 15:", options: ["120", "125", "130", "135"], correct: 1, explanation: "130 lpm." },
+          { id: 15, question: "15. Probabilidad combinada de éxito 0.48 y primer procedimiento 0.80:", options: ["0.50", "0.60", "0.70", "0.75"], correct: 1, explanation: "0.60." }
+        ]
+      }
+    };
+
+    const quizzesDataL3 = { 1:{title:"", questions:[]}, 2:{title:"", questions:[]}, 3:{title:"", questions:[]}, 4:{title:"", questions:[]}, 5:{title:"", questions:[]} };
+
+    let userProgressL1 = JSON.parse(localStorage.getItem('cusam_progress_l1')) || {};
+    let userProgressL2 = JSON.parse(localStorage.getItem('cusam_progress_l2')) || {};
+    let userProgressL3 = JSON.parse(localStorage.getItem('cusam_progress_l3')) || {};
+    let currentModuleId = null;
+
+    function isLevel1Completed() {
+      const total = Object.keys(modulesDataL1).length;
+      let passed = 0;
+      for (let id in modulesDataL1) { if (userProgressL1[id] && userProgressL1[id].passed) passed++; }
+      return passed === total;
+    }
+
+    function isLevel2Completed() {
+      const total = Object.keys(modulesDataL2).length;
+      let passed = 0;
+      for (let id in modulesDataL2) { if (userProgressL2[id] && userProgressL2[id].passed) passed++; }
+      return passed === total;
+    }
+
+    function getActiveModules() { return currentLevel === 1 ? modulesDataL1 : (currentLevel === 2 ? modulesDataL2 : modulesDataL3); }
+    function getActiveQuizzes() { return currentLevel === 1 ? quizzesDataL1 : (currentLevel === 2 ? quizzesDataL2 : quizzesDataL3); }
+    function getActiveProgress() { return currentLevel === 1 ? userProgressL1 : (currentLevel === 2 ? userProgressL2 : userProgressL3); }
+    
+    function saveActiveProgress(prog) {
+      if (currentLevel === 1) { userProgressL1 = prog; localStorage.setItem('cusam_progress_l1', JSON.stringify(prog)); }
+      else if (currentLevel === 2) { userProgressL2 = prog; localStorage.setItem('cusam_progress_l2', JSON.stringify(prog)); }
+      else { userProgressL3 = prog; localStorage.setItem('cusam_progress_l3', JSON.stringify(prog)); }
+      updateGeneralProgress(); checkLevelsUnlockStatus();
+    }
+
+    function checkLevelsUnlockStatus() {
+      const btn2 = document.getElementById('btn-lvl-2');
+      const btn3 = document.getElementById('btn-lvl-3');
+      if (isLevel1Completed()) { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-all"; btn2.innerText = "Nivel 2"; }
+      else { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all"; btn2.innerText = "Nivel 2 🔒"; }
+      if (isLevel2Completed()) { btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-all"; btn3.innerText = "Nivel 3 (Élite)"; }
+      else { btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all"; btn3.innerText = "Nivel 3 🔒"; }
+    }
+
+    function switchLevel(level) {
+      if (level === 2 && !isLevel1Completed()) { alert("🔒 El Nivel 2 está bloqueado."); return; }
+      if (level === 3 && !isLevel2Completed()) { alert("🔒 El Nivel 3 está bloqueado."); return; }
+      currentLevel = level;
+      const btn1 = document.getElementById('btn-lvl-1');
+      const btn2 = document.getElementById('btn-lvl-2');
+      const btn3 = document.getElementById('btn-lvl-3');
+      const headerLabel = document.getElementById('header-progress-label');
+      const dashTitle = document.getElementById('dashboard-title');
+      const dashSub = document.getElementById('dashboard-subtitle');
+      const bannerText = document.getElementById('level-banner-text');
+
+      btn1.className = level === 1 ? "px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-all";
+      btn2.className = level === 2 ? "px-3 py-1 text-xs font-bold rounded-md bg-indigo-600 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-all";
+      btn3.className = level === 3 ? "px-3 py-1 text-xs font-bold rounded-md bg-emerald-700 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-400 hover:text-white transition-all";
+
+      if (level === 1) {
+        headerLabel.innerText = "Progreso Nivel 1"; dashTitle.innerText = "Temario Cronológico Oficial - Nivel 1";
+        dashSub.innerText = "Completa cada módulo y obtén al menos 70 puntos."; bannerText.innerText = "Fundamentos y cálculo directo.";
+      } else if (level === 2) {
+        headerLabel.innerText = "Progreso Nivel 2 (Avanzado)"; dashTitle.innerText = "Entrenamiento de Razonamiento - Nivel 2";
+        dashSub.innerText = "Problemas complejos y examen general (Módulo 8)."; bannerText.innerText = "Análisis clínico y simulacro de 30 min.";
+      } else {
+        headerLabel.innerText = "Progreso Nivel 3 (Élite CUSAM)"; dashTitle.innerText = "Seminario y Profundización - Nivel 3";
+        dashSub.innerText = "Nivel máximo de perfeccionamiento."; bannerText.innerText = "Módulos de profundización avanzados.";
+      }
+      switchTab('dashboard'); updateGeneralProgress();
+    }
+
+    function updateGeneralProgress() {
+      const modules = getActiveModules(); const progress = getActiveProgress();
+      const total = Object.keys(modules).length; let completed = 0;
+      for (let id in modules) { if (progress[id] && progress[id].passed) completed++; }
+      const pct = Math.round((completed / total) * 100);
+      document.getElementById('general-progress-pct').innerText = `${pct}% Completado`;
+    }
+
+    function hideAllRooms() {
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-lesson').classList.add('hidden');
+      document.getElementById('view-quiz-runner').classList.add('hidden');
+      document.getElementById('view-quiz-results').classList.add('hidden');
+      document.getElementById('view-quizzes').classList.add('hidden');
+      document.getElementById('view-grades').classList.add('hidden');
+      document.getElementById('exam-timer-box').classList.add('hidden');
+      clearInterval(examTimerInterval);
+    }
+
+    function switchTab(tab) {
+      hideAllRooms();
+      if (tab === 'dashboard') { document.getElementById('view-dashboard').classList.remove('hidden'); renderDashboard(); }
+      else if (tab === 'quizzes') { document.getElementById('view-quizzes').classList.remove('hidden'); renderQuizzesHub(currentLevel); }
+      else if (tab === 'grades') { document.getElementById('view-grades').classList.remove('hidden'); renderGradesView(); }
+    }
+
+    function isModuleUnlocked(id) {
+      if (id === 1 || id === "1") return true;
+      const prevId = parseInt(id) - 1;
+      const progress = getActiveProgress();
+      return progress[prevId] && progress[prevId].passed;
+    }
+
+    function renderDashboard() {
+      const grid = document.getElementById('modules-grid'); grid.innerHTML = '';
+      const modules = getActiveModules(); const progress = getActiveProgress();
+      for (let id in modules) {
+        const mod = modules[id]; const unlocked = isModuleUnlocked(id);
+        const prog = progress[id] || { passed: false, score: null };
+        let statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 border">Pendiente</span>`;
+        if (prog.passed) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border">Aprobado (${prog.score}%)</span>`;
+        else if (prog.score !== null) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-100 text-rose-800 border">No Aprobado (${prog.score}%)</span>`;
+
+        const card = document.createElement('div');
+        if (!unlocked) {
+          card.className = "bg-slate-50 rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between opacity-75";
+          card.innerHTML = `<div class="bg-slate-400 h-3 w-full"></div><div class="p-6 space-y-4"><h3 class="font-bold text-lg text-slate-500">${mod.title}</h3><p class="text-sm text-slate-500">${mod.description}</p><div class="bg-amber-50 p-3 rounded-lg text-xs text-amber-800">🔒 Módulo bloqueado.</div></div><div class="p-6 pt-0"><button disabled class="w-full bg-slate-200 text-slate-400 font-medium py-2.5 rounded-xl text-sm cursor-not-allowed">Bloqueado</button></div>`;
+        } else {
+          card.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow";
+          card.innerHTML = `<div class="${mod.colorClass} h-3 w-full"></div><div class="p-6 space-y-4"><div class="flex justify-between items-start gap-2"><h3 class="font-bold text-lg text-slate-900">${mod.title}</h3>${statusBadge}</div><p class="text-sm text-slate-600">${mod.description}</p></div><div class="p-6 pt-0"><button onclick="openLesson(${id})" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition-colors">${prog.passed ? 'Repasar Módulo' : 'Entrar al Módulo'}</button></div>`;
+        }
+        grid.appendChild(card);
+      }
+    }
+
+    function openLesson(id) {
+      if (!isModuleUnlocked(id)) { alert("Este módulo está bloqueado."); return; }
+      currentModuleId = id; const modules = getActiveModules(); const mod = modules[id];
+      hideAllRooms(); document.getElementById('view-lesson').classList.remove('hidden');
+      document.getElementById('lesson-title').innerText = mod.title;
+      document.getElementById('lesson-module-badge').className = `px-3 py-1 text-xs font-semibold rounded-full ${mod.badgeClass}`;
+      document.getElementById('lesson-module-badge').innerText = `Módulo ${id} - Nivel ${currentLevel}`;
+      document.getElementById('lesson-content').innerHTML = mod.contentHtml;
+
+      const actionContainer = document.getElementById('lesson-action-container');
+      if (currentLevel === 3) {
+        actionContainer.innerHTML = `<p class="text-sm text-slate-500 italic">Módulo de estudio y profundización de élite (sin examen).</p>`;
+      } else {
+        actionContainer.innerHTML = `<p class="text-sm text-slate-500">Nota mínima: 70%</p><button onclick="startQuizRunner(${id})" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm">Entrar al Examen Corto →</button>`;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderQuizzesHub(targetLevel = 1) {
+      const container = document.getElementById('quizzes-list-container'); container.innerHTML = '';
+      const btnL1 = document.getElementById('btn-bank-l1'); const btnL2 = document.getElementById('btn-bank-l2'); const btnL3 = document.getElementById('btn-bank-l3');
+      btnL1.className = targetLevel === 1 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-slate-950" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
+      btnL2.className = targetLevel === 2 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
+      btnL3.className = targetLevel === 3 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-700 text-white" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
+
+      const quizzes = targetLevel === 1 ? quizzesDataL1 : (targetLevel === 2 ? quizzesDataL2 : quizzesDataL3);
+      const progress = targetLevel === 1 ? userProgressL1 : (targetLevel === 2 ? userProgressL2 : userProgressL3);
+
+      for (let id in quizzes) {
+        const quiz = quizzes[id];
+        if (targetLevel === 3 && (!quiz.questions || quiz.questions.length === 0)) continue;
+        const prog = progress[id] || { passed: false, score: null };
+        const isPassed = prog.passed; const hasQuestions = quiz.questions && quiz.questions.length > 0;
+
+        let questionsReviewHtml = '';
+        if (isPassed && hasQuestions) {
+          quiz.questions.forEach((q, idx) => {
+            let optionsHtml = q.options.map((opt, optIdx) => `<div class="p-2 rounded border ${optIdx === q.correct ? 'bg-emerald-50 border-emerald-300 font-semibold text-emerald-900' : 'bg-white border-slate-200 text-slate-700'} text-xs">${opt}</div>`).join('');
+            questionsReviewHtml += `<div class="p-4 rounded-xl border bg-slate-50 space-y-2"><p class="font-bold text-xs">Problema ${idx + 1}: ${q.question}</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optionsHtml}</div><div class="text-xs p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900"><strong>Resolución:</strong> ${q.explanation}</div></div>`;
+          });
+        } else {
+          questionsReviewHtml = `<div class="p-6 rounded-xl border border-amber-200 bg-amber-50 text-center space-y-2"><span class="text-2xl">🔒</span><h4 class="font-bold text-amber-900 text-sm">Banco Bloqueado</h4><p class="text-xs text-amber-800">Aprueba la evaluación con al menos 70%.</p></div>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = "bg-white p-6 rounded-xl border shadow-sm space-y-4";
+        card.innerHTML = `<div class="flex justify-between items-start border-b pb-3"><div><span class="text-xs font-bold text-indigo-600">Módulo ${id}</span><h3 class="font-bold text-slate-900 text-lg">${quiz.title}</h3></div><span class="px-3 py-1 text-xs font-semibold rounded-full ${prog.passed ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}">${prog.score !== null ? `Nota: ${prog.score}%` : 'Pendiente'}</span></div><div class="space-y-3 max-h-96 overflow-y-auto">${questionsReviewHtml}</div>`;
+        container.appendChild(card);
+      }
+    }
+
+    function renderGradesView() {
+      let totalScore = 0, evaluatedCount = 0, passedCount = 0, unlockedCount = 0;
+      const modules = getActiveModules(); const quizzes = getActiveQuizzes(); const progress = getActiveProgress();
+      const tbody = document.getElementById('grades-table-body'); tbody.innerHTML = '';
+
+      for (let id in modules) {
+        const mod = modules[id]; const quiz = quizzes[id]; const unlocked = isModuleUnlocked(id);
+        if (unlocked) unlockedCount++;
+        const prog = progress[id] || { passed: false, score: null };
+        if (prog.score !== null) { totalScore += prog.score; evaluatedCount++; if (prog.passed) passedCount++; }
+
+        let statusText = `<span class="px-2 py-1 text-xs rounded-full bg-slate-100 text-slate-500">Pendiente</span>`;
+        if (prog.passed) statusText = `<span class="px-2 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800">Aprobado</span>`;
+        else if (prog.score !== null) statusText = `<span class="px-2 py-1 text-xs rounded-full bg-rose-100 text-rose-800">Reprobado</span>`;
+        else if (!unlocked) statusText = `<span class="px-2 py-1 text-xs rounded-full bg-amber-50 text-amber-700">Bloqueado</span>`;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50";
+        tr.innerHTML = `<td class="py-3 px-6 font-medium">Módulo ${id}</td><td class="py-3 px-6 text-slate-600">${quiz.title}</td><td class="py-3 px-6 font-bold ${prog.score >= 70 ? 'text-emerald-600' : 'text-slate-400'}">${prog.score !== null ? prog.score + '%' : '---'}</td><td class="py-3 px-6">${statusText}</td><td class="py-3 px-6 text-right"><button onclick="startQuizRunner(${id})" ${!unlocked || currentLevel === 3 || !quiz.questions.length ? 'disabled' : ''} class="text-xs font-semibold text-blue-600 ${!unlocked || currentLevel === 3 ? 'opacity-40 cursor-not-allowed' : ''}">Evaluar</button></td>`;
+        tbody.appendChild(tr);
+      }
+      document.getElementById('stats-avg-score').innerText = `${evaluatedCount > 0 ? Math.round(totalScore / evaluatedCount) : 0}%`;
+      document.getElementById('stats-passed-count').innerText = `${passedCount} / ${Object.keys(modules).length}`;
+      document.getElementById('stats-unlocked-count').innerText = `${unlockedCount} / ${Object.keys(modules).length}`;
+    }
+
+    function startQuizRunner(modId) {
+      if (!isModuleUnlocked(modId)) { alert("Módulo bloqueado."); return; }
+      if (currentLevel === 3) { alert("El Nivel 3 no cuenta con exámenes evaluativos."); return; }
+      activeQuizId = modId; const quizzes = getActiveQuizzes(); const quiz = quizzes[modId];
+      if (!quiz.questions || quiz.questions.length === 0) { alert("Próximamente disponible."); return; }
+
+      if (currentLevel === 2 && modId == 8) {
+        currentQuizQuestionsSubset = [...quiz.questions]; startExamTimer(1800);
+      } else {
+        let shuffled = [...quiz.questions].sort(() => 0.5 - Math.random());
+        currentQuizQuestionsSubset = shuffled.slice(0, 10);
+        document.getElementById('exam-timer-box').classList.add('hidden');
+      }
+
+      hideAllRooms(); document.getElementById('view-quiz-runner').classList.remove('hidden');
+      document.getElementById('quiz-runner-title').innerText = quiz.title;
+      const body = document.getElementById('quiz-runner-body'); body.innerHTML = '';
+
+      currentQuizQuestionsSubset.forEach((q, qIndex) => {
+        let optionsHtml = '';
+        q.options.forEach((opt, optIdx) => {
+          optionsHtml += `<label class="flex items-center gap-3 p-3.5 rounded-xl border hover:bg-slate-50 cursor-pointer text-sm"><input type="radio" name="runner_q_${q.id}" value="${optIdx}" class="w-4 h-4 text-blue-600"><span class="text-slate-700">${opt}</span></label>`;
+        });
+        body.innerHTML += `<div class="bg-white p-6 rounded-xl border shadow-sm space-y-4"><p class="font-bold text-slate-900"><span class="text-blue-600">${qIndex + 1}.</span> ${q.question}</p><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${optionsHtml}</div></div>`;
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startExamTimer(seconds) {
+      secondsRemaining = seconds;
+      const timerBox = document.getElementById('exam-timer-box'); const timerDisplay = document.getElementById('exam-timer-display');
+      timerBox.classList.remove('hidden'); clearInterval(examTimerInterval);
+      examTimerInterval = setInterval(() => {
+        secondsRemaining--;
+        let mins = Math.floor(secondsRemaining / 60); let secs = secondsRemaining % 60;
+        timerDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        if (secondsRemaining <= 0) { clearInterval(examTimerInterval); alert("⏱️ ¡Tiempo finalizado!"); submitQuizRunner(); }
+      }, 1000);
+    }
+
+    function exitQuizRunner() {
+      clearInterval(examTimerInterval); document.getElementById('exam-timer-box').classList.add('hidden');
+      if (currentModuleId) openLesson(currentModuleId); else switchTab('dashboard');
+    }
+
+    function retryActiveQuiz() { if (activeQuizId) startQuizRunner(activeQuizId); }
+
+    function submitQuizRunner() {
+      clearInterval(examTimerInterval); document.getElementById('exam-timer-box').classList.add('hidden');
+      let correctCount = 0, allAnswered = true;
+      currentQuizQuestionsSubset.forEach((q) => {
+        const selected = document.querySelector(`input[name="runner_q_${q.id}"]:checked`);
+        if (!selected) { allAnswered = false; return; }
+        if (parseInt(selected.value) === q.correct) correctCount++;
+      });
+      if (!allAnswered && secondsRemaining > 0 && !confirm("Hay preguntas sin responder. ¿Enviar de todos modos?")) return;
+
+      const score = Math.round((correctCount / currentQuizQuestionsSubset.length) * 100);
+      const passed = score >= 70;
+      const progress = getActiveProgress(); progress[activeQuizId] = { passed: passed, score: score };
+      saveActiveProgress(progress);
+
+      hideAllRooms(); document.getElementById('view-quiz-results').classList.remove('hidden');
+      const badge = document.getElementById('results-badge'); const subtitle = document.getElementById('results-subtitle');
+      if (passed) {
+        badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800";
+        badge.innerText = "EXAMEN APROBADO"; subtitle.innerText = `¡Excelente! Obtuviste ${score}%.`;
+      } else {
+        badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-rose-100 text-rose-800";
+        badge.innerText = "NO APROBADO"; subtitle.innerText = `Obtuviste ${score}%. Necesitas al menos 70%.`;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onload = function() { renderDashboard(); updateGeneralProgress(); checkLevelsUnlockStatus(); };
+  </script>
+</body>
+</html>
