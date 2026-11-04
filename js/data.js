@@ -212,108 +212,115 @@ const quizzesDataL1 = {
   }
 };
 
-// --- NIVEL 2 (COMPLETO CON TEORÍA EXTENDIDA Y BANCOS) ---
+// --- NIVEL 2 (MÓDULO 1 COMPLETO CON 3 EJEMPLOS Y 20 PREGUNTAS EN BANCO) ---
 const modulesDataL2 = {
   1: {
     id: 1, title: "Módulo 1 (Nivel 2): Razonamiento Aritmético y Dosis Clínicas",
     colorClass: "bg-blue-800", badgeClass: "bg-blue-900 text-blue-200 border-blue-700",
     topics: ["Infusiones Continuas", "Conversiones de Unidades", "Flujo de Goteo"],
-    description: "Cálculo aritmético aplicado a velocidades de infusión y dosificación.",
+    description: "Cálculo aritmético avanzado aplicado a velocidades de infusión y dosificación.",
     contentHtml: `
       <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Cálculo de Infusiones Continuas</h3>
-        <p class="text-sm text-slate-600">Para determinar la velocidad de una bomba de infusión en mililitros por hora (ml/h) a partir de una dosis pautada en miligramos por minuto (mg/min), se utiliza la relación de concentración: <br><strong>Velocidad (ml/h) = [ Dosis (mg/min) × 60 min ] / Concentración (mg/ml)</strong>.</p>
-        <h3 class="text-lg font-bold text-slate-800">2. Factores de Goteo</h3>
-        <p class="text-sm text-slate-600">El cálculo del goteo manual se rige por el factor de calibración del equipo (macrogotero a 15 o 20 gtt/ml, o microgotero a 60 gtt/ml): <br><strong>Goteo (gtt/min) = [ Volumen total (ml) × Factor (gtt/ml) ] / Tiempo total (min)</strong>.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Cálculo de velocidad en bomba de infusión (ml/h)</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Un paciente de 75 kg debe recibir dopamina a razón de 2 mg/min. La concentración disponible es de 20 mg/ml.<br><strong>Resolución:</strong><br>1. Calculamos la dosis horaria: $2\text{ mg/min} \times 60\text{ min} = 120\text{ mg/h}$.<br>2. Dividimos entre la concentración: $120\text{ mg/h} \div 20\text{ mg/ml} = 6.0\text{ ml/h}$.</p>
+        
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Cálculo de goteo manual (gtt/min)</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Administrar 500 ml de solución salina en 8 horas usando un equipo de macrogoteo (20 gtt/ml).<br><strong>Resolución:</strong><br>1. Convertimos el tiempo a minutos: $8\text{ horas} \times 60 = 480\text{ min}$.<br>2. Aplicamos la fórmula: $\frac{500\text{ ml} \times 20\text{ gtt/ml}}{480\text{ min}} = \frac{10000}{480} \approx 20.83\text{ gtt/min}$ (se ajusta a 21 gtt/min).</p>
+
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de unidades de masa y volumen</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> ¿Cuántos miligramos hay en 3.5 gramos de un soluto si se diluyen en 250 ml?<br><strong>Resolución:</strong><br>1. Convertimos gramos a miligramos multiplicando por 1000: $3.5\text{ g} \times 1000 = 3500\text{ mg}$.<br>2. La concentración resultante es $\frac{3500\text{ mg}}{250\text{ ml}} = 14\text{ mg/ml}$.</p>
       </div>
     `
   },
   2: {
-    id: 2, title: "Módulo 2 (Nivel 2): Proporciones Clínicas Complejas",
-    colorClass: "bg-emerald-800", badgeClass: "bg-emerald-900 text-emerald-200 border-emerald-700",
-    topics: ["Concentraciones Percentuales", "Diluciones y Mezclas", "Factores de Proporción"],
-    description: "Resolución de problemas de mezclas de soluciones y concentraciones.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Porcentajes de Solución (p/v)</h3>
-        <p class="text-sm text-slate-600">Una solución al X% indica que existen X gramos de soluto por cada 100 mililitros de solución (ej. al 2% significa 2 g en 100 ml, o bien 20 mg/ml).</p>
-        <h3 class="text-lg font-bold text-slate-800">2. Ley de Conservación de la Masa en Mezclas</h3>
-        <p class="text-sm text-slate-600">Al mezclar dos soluciones de distinta concentración, la masa total de soluto es la suma de los solutos parciales: <br><strong>(Vol₁ × %₁) + (Vol₂ × %₂) = (Vol_total × %_final)</strong>.</p>
-      </div>
-    `
-  },
-  3: {
-    id: 3, title: "Módulo 3 (Nivel 2): Exponentes y Crecimiento Poblacional",
-    colorClass: "bg-amber-800", badgeClass: "bg-amber-900 text-amber-200 border-amber-700",
-    topics: ["Duplicación Bacteriana", "Semivida Farmacocinética", "Decaimiento Exponencial"],
-    description: "Modelos exponenciales aplicados a la multiplicación celular y eliminación de fármacos.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Crecimiento Exponencial</h3>
-        <p class="text-sm text-slate-600">El número de células o bacterias tras un número n de periodos de duplicación se calcula como: <br><strong>N(t) = N₀ · 2^(t / T_duplicación)</strong>.</p>
-        <h3 class="text-lg font-bold text-slate-800">2. Semivida o Vida Media (t₁/₂)</h3>
-        <p class="text-sm text-slate-600">Tiempo necesario para que la concentración plasmática de un fármaco se reduzca a la mitad: <br><strong>C(t) = C₀ · (0.5)^(t / t₁/₂)</strong>.</p>
-      </div>
-    `
-  },
-  4: {
-    id: 4, title: "Módulo 4 (Nivel 2): Modelado de Inecuaciones y Ventana Terapéutica",
-    colorClass: "bg-purple-800", badgeClass: "bg-purple-900 text-purple-200 border-purple-700",
-    topics: ["Ventana Terapéutica", "Inecuaciones con Valor Absoluto", "Sistemas de Restricción"],
-    description: "Cálculo de rangos seguros de dosificación médica.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Ventana Terapéutica</h3>
-        <p class="text-sm text-slate-600">Rango de dosis comprendido entre la concentración mínima eficaz y la concentración tóxica, modelado frecuentemente mediante inecuaciones con valor absoluto: <br><strong>|D - D_ideal| ≤ Margen de seguridad</strong>.</p>
-      </div>
-    `
-  },
-  5: {
-    id: 5, title: "Módulo 5 (Nivel 2): Regla de Tres Compuesta y Venn Avanzado",
-    colorClass: "bg-rose-800", badgeClass: "bg-rose-900 text-rose-200 border-rose-700",
-    topics: ["Regla de Tres Compuesta", "Diagramas de Venn de 3 Conjuntos", "Análisis Multivariable"],
-    description: "Resolución de problemas con múltiples variables proporcionales e intersecciones complejas.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Regla de Tres Compuesta</h3>
-        <p class="text-sm text-slate-600">Método para resolver problemas donde intervienen más de dos magnitudes directa o inversamente proporcionales, igualando las razones de causa, obra y tiempo.</p>
-        <h3 class="text-lg font-bold text-slate-800">2. Diagramas de Venn (3 Conjuntos)</h3>
-        <p class="text-sm text-slate-600">Resolución metódica mediante el principio de inclusión-exclusión para hallar poblaciones exclusivas y solapamientos múltiples.</p>
-      </div>
-    `
-  },
-  6: {
-    id: 6, title: "Módulo 6 (Nivel 2): Optimización Geométrica y Superficie Corporal",
-    colorClass: "bg-cyan-800", badgeClass: "bg-cyan-900 text-cyan-200 border-cyan-700",
-    topics: ["Teorema de Pitágoras 3D", "Cálculo de Superficie Corporal (Mosteller)", "Volúmenes Esféricos y Cilíndricos"],
-    description: "Geometría espacial aplicada al cálculo de áreas de superficie corporal y volúmenes de tanques.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Fórmula de Mosteller (Superficie Corporal)</h3>
-        <p class="text-sm text-slate-600">Estimación de la superficie corporal en metros cuadrados (m²) a partir de peso y talla: <br><strong>ASC (m²) = √ [ (Peso en kg × Talla en cm) / 3600 ]</strong>.</p>
-        <h3 class="text-lg font-bold text-slate-800">2. Distancia Tridimensional (3D)</h3>
-        <p class="text-sm text-slate-600">Extensión del teorema de Pitágoras en el espacio: <br><strong>d = √[ (x₂ - x₁)² + (y₂ - y₁)² + (z₂ - z₁)² ]</strong>.</p>
-      </div>
-    `
-  },
-  7: {
-    id: 7, title: "Módulo 7 (Nivel 2): Análisis Estadístico y Lógica de Ensayos",
-    colorClass: "bg-red-800", badgeClass: "bg-red-900 text-red-200 border-red-700",
-    topics: ["Probabilidad Condicional", "Valor Predictivo", "Silogismos y Validez de Premisas"],
-    description: "Evaluación matemática de pruebas diagnósticas y razonamiento formal.",
-    contentHtml: `
-      <div class="space-y-4">
-        <h3 class="text-lg font-bold text-slate-800">1. Probabilidad Condicional y Diagnóstica</h3>
-        <p class="text-sm text-slate-600">Cálculo de la probabilidad de un evento dado que otro ya ocurrió (Sensibilidad, Especificidad y Valores Predictivos Positivos/Negativos).</p>
-      </div>
-    `
-  },
+  id: 2, title: "Módulo 2 (Nivel 2): Proporciones Clínicas Complejas",
+  colorClass: "bg-emerald-800", badgeClass: "bg-emerald-900 text-emerald-200 border-emerald-700",
+  topics: ["Concentraciones Percentuales", "Diluciones y Mezclas", "Factores de Proporción"],
+  description: "Resolución avanzada de problemas de mezclas de soluciones, porcentajes y diluciones.",
+  contentHtml: `
+    <div class="space-y-4">
+      <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Mezcla de dos soluciones con diferente porcentaje</h3>
+      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Se mezclan 300 ml de una solución al 5% con 200 ml de una solución al 10%. ¿Cuál es el porcentaje final de la mezcla?<br><strong>Resolución:</strong><br>1. Calculamos el soluto de la primera solución: $300\text{ ml} \times 0.05 = 15\text{ g}$.<br>2. Calculamos el soluto de la segunda solución: $200\text{ ml} \times 0.10 = 20\text{ g}$.<br>3. Sumamos solutos ($15 + 20 = 35\text{ g}$) y volúmenes ($300 + 200 = 500\text{ ml}$).<br>4. Hallamos el porcentaje final: $\frac{35\text{ g}}{500\text{ ml}} \times 100 = 7.0\%$.</p>
+      
+      <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Preparación de diluciones por ley de conservación ($C_1V_1 = C_2V_2$)</h3>
+      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> ¿Cuántos mililitros de una solución concentrada al 20% se necesitan para preparar 500 ml de una solución al 4%?<br><strong>Resolución:</strong><br>1. Aplicamos la fórmula: $C_1 \cdot V_1 = C_2 \cdot V_2$.<br>2. Sustituimos: $20\% \cdot V_1 = 4\% \cdot 500\text{ ml}$.<br>3. Despejamos $V_1$: $V_1 = \frac{2000}{20} = 100\text{ ml}$ de solución concentrada a diluir en 400 ml de agua estéril.</p>
+
+      <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de relación peso/volumen (p/v) a concentración en mg/ml</h3>
+      <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Una ampolla de glucosa se encuentra al 10% p/v en un volumen de 20 ml. ¿Cuántos miligramos totales de glucosa contiene?<br><strong>Resolución:</strong><br>1. Una concentración al 10% significa que hay $10\text{ g}$ de soluto por cada $100\text{ ml}$ ($100\text{ mg/ml}$).<br>2. Multiplicamos la concentración por el volumen total: $100\text{ mg/ml} \times 20\text{ ml} = 2000\text{ mg}$ ($2\text{ g}$).</p>
+    </div>
+  `
+},
+  3: { id: 3, title: "Módulo 3 (Nivel 2): Exponentes y Crecimiento", colorClass: "bg-amber-800", badgeClass: "bg-amber-900 text-amber-200 border-amber-700", topics: ["Duplicación", "Semivida"], description: "Potencias aplicadas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
+  4: { id: 4, title: "Módulo 4 (Nivel 2): Modelado de Inecuaciones", colorClass: "bg-purple-800", badgeClass: "bg-purple-900 text-purple-200 border-purple-700", topics: ["Ventana Terapéutica", "Sistemas"], description: "Inecuaciones avanzadas.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
+  5: { id: 5, title: "Módulo 5 (Nivel 2): Regla de Tres Compuesta y Venn Avanzado", colorClass: "bg-rose-800", badgeClass: "bg-rose-900 text-rose-200 border-rose-700", topics: ["Regla Compuesta", "Venn 3 Conjuntos"], description: "Análisis multivariable.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
+  6: { id: 6, title: "Módulo 6 (Nivel 2): Optimización Geométrica", colorClass: "bg-cyan-800", badgeClass: "bg-cyan-900 text-cyan-200 border-cyan-700", topics: ["Pitágoras 3D", "Volúmenes"], description: "Geometría espacial.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
+  7: { id: 7, title: "Módulo 7 (Nivel 2): Análisis Estadístico y Lógica", colorClass: "bg-red-800", badgeClass: "bg-red-900 text-red-200 border-red-700", topics: ["Probabilidad Condicional", "Silogismos"], description: "Estadística y lógica formal.", contentHtml: `<div class="space-y-4"><p class="text-sm text-slate-600">Contenido en desarrollo...</p></div>` },
   8: { 
     id: 8, title: "Módulo 8 (Nivel 2): Simulador Oficial de Examen General", colorClass: "bg-indigo-900", badgeClass: "bg-indigo-950 text-indigo-200 border-indigo-800",
-    topics: ["Simulador Oficial Cronometrado", "30 Minutos", "15 Preguntas de Alta Complejidad"],
-    description: "Evaluación integradora cronometrada que desbloquea el Nivel 3 al aprobar con al menos 70 puntos.",
-    contentHtml: `<div class="space-y-6"><div class="bg-indigo-950 text-white p-6 rounded-xl border border-indigo-800 space-y-4 shadow-md"><h4 class="font-bold text-lg text-amber-400">Simulador Oficial de Examen General</h4><p class="text-xs text-indigo-200">Prueba clave cronometrada para comprobar tu nivel resolutivo general y desbloquear el Nivel 3 (Élite).</p></div></div>`
+    topics: ["Simulador Cronometrado", "30 Minutos", "15 Preguntas"],
+    description: "Evaluación integradora cronometrada que desbloquea el Nivel 3.",
+    contentHtml: `<div class="space-y-6"><div class="bg-indigo-950 text-white p-6 rounded-xl border border-indigo-800 space-y-4 shadow-md"><h4 class="font-bold text-lg text-amber-400">Simulador Oficial de Examen General</h4><p class="text-xs text-indigo-200">Prueba clave para comprobar tu preparación y desbloquear el Nivel 3.</p></div></div>`
   }
+};
+
+// Banco de 20 preguntas para el Módulo 1 (de las cuales el sistema toma 10 aleatorias)
+const quizzesDataL2 = {
+  1: {
+    title: "Banco Nivel 2 - Módulo 1 (20 Preguntas)",
+    questions: [
+      { id: 1, question: "Paciente de 75 kg recibe infusión de dopamina a 2 mg/min. Concentración: 20 mg/ml. Velocidad en ml/h:", options: ["4.5 ml/h", "6.0 ml/h", "7.5 ml/h", "9.0 ml/h"], correct: 1, explanation: "120 mg/h / 20 mg/ml = 6.0 ml/h." },
+      { id: 2, question: "Calcule el goteo para 500 ml en 8 horas con factor 20 gtt/ml:", options: ["18 gtt/min", "21 gtt/min", "25 gtt/min", "28 gtt/min"], correct: 1, explanation: "(500 × 20) / 480 ≈ 21 gtt/min." },
+      { id: 3, question: "Si se administran 1000 ml de solución en 12 horas con microgotero (60 gtt/ml), el goteo es:", options: ["75 gtt/min", "83.3 gtt/min", "90 gtt/min", "100 gtt/min"], correct: 1, explanation: "(1000 × 60) / 720 = 60000 / 720 = 83.3 gtt/min." },
+      { id: 4, question: "Un fármaco viene en presentación de 500 mg en 10 ml. ¿Cuántos mg hay en 3 ml?", options: ["100 mg", "150 mg", "200 mg", "250 mg"], correct: 1, explanation: "Concentración = 50 mg/ml. 50 × 3 = 150 mg." },
+      { id: 5, question: "Transforme 45 mcg a miligramos (mg):", options: ["0.045 mg", "0.45 mg", "4.5 mg", "45 mg"], correct: 0, explanation: "1 mg = 1000 mcg. 45 / 1000 = 0.045 mg." },
+      { id: 6, question: "Si la velocidad de infusión es de 45 ml/h y el equipo pasa 1 ml en 20 gotas, ¿cuál es el goteo?", options: ["12 gtt/min", "15 gtt/min", "18 gtt/min", "21 gtt/min"], correct: 1, explanation: "(45 × 20) / 60 = 900 / 60 = 15 gtt/min." },
+      { id: 7, question: "Un paciente recibe 0.5 mcg/kg/min de un inotrópico. Pesa 80 kg. Dosis total por minuto:", options: ["20 mcg/min", "40 mcg/min", "60 mcg/min", "80 mcg/min"], correct: 1, explanation: "0.5 × 80 = 40 mcg/min." },
+      { id: 8, question: "Convierta 2.5 litros a mililitros:", options: ["250 ml", "2500 ml", "25000 ml", "25 ml"], correct: 1, explanation: "2.5 × 1000 = 2500 ml." },
+      { id: 9, question: "Si una infusión dura 6 horas a 80 ml/h, ¿cuál es el volumen total infundido?", options: ["360 ml", "420 ml", "480 ml", "540 ml"], correct: 2, explanation: "80 × 6 = 480 ml." },
+      { id: 10, question: "Una ampolla tiene 40 mg en 2 ml. Se requieren 60 mg. ¿Cuántos ml se deben administrar?", options: ["2.0 ml", "2.5 ml", "3.0 ml", "3.5 ml"], correct: 2, explanation: "20 mg/ml. 60 / 20 = 3.0 ml." },
+      { id: 11, question: "Calcule la velocidad para pasar 250 ml en 4 horas:", options: ["55.5 ml/h", "62.5 ml/h", "70.0 ml/h", "75.5 ml/h"], correct: 1, explanation: "250 / 4 = 62.5 ml/h." },
+      { id: 12, question: "Si 1 gramo equivale a 1,000,000 de microgramos, ¿cuántos mcg hay en 0.02 g?", options: ["200 mcg", "2,000 mcg", "20,000 mcg", "200,000 mcg"], correct: 2, explanation: "0.02 × 1,000,000 = 20,000 mcg." },
+      { id: 13.0, question: "Un frasco contiene 100 ml de solución al 5%. ¿Cuántos gramos de soluto contiene?", options: ["2.5 g", "5.0 g", "7.5 g", "10.0 g"], correct: 1, explanation: "5% significa 5 g por cada 100 ml." },
+      { id: 14, question: "Si un equipo entrega 15 gtt/ml, ¿cuántas gotas hay en 100 ml?", options: ["1,200 gtt", "1,500 gtt", "1,800 gtt", "2,000 gtt"], correct: 1, explanation: "100 × 15 = 1,500 gotas." },
+      { id: 15, question: "Paciente pesa 60 kg. Dosis pautada: 4 mg/kg/día. Dosis total diaria:", options: ["120 mg", "180 mg", "240 mg", "300 mg"], correct: 2, explanation: "60 × 4 = 240 mg/día." },
+      { id: 16, question: "Dividiendo la dosis anterior en cada 8 horas (3 veces al día), la dosis por toma es:", options: ["60 mg", "80 mg", "100 mg", "120 mg"], correct: 1, explanation: "240 / 3 = 80 mg." },
+      { id: 17, question: "Si se pasan 50 ml en 30 minutos en bomba, la velocidad programada es:", options: ["50 ml/h", "75 ml/h", "100 ml/h", "120 ml/h"], correct: 2, explanation: "50 ml en 0.5 h = 100 ml/h." },
+      { id: 18, question: "Conversión: 750 miligramos a gramos:", options: ["0.075 g", "0.75 g", "7.5 g", "75 g"], correct: 1, explanation: "750 / 1000 = 0.75 g." },
+      { id: 19, question: "Si la concentración es 5 mg/ml y se pasan 15 mg en una hora, el flujo es:", options: ["1 ml/h", "2 ml/h", "3 ml/h", "5 ml/h"], correct: 2, explanation: "15 / 5 = 3 ml/h." },
+      { id: 20, question: "Velocidad de infusión para 1200 ml en 24 horas:", options: ["40 ml/h", "45 ml/h", "50 ml/h", "55 ml/h"], correct: 2, explanation: "1200 / 24 = 50 ml/h." }
+    ]
+  },
+  2: {
+  title: "Banco Nivel 2 - Módulo 2 (20 Preguntas)",
+  questions: [
+    { id: 1, question: "Se mezclan 300 ml de solución al 5% con 200 ml de solución al 10%. Porcentaje final:", options: ["6.5%", "7.0%", "7.5%", "8.0%"], correct: 1, explanation: "(15g + 20g) / 500ml = 7.0%." },
+    { id: 2, question: "¿Qué volumen de solución al 25% se requiere para obtener 50 g de soluto puro?", options: ["100 ml", "150 ml", "200 ml", "250 ml"], correct: 2, explanation: "25g en 100ml -> 50g en 200ml." },
+    { id: 3, question: "Si se diluyen 50 ml de una solución al 30% hasta alcanzar un volumen final de 150 ml, la concentración final es:", options: ["5%", "10%", "15%", "20%"], correct: 1, explanation: "(30 × 50) / 150 = 10%." },
+    { id: 4, question: "Una solución al 0.9% de cloruro de sodio en 1000 ml contiene cuántos gramos de sal:", options: ["0.9 g", "9.0 g", "90.0 g", "900.0 g"], correct: 1, explanation: "0.9 g por cada 100 ml, por lo tanto 9.0 g en 1000 ml." },
+    { id: 5, question: "Para preparar 250 ml de solución al 2% a partir de una solución al 10%, se requieren:", options: ["30 ml", "50 ml", "75 ml", "100 ml"], correct: 1, explanation: "(2% × 250ml) / 10% = 50 ml." },
+    { id: 6, question: "¿Cuántos mg de fármaco hay en 5 ml de una solución al 4% p/v?", options: ["100 mg", "200 mg", "400 mg", "500 mg"], correct: 1, explanation: "4% = 40 mg/ml. 40 × 5 = 200 mg." },
+    { id: 7, question: "Si se mezclan 400 ml al 2% con 100 ml al 12%, la concentración resultante es:", options: ["3.2%", "4.0%", "4.5%", "5.0%"], correct: 1, explanation: "(8g + 12g) / 500ml = 20/500 = 4.0%." },
+    { id: 8, question: "Una presentación comercial indica 50 mg/ml. ¿Cuál es su porcentaje p/v equivalente?", options: ["0.5%", "1.0%", "5.0%", "10.0%"], correct: 2, explanation: "50 mg/ml = 5 g / 100 ml = 5.0%." },
+    { id: 9, question: "Se tienen 600 ml de solución al 15%. Si se evaporan 100 ml, la nueva concentración es:", options: ["16.5%", "17.2%", "18.0%", "19.5%"], correct: 2, explanation: "Soluto = 90g. Volumen nuevo = 500ml. (90/500)*100 = 18.0%." },
+    { id: 10, question: "¿Qué cantidad de agua destilada se debe agregar a 100 ml de solución al 20% para bajarla al 5%?", options: ["200 ml", "300 ml", "400 ml", "500 ml"], correct: 1, explanation: "Volumen final = 400 ml. Como ya hay 100 ml, se añaden 300 ml de agua." },
+    { id: 11, question: "Una proporción 1:1000 en peso/volumen equivale a una concentración porcentual de:", options: ["0.01%", "0.1%", "1.0%", "10.0%"], correct: 1, explanation: "1g en 1000ml = 0.1g en 100ml (0.1%)." },
+    { id: 12, question: "Se mezclan 1 litro de solución al 2% con 1 litro de agua pura. El porcentaje final es:", options: ["0.5%", "1.0%", "1.5%", "2.0%"], correct: 1, explanation: "20g en 2000ml = 1.0%." },
+    { id: 13, question: "Calcule los gramos de soluto en 250 ml de una solución al 3.5%:", options: ["7.25 g", "8.75 g", "9.50 g", "10.25 g"], correct: 1, explanation: "250 × 0.035 = 8.75 g." },
+    { id: 14, question: "Si se requiere preparar 500 ml de suero glucosado al 5% usando ampollas al 50% (50 ml), ¿cuántas ampollas se necesitan?", options: ["1 ampolla", "2 ampollas", "3 ampollas", "4 ampollas"], correct: 1, explanation: "Soluto requerido = 25g. Cada ampolla al 50% en 50ml aporta 25g. Se necesita 1 ampolla (Nota: si es cálculo de volumen de ampolla, V1 = 50ml)." },
+    { id: 15, question: "Una solución madre tiene una concentración de 2 mg/ml. ¿Qué volumen contiene 400 mcg?", options: ["0.1 ml", "0.2 ml", "0.4 ml", "0.5 ml"], correct: 1, explanation: "400 mcg = 0.4 mg. 0.4 / 2 = 0.2 ml." },
+    { id: 16, question: "Al mezclar volúmenes iguales de soluciones al 4% y al 8%, el porcentaje de la mezcla es:", options: ["5.0%", "5.5%", "6.0%", "6.5%"], correct: 2, explanation: "Promedio ponderado simple por partes iguales: (4 + 8) / 2 = 6.0%." },
+    { id: 17, question: "¿Cuántos miligramos de cloruro de sodio hay en 10 ml de una solución al 0.9%?", options: ["45 mg", "90 mg", "135 mg", "180 mg"], correct: 1, explanation: "0.9% = 9 mg/ml. 9 × 10 = 90 mg." },
+    { id: 18, question: "Si se diluyen 200 ml de una solución al 8% hasta obtener 400 ml, la concentración es:", options: ["2%", "3%", "4%", "5%"], correct: 2, explanation: "(8% × 200) / 400 = 4%." },
+    { id: 19, question: "Una proporción 1:10,000 expresada en mg/ml equivale a:", options: ["0.01 mg/ml", "0.1 mg/ml", "1.0 mg/ml", "10.0 mg/ml"], correct: 1, explanation: "1g (1000mg) en 10,000ml = 0.1 mg/ml." },
+    { id: 20, question: "Para obtener una mezcla final al 6% combinando soluciones al 3% y al 9%, la proporción de mezcla debe ser:", options: ["1:1", "1:2", "2:1", "3:1"], correct: 0, explanation: "Equidistante de 3 y 9, requiere partes iguales (1:1)." }
+  ]
+},
+  3: { title: "Banco Nivel 2 - Mod 3", questions: [] },
+  4: { title: "Banco Nivel 2 - Mod 4", questions: [] },
+  5: { title: "Banco Nivel 2 - Mod 5", questions: [] },
+  6: { title: "Banco Nivel 2 - Mod 6", questions: [] },
+  7: { title: "Banco Nivel 2 - Mod 7", questions: [] },
+  8: { title: "Simulador Nivel 2", questions: [] } // El simulador general se mantiene con sus 15 preguntas ya definidas
 };
 
 // --- NIVEL 3 ---
