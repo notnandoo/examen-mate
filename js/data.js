@@ -213,10 +213,9 @@ const quizzesDataL1 = {
 };
 
 // ==========================================
-// MÓDULOS Y BANCOS - NIVEL 2 COMPLETO
+// MÓDULOS Y BANCOS - NIVEL 2 COMPLETO (CORREGIDO Y VISUALMENTE LIMPIO)
 // ==========================================
 
-// 1. Asegúrate de que modulesDataL2 se declare una sola vez así:
 const modulesDataL2 = {
   1: {
     id: 1, title: "Módulo 1 (Nivel 2): Razonamiento Aritmético y Dosis Clínicas",
@@ -226,11 +225,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Cálculo de velocidad en bomba de infusión (ml/h)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Un paciente de 75 kg debe recibir dopamina a razón de 2 mg/min. Concentración: 20 mg/ml.<br><strong>Resolución:</strong><br>1. Dosis horaria: $2\text{ mg/min} \times 60\text{ min} = 120\text{ mg/h}$.<br>2. Velocidad: $120\text{ mg/h} \div 20\text{ mg/ml} = 6.0\text{ ml/h}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Un paciente de 75 kg debe recibir dopamina a razón de 2 mg/min. Concentración: 20 mg/ml.<br><strong>Resolución:</strong><br>1. Dosis horaria: 2 mg/min × 60 min = 120 mg/h.<br>2. Velocidad: 120 mg/h ÷ 20 mg/ml = 6.0 ml/h.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Cálculo de goteo manual (gtt/min)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Administrar 500 ml en 8 horas (macrogoteo a 20 gtt/ml).<br><strong>Resolución:</strong><br>Tiempo en min: $480\text{ min}$. Goteo: $\frac{500 \times 20}{480} \approx 21\text{ gtt/min}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Administrar 500 ml en 8 horas (macrogoteo a 20 gtt/ml).<br><strong>Resolución:</strong><br>Tiempo en min: 480 min. Goteo: (500 × 20) / 480 = 20.83 (aprox. 21 gtt/min).</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Conversión de masa y volumen</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Concentración de 3.5 g de soluto diluidos en 250 ml.<br><strong>Resolución:</strong><br>$3.5\text{ g} = 3500\text{ mg}$. Concentración: $\frac{3500}{250} = 14\text{ mg/ml}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Concentración de 3.5 g de soluto diluidos en 250 ml.<br><strong>Resolución:</strong><br>3.5 g = 3,500 mg. Concentración: 3,500 mg / 250 ml = 14 mg/ml.</p>
       </div>
     `
   },
@@ -244,9 +243,9 @@ const modulesDataL2 = {
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Mezcla de soluciones al %</h3>
         <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Mezclar 300 ml al 5% con 200 ml al 10%.<br><strong>Resolución:</strong> Soluto 1: 15g, Soluto 2: 20g. Total soluto = 35g en 500ml. Porcentaje final = 7.0%.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ley de conservación</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Preparar 500 ml al 4% desde una solución al 20%.<br><strong>Resolución:</strong> $V_1 = 100\text{ ml}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Preparar 500 ml al 4% desde una solución al 20%.<br><strong>Resolución:</strong> V1 = 100 ml de solución concentrada a diluir en 400 ml de agua.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Relación p/v a mg/ml</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Ampolla al 10% p/v en 20 ml.<br><strong>Resolución:</strong> Total = $2000\text{ mg}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Ampolla al 10% p/v en 20 ml.<br><strong>Resolución:</strong> Total = 2,000 mg (2 g).</p>
       </div>
     `
   },
@@ -258,11 +257,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Crecimiento exponencial</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Cultivo que se duplica cada 3h (inicio 1,000). En 9h.<br><strong>Resolución:</strong> $1000 \cdot 2^3 = 8,000\text{ bacterias}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Cultivo que se duplica cada 3h (inicio 1,000). En 9h.<br><strong>Resolución:</strong> 1,000 × 2³ = 8,000 bacterias.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Semivida</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Fármaco con $t_{1/2} = 4\text{ h}$ (inicio $160\text{ mg/L}$) hasta $20\text{ mg/L}$.<br><strong>Resolución:</strong> 3 periodos = 12 horas.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Fármaco con vida media de 4h (inicio 160 mg/L) hasta 20 mg/L.<br><strong>Resolución:</strong> Transcurren 3 periodos = 12 horas.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Potencias fraccionarias</h3>
-        <p class="text-sm text-slate-600">Evaluación de funciones exponenciales de decaimiento.</p>
+        <p class="text-sm text-slate-600">Evaluación de funciones exponenciales de decaimiento en modelos farmacocinéticos.</p>
       </div>
     `
   },
@@ -274,11 +273,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Inecuación lineal de dosis</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Resolver $2x + 15 \le 45$.<br><strong>Resolución:</strong> $x \le 15$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Resolver 2x + 15 ≤ 45.<br><strong>Resolución:</strong> x ≤ 15.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ventana terapéutica con valor absoluto</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Modelo $|D - 250| \le 45$.<br><strong>Resolución:</strong> $205 \le D \le 295\text{ mg}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Modelo |D - 250| ≤ 45.<br><strong>Resolución:</strong> Rango seguro de 205 mg a 295 mg.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Sistemas de inecuaciones</h3>
-        <p class="text-sm text-slate-600">Cálculo de intersecciones seguras.</p>
+        <p class="text-sm text-slate-600">Cálculo de intersecciones seguras entre concentraciones.</p>
       </div>
     `
   },
@@ -290,11 +289,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Regla de tres compuesta</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> 6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?<br><strong>Resolución:</strong> $270\text{ vacunas}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> 6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?<br><strong>Resolución:</strong> 270 vacunas.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Venn de 3 conjuntos</h3>
-        <p class="text-sm text-slate-600">Principio de inclusión-exclusión.</p>
+        <p class="text-sm text-slate-600">Principio de inclusión-exclusión para poblaciones superpuestas.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Proporcionalidad inversa</h3>
-        <p class="text-sm text-slate-600">Cálculo de tiempos y recursos.</p>
+        <p class="text-sm text-slate-600">Cálculo de tiempos y recursos asignados.</p>
       </div>
     `
   },
@@ -306,11 +305,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Superficie Corporal (Mosteller)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Paciente de 180 cm y 100 kg.<br><strong>Resolución:</strong> $\text{ASC} = \sqrt{5} \approx 2.24\text{ m}^2$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Paciente de 180 cm y 100 kg.<br><strong>Resolución:</strong> ASC = √(18000 / 3600) ≈ 2.24 m².</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Distancia tridimensional</h3>
-        <p class="text-sm text-slate-600">Vectores de posición y distancias espaciales.</p>
+        <p class="text-sm text-slate-600">Vectores de posición y distancias espaciales en coordenadas 3D.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Volumen de tanques</h3>
-        <p class="text-sm text-slate-600">Depósitos cilíndricos y esféricos.</p>
+        <p class="text-sm text-slate-600">Depósitos cilíndricos y esféricos para fluidos médicos.</p>
       </div>
     `
   },
@@ -324,9 +323,9 @@ const modulesDataL2 = {
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Probabilidad condicional (VPP)</h3>
         <p class="text-sm text-slate-600">Cálculo de probabilidad de enfermedad con resultado positivo.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Lógica formal</h3>
-        <p class="text-sm text-slate-600">Evaluación de la validez de conclusiones.</p>
+        <p class="text-sm text-slate-600">Evaluación de validez en silogismos clínicos.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Probabilidad combinada</h3>
-        <p class="text-sm text-slate-600">Análisis de sucesos independientes.</p>
+        <p class="text-sm text-slate-600">Análisis de sucesos independientes en ensayos.</p>
       </div>
     `
   },
