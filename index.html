@@ -403,7 +403,9 @@
       const quizzes = getActiveQuizzes();
       const quiz = quizzes[modId];
       if (!quiz.questions || quiz.questions.length === 0) { alert("Próximamente disponible."); return; }
-
+if (modId === 8) {
+  startExamTimer(30); // Arranca los 30 minutos exclusivos del Simulador Élite
+}
       if (currentLevel === 2 && modId == 8) {
         currentQuizQuestionsSubset = [...quiz.questions];
         startExamTimer(1800);
@@ -456,6 +458,36 @@
         }
       }, 1000);
     }
+    let examTimerInterval = null;
+
+function startExamTimer(durationMinutes = 30) {
+  let timerSeconds = durationMinutes * 60;
+  const timerBanner = document.getElementById('quizTimerBanner');
+  const timerDisplay = document.getElementById('quizTimerDisplay');
+  if (!timerBanner || !timerDisplay) return;
+
+  timerBanner.classList.remove('hidden');
+  clearInterval(examTimerInterval);
+
+  examTimerInterval = setInterval(() => {
+    const minutes = Math.floor(timerSeconds / 60);
+    const seconds = timerSeconds % 60;
+    timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+    if (--timerSeconds < 0) {
+      clearInterval(examTimerInterval);
+      timerBanner.classList.add('hidden');
+      alert("¡El tiempo límite de 30 minutos ha finalizado!");
+      if (typeof submitQuiz === 'function') submitQuiz();
+    }
+  }, 1000);
+}
+
+function stopExamTimer() {
+  clearInterval(examTimerInterval);
+  const timerBanner = document.getElementById('quizTimerBanner');
+  if (timerBanner) timerBanner.classList.add('hidden');
+}
 
     function exitQuizRunner() {
       clearInterval(examTimerInterval);
@@ -477,7 +509,7 @@
         if (parseInt(selected.value) === q.correct) correctCount++;
       });
       if (!allAnswered && secondsRemaining > 0 && !confirm("Hay preguntas sin responder. ¿Deseas enviar el examen de todos modos?")) return;
-
+stopExamTimer();
       const score = Math.round((correctCount / currentQuizQuestionsSubset.length) * 100);
       const passed = score >= 70;
 
