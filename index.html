@@ -462,23 +462,46 @@ if (modId === 8) {
 
 function startExamTimer(durationMinutes = 30) {
   let timerSeconds = durationMinutes * 60;
-  const timerBanner = document.getElementById('quizTimerBanner');
+  
+  // Buscar los elementos por sus IDs exactos
+  const timerBanner = document.getElementById('quizTimerBanner') || document.getElementById('exam-timer-box');
   const timerDisplay = document.getElementById('quizTimerDisplay');
-  if (!timerBanner || !timerDisplay) return;
 
-  timerBanner.classList.remove('hidden');
-  clearInterval(examTimerInterval);
+  if (timerBanner) timerBanner.classList.remove('hidden');
 
+  // Limpiar cualquier temporizador previo activo
+  if (typeof examTimerInterval !== 'undefined' && examTimerInterval) {
+    clearInterval(examTimerInterval);
+  }
+
+  // Iniciar el intervalo de descuento por segundo
   examTimerInterval = setInterval(() => {
     const minutes = Math.floor(timerSeconds / 60);
     const seconds = timerSeconds % 60;
-    timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-    if (--timerSeconds < 0) {
+    // Formatear texto MM:SS
+    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    
+    if (timerDisplay) {
+      timerDisplay.textContent = formattedTime;
+    }
+
+    // Alerta visual de color rojo cuando falten menos de 5 minutos
+    if (timerSeconds <= 300 && timerBanner) {
+      timerBanner.classList.add('border-rose-500');
+    }
+
+    // Descontar 1 segundo
+    timerSeconds--;
+
+    // Al llegar a cero, detener el reloj y enviar la prueba
+    if (timerSeconds < 0) {
       clearInterval(examTimerInterval);
-      timerBanner.classList.add('hidden');
-      alert("¡El tiempo límite de 30 minutos ha finalizado!");
-      if (typeof submitQuiz === 'function') submitQuiz();
+      if (timerBanner) timerBanner.classList.add('hidden');
+      alert("¡El tiempo límite de 30 minutos ha finalizado! Evaluando examen...");
+      if (typeof submitQuizRunner === 'function') {
+        submitQuizRunner();
+      }
     }
   }, 1000);
 }
