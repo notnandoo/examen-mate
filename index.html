@@ -11,6 +11,13 @@
 </head>
 <body class="bg-slate-100 min-h-screen flex flex-col justify-between text-slate-800">
 
+  <div id="quizTimerBanner" class="hidden fixed top-4 right-4 z-50 bg-slate-900/95 text-white border-2 border-amber-500/80 px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-md flex items-center space-x-3">
+  <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <div>
+    <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider block">Tiempo Restante</span>
+    <span id="quizTimerDisplay" class="text-xl font-mono font-black text-amber-400">30:00</span>
+  </div>
+</div>
   <!-- HEADER -->
   <header class="bg-slate-900 text-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
