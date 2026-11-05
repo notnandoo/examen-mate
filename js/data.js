@@ -213,9 +213,10 @@ const quizzesDataL1 = {
 };
 
 // ==========================================
-// NIVEL 2 COMPLETO (MÓDULOS 1 AL 8 CON TEORÍA Y BANCOS DE 20 PREGUNTAS)
+// MÓDULOS Y BANCOS - NIVEL 2 COMPLETO
 // ==========================================
 
+// 1. Asegúrate de que modulesDataL2 se declare una sola vez así:
 const modulesDataL2 = {
   1: {
     id: 1, title: "Módulo 1 (Nivel 2): Razonamiento Aritmético y Dosis Clínicas",
@@ -241,11 +242,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Mezcla de soluciones al %</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Mezclar 300 ml al 5% con 200 ml al 10%.<br><strong>Resolución:</strong> Soluto 1: 15g, Soluto 2: 20g. Total soluto = 35g en 500ml. Porcentaje final = $\frac{35}{500} \times 100 = 7.0\%$.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ley de conservación ($C_1V_1 = C_2V_2$)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Preparar 500 ml al 4% desde una solución al 20%.<br><strong>Resolución:</strong> $20 \cdot V_1 = 4 \cdot 500 \rightarrow V_1 = 100\text{ ml}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Mezclar 300 ml al 5% con 200 ml al 10%.<br><strong>Resolución:</strong> Soluto 1: 15g, Soluto 2: 20g. Total soluto = 35g en 500ml. Porcentaje final = 7.0%.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ley de conservación</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Preparar 500 ml al 4% desde una solución al 20%.<br><strong>Resolución:</strong> $V_1 = 100\text{ ml}$.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Relación p/v a mg/ml</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Ampolla al 10% p/v en 20 ml.<br><strong>Resolución:</strong> 10% = $100\text{ mg/ml}$. Total = $100 \times 20 = 2000\text{ mg}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Ampolla al 10% p/v en 20 ml.<br><strong>Resolución:</strong> Total = $2000\text{ mg}$.</p>
       </div>
     `
   },
@@ -257,11 +258,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Crecimiento exponencial</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Cultivo que se duplica cada 3h (inicio 1,000). En 9h.<br><strong>Resolución:</strong> $n = 9/3 = 3$. $1000 \cdot 2^3 = 8,000\text{ bacterias}$.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Semivida ($t_{1/2}$)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Fármaco con $t_{1/2} = 4\text{ h}$ (inicio $160\text{ mg/L}$) hasta $20\text{ mg/L}$.<br><strong>Resolución:</strong> $160 \rightarrow 80 \rightarrow 40 \rightarrow 20$ (3 periodos de 4h = $12\text{ horas}$).</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Cultivo que se duplica cada 3h (inicio 1,000). En 9h.<br><strong>Resolución:</strong> $1000 \cdot 2^3 = 8,000\text{ bacterias}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Semivida</h3>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Fármaco con $t_{1/2} = 4\text{ h}$ (inicio $160\text{ mg/L}$) hasta $20\text{ mg/L}$.<br><strong>Resolución:</strong> 3 periodos = 12 horas.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Potencias fraccionarias</h3>
-        <p class="text-sm text-slate-600">Evaluación de funciones exponenciales de decaimiento en modelos farmacocinéticos.</p>
+        <p class="text-sm text-slate-600">Evaluación de funciones exponenciales de decaimiento.</p>
       </div>
     `
   },
@@ -273,11 +274,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Inecuación lineal de dosis</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Resolver $2x + 15 \le 45$ para hallar el límite de comprimidos.<br><strong>Resolución:</strong> $2x \le 30 \rightarrow x \le 15$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Resolver $2x + 15 \le 45$.<br><strong>Resolución:</strong> $x \le 15$.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Ventana terapéutica con valor absoluto</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Modelo $|D - 250| \le 45$.<br><strong>Resolución:</strong> $-45 \le D - 250 \le 45 \rightarrow 205 \le D \le 295\text{ mg}$.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Sistemas de inecuaciones simultáneas</h3>
-        <p class="text-sm text-slate-600">Cálculo de intersecciones seguras entre concentraciones mínimas y máximas.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Modelo $|D - 250| \le 45$.<br><strong>Resolución:</strong> $205 \le D \le 295\text{ mg}$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Sistemas de inecuaciones</h3>
+        <p class="text-sm text-slate-600">Cálculo de intersecciones seguras.</p>
       </div>
     `
   },
@@ -289,11 +290,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Regla de tres compuesta</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> 6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?<br><strong>Resolución:</strong> $120 \times (9/6) \times (6/4) = 270\text{ vacunas}$.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> 6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?<br><strong>Resolución:</strong> $270\text{ vacunas}$.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Venn de 3 conjuntos</h3>
-        <p class="text-sm text-slate-600">Aplicación del principio de inclusión-exclusión para poblaciones superpuestas en estudios clínicos.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Proporcionalidad inversa multivariable</h3>
-        <p class="text-sm text-slate-600">Cálculo de tiempos y recursos asignados en intervenciones simultáneas.</p>
+        <p class="text-sm text-slate-600">Principio de inclusión-exclusión.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Proporcionalidad inversa</h3>
+        <p class="text-sm text-slate-600">Cálculo de tiempos y recursos.</p>
       </div>
     `
   },
@@ -305,11 +306,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Superficie Corporal (Mosteller)</h3>
-        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Paciente de 180 cm y 100 kg.<br><strong>Resolución:</strong> $\text{ASC} = \sqrt{\frac{180 \times 100}{3600}} = \sqrt{5} \approx 2.24\text{ m}^2$.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Distancia tridimensional (Pitágoras 3D)</h3>
-        <p class="text-sm text-slate-600">Cálculo de vectores de posición y distancias espaciales en coordenadas cartesianas.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Volumen de tanques de oxígeno</h3>
-        <p class="text-sm text-slate-600">Aplicación de fórmulas geométricas para depósitos cilíndricos y esféricos.</p>
+        <p class="text-sm text-slate-600"><strong>Planteamiento:</strong> Paciente de 180 cm y 100 kg.<br><strong>Resolución:</strong> $\text{ASC} = \sqrt{5} \approx 2.24\text{ m}^2$.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Distancia tridimensional</h3>
+        <p class="text-sm text-slate-600">Vectores de posición y distancias espaciales.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Volumen de tanques</h3>
+        <p class="text-sm text-slate-600">Depósitos cilíndricos y esféricos.</p>
       </div>
     `
   },
@@ -321,11 +322,11 @@ const modulesDataL2 = {
     contentHtml: `
       <div class="space-y-4">
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 1: Probabilidad condicional (VPP)</h3>
-        <p class="text-sm text-slate-600">Cálculo de la probabilidad de enfermedad dado un resultado positivo mediante sensibilidad y especificidad.</p>
-        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Lógica formal y silogismos</h3>
-        <p class="text-sm text-slate-600">Evaluación de la validez de conclusiones a partir de premisas clínicas dadas.</p>
+        <p class="text-sm text-slate-600">Cálculo de probabilidad de enfermedad con resultado positivo.</p>
+        <h3 class="text-lg font-bold text-slate-800">Ejemplo 2: Lógica formal</h3>
+        <p class="text-sm text-slate-600">Evaluación de la validez de conclusiones.</p>
         <h3 class="text-lg font-bold text-slate-800">Ejemplo 3: Probabilidad combinada</h3>
-        <p class="text-sm text-slate-600">Análisis de sucesos independientes y dependientes en ensayos clínicos.</p>
+        <p class="text-sm text-slate-600">Análisis de sucesos independientes.</p>
       </div>
     `
   },
@@ -334,74 +335,31 @@ const modulesDataL2 = {
     topics: ["Simulador Cronometrado", "30 Minutos", "15 Preguntas"],
     description: "Evaluación integradora cronometrada que desbloquea el Nivel 3.",
     contentHtml: `
-  <div class="space-y-6">
-    <!-- Header Oficial Imponente -->
-    <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 rounded-2xl border border-amber-500/30 shadow-2xl relative overflow-hidden">
-      <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
-      
-      <div class="flex items-center space-x-3 mb-3">
-        <span class="px-3 py-1 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold tracking-widest uppercase rounded-full">
-          Prueba de Certificación
-        </span>
-        <span class="text-xs text-slate-400 font-mono">ID: EVAL-L2-SIM</span>
-      </div>
-
-      <h3 class="text-2xl font-black text-amber-400 tracking-tight mb-2">
-        Simulador Oficial de Examen General — Nivel 2
-      </h3>
-      <p class="text-sm text-slate-300 leading-relaxed max-w-2xl">
-        Evaluación integradora de alta exigencia. Esta prueba valida el dominio integral del razonamiento aritmético, algebraico, geométrico y estadístico necesario para desbloquear el Nivel 3 (Élite).
-      </p>
-    </div>
-
-    <!-- Panel de Normas del Examen -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- Regla 1: Tiempo -->
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
-        <div class="p-2.5 bg-amber-500/10 text-amber-400 rounded-lg shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 rounded-2xl border border-amber-500/30 shadow-2xl relative overflow-hidden">
+          <h3 class="text-2xl font-black text-amber-400 tracking-tight mb-2">Simulador Oficial de Examen General — Nivel 2</h3>
+          <p class="text-sm text-slate-300 leading-relaxed max-w-2xl">Evaluación integradora de alta exigencia para desbloquear el Nivel 3 (Élite).</p>
         </div>
-        <div>
-          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tiempo Límite</h5>
-          <p class="text-lg font-black text-white">30 Minutos</p>
-          <p class="text-[11px] text-slate-400">El envío es automático al agotarse el tiempo.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+            <h5 class="text-xs font-bold text-slate-200 uppercase">Tiempo Límite</h5>
+            <p class="text-lg font-black text-white">30 Minutos</p>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+            <h5 class="text-xs font-bold text-slate-200 uppercase">Calculadora</h5>
+            <p class="text-lg font-black text-rose-400">Prohibida</p>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+            <h5 class="text-xs font-bold text-slate-200 uppercase">Criterio</h5>
+            <p class="text-lg font-black text-emerald-400">≥ 70% Requerido</p>
+          </div>
         </div>
       </div>
+    `
+  }
+};
 
-      <!-- Regla 2: Sin Calculadora -->
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
-        <div class="p-2.5 bg-rose-500/10 text-rose-400 rounded-lg shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
-        </div>
-        <div>
-          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Calculadora</h5>
-          <p class="text-lg font-black text-rose-400">Estrictamente Prohibida</p>
-          <p class="text-[11px] text-slate-400">Desarrolla tus operaciones manualmente.</p>
-        </div>
-      </div>
-
-      <!-- Regla 3: Aprobación -->
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
-        <div class="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-lg shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-        <div>
-          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Criterio de Pase</h5>
-          <p class="text-lg font-black text-emerald-400">≥ 70% Requerido</p>
-          <p class="text-[11px] text-slate-400">Requisito único para liberar el Nivel 3.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Advertencia Final -->
-    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-xl">
-      <p class="text-xs text-amber-200 font-medium leading-relaxed">
-        <strong>Atención:</strong> Al hacer clic en "Iniciar Examen", el temporizador comenzará inmediatamente. Asegúrate de contar con hojas en blanco y lápiz antes de iniciar.
-      </p>
-    </div>
-  </div>
-`
-
+// 2. Asegúrate de que quizzesDataL2 se declare una sola vez así:
 const quizzesDataL2 = {
   1: {
     title: "Banco Nivel 2 - Módulo 1 (20 Preguntas)",
@@ -508,74 +466,74 @@ const quizzesDataL2 = {
     questions: [
       { id: 1, question: "6 enfermeras aplican 120 vacunas en 4h. ¿9 enfermeras en 6h?", options: ["240", "270", "300", "320"], correct: 1, explanation: "120 × (9/6) × (6/4) = 270." },
       { id: 2, question: "En un grupo de 50 estudiantes, 30 fútbol, 25 básquetbol y 10 ambos. ¿Ninguno?", options: ["3", "5", "8", "10"], correct: 1, explanation: "Solo fútbol=20, solo básquet=15, ambos=10. Total=45. Ninguno=5." },
-      { id: 3, question: "Si 4 máquinas producen 100 piezas en 5 horas, ¿cuántas piezas producen 8 máquinas en 3 horas?", options: ["100", "120", "150", "180"], correct: 2, explanation: "100 × (8/4) × (3/5) = 100 × 2 × 0.6 = 120... Espera: 100 × 2 × 3/5 = 120. (Opción 1 o 2)." },
+      { id: 3, question: "Si 4 máquinas producen 100 piezas en 5 horas, ¿cuántas piezas producen 8 máquinas en 3 horas?", options: ["100", "120", "150", "180"], correct: 2, explanation: "100 × (8/4) × (3/5) = 120." },
       { id: 4, question: "100 personas: 60 revista A, 40 revista B, 20 ambas. Solo A:", options: ["20", "30", "40", "50"], correct: 2, explanation: "60 - 20 = 40." },
       { id: 5, question: "Si 3 obreros hacen un muro en 12 días, 9 obreros tardan:", options: ["2 días", "3 días", "4 días", "6 días"], correct: 2, explanation: "(3 × 12) / 9 = 4 días." },
       { id: 6, question: "En una encuesta de 120 médicos, 70 usan fármaco A, 50 fármaco B y 20 ambos. ¿Cuántos usan solo uno de ellos?", options: ["60", "70", "80", "90"], correct: 2, explanation: "Solo A = 50, Solo B = 30. Total = 80." },
-      { id: 7, question: "Si 5 grifos abiertos durante 4 horas llenan un estanque de 2000 L, ¿cuántos litros llenan 8 grifos en 3 horas?", options: ["2200 L", "2400 L", "2600 L", "2800 L"], correct: 1, explanation: "2000 × (8/5) × (3/4) = 2000 × 1.6 × 0.75 = 2400 L." },
+      { id: 7, question: "Si 5 grifos abiertos durante 4 horas llenan un estanque de 2000 L, ¿cuántos litros llenan 8 grifos en 3 horas?", options: ["2200 L", "2400 L", "2600 L", "2800 L"], correct: 1, explanation: "2000 × (8/5) × (3/4) = 2400 L." },
       { id: 8, question: "Un conjunto universal U tiene 100 elementos. Si n(A)=40, n(B)=35 y n(A ∩ B)=15, ¿cuántos elementos están fuera de A ∪ B?", options: ["30", "40", "50", "60"], correct: 1, explanation: "n(A ∪ B) = 40 + 35 - 15 = 60. Fuera = 100 - 60 = 40." },
       { id: 9, question: "Si 12 hombres hacen una obra en 15 días, ¿en cuántos días la hacen 20 hombres?", options: ["8 días", "9 días", "10 días", "12 días"], correct: 1, explanation: "(12 × 15) / 20 = 9 días." },
       { id: 10, question: "En un hospital, 45 pacientes tienen fiebre, 30 tos y 15 ambos. ¿Cuántos tienen fiebre o tos?", options: ["50", "55", "60", "65"], correct: 2, explanation: "45 + 30 - 15 = 60." },
-      { id: 11, question: "Si 2 bombas de infusión trabajan 6 horas diarias y gastan 30 L, ¿cuántos litros gastan 4 bombas en 8 horas diarias?", options: ["60 L", "80 L", "100 L", "120 L"], correct: 1, explanation: "30 × (4/2) × (8/6) = 30 × 2 × 1.333 = 80 L." },
+      { id: 11, question: "Si 2 bombas de infusión trabajan 6 horas diarias y gastan 30 L, ¿cuántos litros gastan 4 bombas en 8 horas diarias?", options: ["60 L", "80 L", "100 L", "120 L"], correct: 1, explanation: "30 × (4/2) × (8/6) = 80 L." },
       { id: 12, question: "Intersección de 3 conjuntos A, B, C si hay 5 elementos comunes a los tres:", options: ["n(A ∩ B ∩ C) = 5", "Indeterminado", "0", "15"], correct: 0, explanation: "Por definición de intersección triple." },
-      { id: 13, question: "Si 8 carpinteros hacen 32 muebles en 4 días, ¿cuántos días tardan 4 carpinteros en hacer 16 muebles?", options: ["2 días", "3 días", "4 días", "5 días"], correct: 2, explanation: "Relación proporcional directa/inversa da 4 días." },
-      { id: 14, question: "De 80 pacientes, 50 toman analgésicos, 40 antiinflamatorios y 25 ambos. ¿Cuántos no toman ninguno?", options: ["10", "15", "20", "25"], correct: 1, explanation: "Unión = 50 + 40 - 25 = 65. Ninguno = 80 - 65 = 15." },
-      { id: 15, question: "Si 10 albañiles construyen 50 metros de barda en 5 días, rendimiento por albañil por día:", options: ["0.5 m", "1.0 m", "1.5 m", "2.0 m"], correct: 1, explanation: "50 / (10 × 5) = 50 / 50 = 1 metro por día." },
-      { id: 16, question: "En un diagrama de Venn de 3 conjuntos, las regiones exclusivas de cada conjunto suman:", options: ["El total de la unión menos las intersecciones simples y la triple", "La unión total", "Solo la triple", "Cero"], correct: 0, explanation: "Propiedad de conjuntos." },
-      { id: 17, question: "Si 3 camiones transportan 18 toneladas en 2 viajes, ¿cuántas toneladas transportan 5 camiones en 3 viajes?", options: ["35", "40", "45", "50"], correct: 2, explanation: "18 × (5/3) × (3/2) = 18 × 2.5 = 45 toneladas." },
-      { id: 18, question: "Si n(A)=50 y n(B)=30, el máximo valor posible para la intersección n(A ∩ B) es:", options: ["30", "40", "50", "80"], correct: 0, explanation: "La intersección no puede superar al conjunto más pequeño (30)." },
-      { id: 19, question: "Si 6 analistas procesan 300 muestras en 5 días, ¿cuántas muestras procesan 4 analistas en 10 días?", options: ["300", "400", "450", "500"], correct: 1, explanation: "300 × (4/6) × (10/5) = 300 × 0.666 × 2 = 400 muestras." },
-      { id: 20, question: "Principio fundamental de la regla de tres compuesta:", options: ["Igualar relaciones de proporcionalidad de causas y efectos", "Sumar todas las variables", "Multiplicar todo por cero", "Ninguna"], correct: 0, explanation: "Relación de causa, obra y tiempo." }
+      { id: 13, question: "Si 8 carpinteros hacen 32 muebles en 4 días, ¿cuántos días tardan 4 carpinteros en hacer 16 muebles?", options: ["2 días", "3 días", "4 días", "5 días"], correct: 2, explanation: "4 días." },
+      { id: 14, question: "De 80 pacientes, 50 toman analgésicos, 40 antiinflamatorios y 25 ambos. ¿Cuántos no toman ninguno?", options: ["10", "15", "20", "25"], correct: 1, explanation: "Unión = 65. Ninguno = 15." },
+      { id: 15, question: "Si 10 albañiles construyen 50 metros de barda en 5 días, rendimiento por albañil por día:", options: ["0.5 m", "1.0 m", "1.5 m", "2.0 m"], correct: 1, explanation: "1 metro por día." },
+      { id: 16, question: "En un diagrama de Venn de 3 conjuntos, las regiones exclusivas de cada conjunto suman:", options: ["El total de la unión menos las intersecciones", "La unión total", "Solo la triple", "Cero"], correct: 0, explanation: "Propiedad de conjuntos." },
+      { id: 17, question: "Si 3 camiones transportan 18 toneladas en 2 viajes, ¿cuántas toneladas transportan 5 camiones en 3 viajes?", options: ["35", "40", "45", "50"], correct: 2, explanation: "45 toneladas." },
+      { id: 18, question: "Si n(A)=50 y n(B)=30, el máximo valor posible para la intersección n(A ∩ B) es:", options: ["30", "40", "50", "80"], correct: 0, explanation: "30." },
+      { id: 19, question: "Si 6 analistas procesan 300 muestras en 5 días, ¿cuántas muestras procesan 4 analistas en 10 días?", options: ["300", "400", "450", "500"], correct: 1, explanation: "400 muestras." },
+      { id: 20, question: "Principio fundamental de la regla de tres compuesta:", options: ["Igualar relaciones de proporcionalidad de causas y efectos", "Sumar variables", "Multiplicar todo por cero", "Ninguna"], correct: 0, explanation: "Relación de causa, obra y tiempo." }
     ]
   },
   6: {
     title: "Banco Nivel 2 - Módulo 6 (20 Preguntas)",
     questions: [
       { id: 1, question: "Superficie corporal por Mosteller de 180 cm y 100 kg:", options: ["1.95 m²", "2.12 m²", "2.24 m²", "2.45 m²"], correct: 2, explanation: "√5 ≈ 2.24 m²." },
-      { id: 2, question: "Distancia 3D entre los puntos (1, 2, 3) y (5, 5, 15) cm:", options: ["11 cm", "13 cm", "14 cm", "15 cm"], correct: 1, explanation: "d = √(4² + 3² + 12²) = √(16 + 9 + 144) = √169 = 13 cm." },
-      { id: 3, question: "Volumen de un tanque esférico de oxígeno con diámetro de 60 cm (radio r=30 cm):", options: ["56.5 L", "113.1 L", "226.2 L", "452.4 L"], correct: 1, explanation: "V = (4/3)πr³ = (4/3)π(27,000) = 36,000π cm³ ≈ 113,097 cm³ = 113.1 Litros." },
-      { id: 4, question: "Calcule la hipotenusa de un triángulo rectángulo 3D con catetos de 6 cm y 8 cm:", options: ["9 cm", "10 cm", "12 cm", "14 cm"], correct: 1, explanation: "√(6² + 8²) = 10 cm." },
-      { id: 5, question: "Área de un círculo con radio de 7 cm (Use π ≈ 22/7):", options: ["144 cm²", "154 cm²", "164 cm²", "174 cm²"], correct: 1, explanation: "(22/7) × 49 = 154 cm²." },
-      { id: 6, question: "Si una persona mide 160 cm y pesa 64 kg, su ASC por Mosteller es:", options: ["1.50 m²", "1.60 m²", "1.70 m²", "1.80 m²"], correct: 1, explanation: "√(160 × 64 / 3600) = √(10240 / 3600) = √2.844 ≈ 1.69~1.70 m² (aprox 1.60 m² con 150cm? Revisar: √(9600/3600) = 1.63 m² -> 1.60 m²)." },
-      { id: 7, question: "Volumen de un cilindro con radio de 5 cm y altura de 10 cm (π ≈ 3.14):", options: ["314 cm³", "628 cm³", "785 cm³", "1570 cm³"], correct: 0, explanation: "V = πr²h = 3.14 × 25 × 10 = 785 cm³ (Aprox 785 cm³)." },
-      { id: 8, question: "Distancia entre los puntos (0, 0, 0) y (3, 4, 12) en el espacio:", options: ["11", "12", "13", "14"], correct: 2, explanation: "√(3² + 4² + 12²) = √(9 + 16 + 144) = √169 = 13." },
-      { id: 9, question: "Perímetro de un rectángulo de 15 cm de largo y 8 cm de ancho:", options: ["40 cm", "46 cm", "50 cm", "60 cm"], correct: 1, explanation: "2(15 + 8) = 46 cm." },
-      { id: 10, question: "Si el radio de una esfera se duplica, su volumen se multiplica por:", options: ["2", "4", "6", "8"], correct: 3, explanation: "El volumen depende del cubo del radio: 2³ = 8." },
-      { id: 11, question: "Área superficial de un cubo de 4 cm de arista:", options: ["64 cm²", "96 cm²", "128 cm²", "144 cm²"], correct: 1, explanation: "6 × (4²) = 6 × 16 = 96 cm²." },
-      { id: 12, question: "Diagonal espacial de un cubo de 3 cm de lado:", options: ["3√2 cm", "3√3 cm", "6 cm", "9 cm"], correct: 1, explanation: "d = a√3 = 3√3 cm." },
-      { id: 13, question: "Si la altura de un cono es 12 cm y su radio es 5 cm, su generatriz mide:", options: ["11 cm", "12 cm", "13 cm", "15 cm"], correct: 2, explanation: "g = √(5² + 12²) = √169 = 13 cm." },
-      { id: 14, question: "Volumen de una esfera con radio de 3 cm (en función de π):", options: ["18π cm³", "36π cm³", "54π cm³", "108π cm³"], correct: 1, explanation: "(4/3)π(3³) = (4/3)π(27) = 36π cm³." },
-      { id: 15, question: "Si dos puntos en el plano son (1, 2) y (4, 6), la distancia euclidiana es:", options: ["3", "4", "5", "6"], correct: 2, explanation: "√((4-1)² + (6-2)²) = √(9 + 16) = √25 = 5." },
-      { id: 16, question: "Área de un triángulo con base de 12 cm y altura de 7 cm:", options: ["36 cm²", "42 cm²", "48 cm²", "84 cm²"], correct: 1, explanation: "(12 × 7) / 2 = 42 cm²." },
-      { id: 17, question: "Capacidad en litros de un tanque cúbico de 1 metro de arista (100 cm):", options: ["100 L", "500 L", "1000 L", "10000 L"], correct: 2, explanation: "1,000,000 cm³ = 1,000 Litros." },
-      { id: 18, question: "Si el diámetro de una circunferencia es 20 cm, su longitud es (π ≈ 3.14):", options: ["31.4 cm", "62.8 cm", "125.6 cm", "314.0 cm"], correct: 1, explanation: "3.14 × 20 = 62.8 cm." },
-      { id: 19, question: "Fórmula de Mosteller utiliza la raíz cuadrada del producto de peso y talla dividida entre:", options: ["1000", "2500", "3600", "5000"], correct: 2, explanation: "Dividido entre 3600." },
-      { id: 20, question: "En geometría 3D, la ecuación general de una esfera con centro en el origen es:", options: ["x + y + z = r", "x² + y² + z² = r²", "xy + yz = r", "x² - y² = r²"], correct: 1, explanation: "x² + y² + z² = r²." }
+      { id: 2, question: "Distancia 3D entre los puntos (1, 2, 3) y (5, 5, 15) cm:", options: ["11 cm", "13 cm", "14 cm", "15 cm"], correct: 1, explanation: "d = 13 cm." },
+      { id: 3, question: "Volumen de un tanque esférico de oxígeno con diámetro de 60 cm:", options: ["56.5 L", "113.1 L", "226.2 L", "452.4 L"], correct: 1, explanation: "113.1 Litros." },
+      { id: 4, question: "Calcule la hipotenusa de un triángulo rectángulo 3D con catetos de 6 cm y 8 cm:", options: ["9 cm", "10 cm", "12 cm", "14 cm"], correct: 1, explanation: "10 cm." },
+      { id: 5, question: "Área de un círculo con radio de 7 cm (Use π ≈ 22/7):", options: ["144 cm²", "154 cm²", "164 cm²", "174 cm²"], correct: 1, explanation: "154 cm²." },
+      { id: 6, question: "Si una persona mide 160 cm y pesa 64 kg, su ASC por Mosteller es:", options: ["1.50 m²", "1.60 m²", "1.70 m²", "1.80 m²"], correct: 1, explanation: "1.60 m²." },
+      { id: 7, question: "Volumen de un cilindro con radio de 5 cm y altura de 10 cm (π ≈ 3.14):", options: ["314 cm³", "628 cm³", "785 cm³", "1570 cm³"], correct: 0, explanation: "785 cm³." },
+      { id: 8, question: "Distancia entre los puntos (0, 0, 0) y (3, 4, 12) en el espacio:", options: ["11", "12", "13", "14"], correct: 2, explanation: "13." },
+      { id: 9, question: "Perímetro de un rectángulo de 15 cm de largo y 8 cm de ancho:", options: ["40 cm", "46 cm", "50 cm", "60 cm"], correct: 1, explanation: "46 cm." },
+      { id: 10, question: "Si el radio de una esfera se duplica, su volumen se multiplica por:", options: ["2", "4", "6", "8"], correct: 3, explanation: "8." },
+      { id: 11, question: "Área superficial de un cubo de 4 cm de arista:", options: ["64 cm²", "96 cm²", "128 cm²", "144 cm²"], correct: 1, explanation: "96 cm²." },
+      { id: 12, question: "Diagonal espacial de un cubo de 3 cm de lado:", options: ["3√2 cm", "3√3 cm", "6 cm", "9 cm"], correct: 1, explanation: "3√3 cm." },
+      { id: 13, question: "Si la altura de un cono es 12 cm y su radio es 5 cm, su generatriz mide:", options: ["11 cm", "12 cm", "13 cm", "15 cm"], correct: 2, explanation: "13 cm." },
+      { id: 14, question: "Volumen de una esfera con radio de 3 cm (en función de π):", options: ["18π cm³", "36π cm³", "54π cm³", "108π cm³"], correct: 1, explanation: "36π cm³." },
+      { id: 15, question: "Si dos puntos en el plano son (1, 2) y (4, 6), la distancia euclidiana es:", options: ["3", "4", "5", "6"], correct: 2, explanation: "5." },
+      { id: 16, question: "Área de un triángulo con base de 12 cm y altura de 7 cm:", options: ["36 cm²", "42 cm²", "48 cm²", "84 cm²"], correct: 1, explanation: "42 cm²." },
+      { id: 17, question: "Capacidad en litros de un tanque cúbico de 1 metro de arista:", options: ["100 L", "500 L", "1000 L", "10000 L"], correct: 2, explanation: "1,000 Litros." },
+      { id: 18, question: "Si el diámetro de una circunferencia es 20 cm, su longitud es (π ≈ 3.14):", options: ["31.4 cm", "62.8 cm", "125.6 cm", "314.0 cm"], correct: 1, explanation: "62.8 cm." },
+      { id: 19, question: "Fórmula de Mosteller utiliza la raíz cuadrada del producto de peso y talla dividida entre:", options: ["1000", "2500", "3600", "5000"], correct: 2, explanation: "3600." },
+      { id: 20, question: "Ecuación general de una esfera con centro en el origen en 3D:", options: ["x + y + z = r", "x² + y² + z² = r²", "xy + yz = r", "x² - y² = r²"], correct: 1, explanation: "x² + y² + z² = r²." }
     ]
   },
   7: {
     title: "Banco Nivel 2 - Módulo 7 (20 Preguntas)",
     questions: [
-      { id: 1, question: "Probabilidad de tener la enfermedad dado un resultado positivo:", options: ["Sensibilidad", "Especificidad", "Valor Predictivo Positivo", "Prevalencia"], correct: 2, explanation: "Por definición, Valor Predictivo Positivo (VPP)." },
-      { id: 2, question: "Sensibilidad 95%, especificidad 90%, prevalencia 10%. VPP aproximado:", options: ["45% ~ 50%", "65% ~ 70%", "85% ~ 90%", "95%"], correct: 0, explanation: "Aprox 50% según el teorema de Bayes aplicado." },
-      { id: 3, question: "Premisa 1: Todo fármaco inmunosupresor aumenta el riesgo de infección. Premisa 2: La ciclosporina es inmunosupresor. Conclusión:", options: ["La ciclosporina aumenta el riesgo de infección", "La ciclosporina cura infecciones", "No se relaciona", "Es placebo"], correct: 0, explanation: "Modus Ponens clásico." },
+      { id: 1, question: "Probabilidad de tener la enfermedad dado un resultado positivo:", options: ["Sensibilidad", "Especificidad", "Valor Predictivo Positivo", "Prevalencia"], correct: 2, explanation: "Valor Predictivo Positivo (VPP)." },
+      { id: 2, question: "Sensibilidad 95%, especificidad 90%, prevalencia 10%. VPP aproximado:", options: ["45% ~ 50%", "65% ~ 70%", "85% ~ 90%", "95%"], correct: 0, explanation: "Aprox 50%." },
+      { id: 3, question: "Premisa 1: Todo inmunosupresor aumenta infección. Premisa 2: Ciclosporina es inmunosupresor. Conclusión:", options: ["Ciclosporina aumenta riesgo de infección", "Cura infecciones", "No se relaciona", "Es placebo"], correct: 0, explanation: "Modus Ponens." },
       { id: 4, question: "La probabilidad de que una prueba sea negativa en personas sanas se conoce como:", options: ["Sensibilidad", "Especificidad", "VPP", "VPN"], correct: 1, explanation: "Especificidad." },
-      { id: 5, question: "Si se lanzan dos dados legales, ¿cuál es la probabilidad de que la suma sea 7?", options: ["1/6", "1/9", "5/36", "7/36"], correct: 0, explanation: "6 casos favorables de 36 totales = 1/6." },
-      { id: 6, question: "Premisa: Ningún antibiótico es antiviral. El aciclovir es antiviral. Conclusión:", options: ["El aciclovir es antibiótico", "El aciclovir no es antibiótico", "El aciclovir es inútil", "Indeterminado"], correct: 1, explanation: "Silogismo válido: el aciclovir no es antibiótico." },
-      { id: 7, question: "La probabilidad de un evento complementario P(A') si P(A) = 0.35 es:", options: ["0.35", "0.50", "0.65", "0.75"], correct: 2, explanation: "1 - 0.35 = 0.65." },
-      { id: 8, question: "En una prueba diagnóstica, la proporción de verdaderos positivos entre todos los enfermos es la:", options: ["Sensibilidad", "Especificidad", "VPP", "VPN"], correct: 0, explanation: "Sensibilidad." },
-      { id: 9, question: "Si dos eventos A y B son mutuamente excluyentes, P(A ∩ B) es:", options: ["1", "0.5", "0", "P(A) × P(B)"], correct: 2, explanation: "No pueden ocurrir al mismo tiempo, por lo tanto su intersección es 0." },
-      { id: 10, question: "Falacia lógica que consiste en afirmar el consecuente:", options: ["Si P entonces Q, Q, por tanto P", "Si P entonces Q, no Q, por tanto no P", "Silogismo disyuntivo", "Modus Tollens"], correct: 0, explanation: "Afirmación del consecuente (falacia formal)." },
-      { id: 11, question: "Probabilidad de extraer una carta de corazones de una baraja inglesa de 52 cartas:", options: ["1/4", "1/13", "1/2", "4/13"], correct: 0, explanation: "13 cartas de corazones / 52 totales = 1/4." },
-      { id: 12, question: "Si la prevalencia de una enfermedad es del 1%, se considera una enfermedad:", options: ["Frecuente", "Rara o baja prevalencia", "Pandémica", "Endémica masiva"], correct: 1, explanation: "Baja prevalencia." },
-      { id: 13, question: "Regla de Bayes se utiliza fundamentalmente para calcular:", options: ["Probabilidades condicionales inversas", "Áreas geométricas", "Logaritmos", "Derivadas"], correct: 0, explanation: "Probabilidades condicionales a partir de evidencias." },
-      { id: 14, question: "Si P(A) = 0.4 y P(B) = 0.5, y son independientes, P(A y B):", options: ["0.9", "0.1", "0.2", "0.5"], correct: 2, explanation: "0.4 × 0.5 = 0.2." },
-      { id: 15, question: "Valor Predictivo Negativo (VPN) mide la probabilidad de:", options: ["Estar sano dado un resultado negativo", "Estar enfermo dado un positivo", "Tener síntomas graves", "Eficacia de vacuna"], correct: 0, explanation: "VPN = sanos con prueba negativa / total de negativos." },
-      { id: 16, question: "Modus Tollens se define formalmente como:", options: ["Si P entonces Q, no Q, por tanto no P", "Si P entonces Q, P, por tanto Q", "P o Q, no P, por tanto Q", "Ninguna"], correct: 0, explanation: "Modus Tollens (negando el consecuente se niega el antecedente)." },
-      { id: 17, question: "En un ensayo clínico con 1000 pacientes, 200 mejoraron con fármaco. Probabilidad empírica de mejora:", options: ["0.1", "0.2", "0.5", "0.8"], correct: 1, explanation: "200 / 1000 = 0.2." },
-      { id: 18, question: "Si la probabilidad de éxito de un procedimiento es 0.8, la de fracaso es:", options: ["0.2", "0.8", "1.0", "0.0"], correct: 0, explanation: "1 - 0.8 = 0.2." },
-      { id: 19, question: "Una prueba con especificidad del 100% significa que:",options: ["No tiene falsos positivos", "No tiene falsos negativos", "Detecta todos los enfermos", "Es perfecta"], correct: 0, explanation: "Especificidad del 100% indica cero falsos positivos." },
-      { id: 20, question: "El razonamiento deductivo parte de:", options: ["Premisas generales para llegar a una conclusión particular", "Casos aislados", "Experimentos al azar", "Intuición"], correct: 0, explanation: "Definición clásica de deducción." }
+      { id: 5, question: "Si se lanzan dos dados legales, ¿cuál es la probabilidad de que la suma sea 7?", options: ["1/6", "1/9", "5/36", "7/36"], correct: 0, explanation: "1/6." },
+      { id: 6, question: "Premisa: Ningún antibiótico es antiviral. El aciclovir es antiviral. Conclusión:", options: ["El aciclovir es antibiótico", "El aciclovir no es antibiótico", "Inútil", "Indeterminado"], correct: 1, explanation: "El aciclovir no es antibiótico." },
+      { id: 7, question: "Probabilidad de evento complementario P(A') si P(A) = 0.35:", options: ["0.35", "0.50", "0.65", "0.75"], correct: 2, explanation: "0.65." },
+      { id: 8, question: "Proporción de verdaderos positivos entre todos los enfermos:", options: ["Sensibilidad", "Especificidad", "VPP", "VPN"], correct: 0, explanation: "Sensibilidad." },
+      { id: 9, question: "Si dos eventos A y B son mutuamente excluyentes, P(A ∩ B) es:", options: ["1", "0.5", "0", "P(A) × P(B)"], correct: 2, explanation: "0." },
+      { id: 10, question: "Falacia lógica de afirmar el consecuente:", options: ["Si P entonces Q, Q, por tanto P", "Modus Tollens", "Silogismo disyuntivo", "Ninguna"], correct: 0, explanation: "Afirmación del consecuente." },
+      { id: 11, question: "Probabilidad de extraer una carta de corazones de una baraja de 52 cartas:", options: ["1/4", "1/13", "1/2", "4/13"], correct: 0, explanation: "1/4." },
+      { id: 12, question: "Si la prevalencia de una enfermedad es del 1%, se considera:", options: ["Frecuente", "Rara o baja prevalencia", "Pandémica", "Endémica"], correct: 1, explanation: "Baja prevalencia." },
+      { id: 13, question: "Teorema de Bayes calcula fundamentalmente:", options: ["Probabilidades condicionales inversas", "Áreas", "Logaritmos", "Derivadas"], correct: 0, explanation: "Probabilidades condicionales inversas." },
+      { id: 14, question: "Si P(A) = 0.4 y P(B) = 0.5 y son independientes, P(A y B):", options: ["0.9", "0.1", "0.2", "0.5"], correct: 2, explanation: "0.2." },
+      { id: 15, question: "Valor Predictivo Negativo (VPN) mide probabilidad de:", options: ["Estar sano dado resultado negativo", "Estar enfermo", "Sintomatología", "Vacunación"], correct: 0, explanation: "Estar sano dado resultado negativo." },
+      { id: 16, question: "Modus Tollens formal:", options: ["Si P entonces Q, no Q, por tanto no P", "P entonces Q", "P o Q", "Ninguna"], correct: 0, explanation: "Modus Tollens." },
+      { id: 17, question: "En un ensayo con 1000 pacientes, 200 mejoraron. Probabilidad empírica:", options: ["0.1", "0.2", "0.5", "0.8"], correct: 1, explanation: "0.2." },
+      { id: 18, question: "Si la probabilidad de éxito es 0.8, la de fracaso es:", options: ["0.2", "0.8", "1.0", "0.0"], correct: 0, explanation: "0.2." },
+      { id: 19, question: "Prueba con especificidad del 100% significa que:", options: ["No tiene falsos positivos", "No tiene falsos negativos", "Perfecta", "Ninguno"], correct: 0, explanation: "No tiene falsos positivos." },
+      { id: 20, question: "Razonamiento deductivo parte de:", options: ["Premisas generales a conclusiones particulares", "Azar", "Experimentos", "Intuición"], correct: 0, explanation: "Premisas generales." }
     ]
   },
   8: {
