@@ -333,9 +333,74 @@ const modulesDataL2 = {
     id: 8, title: "Módulo 8 (Nivel 2): Simulador Oficial de Examen General", colorClass: "bg-indigo-900", badgeClass: "bg-indigo-950 text-indigo-200 border-indigo-800",
     topics: ["Simulador Cronometrado", "30 Minutos", "15 Preguntas"],
     description: "Evaluación integradora cronometrada que desbloquea el Nivel 3.",
-    contentHtml: `<div class="space-y-6"><div class="bg-indigo-950 text-white p-6 rounded-xl border border-indigo-800 space-y-4 shadow-md"><h4 class="font-bold text-lg text-amber-400">Simulador Oficial de Examen General</h4><p class="text-xs text-indigo-200">Prueba clave para comprobar tu preparación y desbloquear el Nivel 3.</p></div></div>`
-  }
-};
+    contentHtml: `
+  <div class="space-y-6">
+    <!-- Header Oficial Imponente -->
+    <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 rounded-2xl border border-amber-500/30 shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+      
+      <div class="flex items-center space-x-3 mb-3">
+        <span class="px-3 py-1 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold tracking-widest uppercase rounded-full">
+          Prueba de Certificación
+        </span>
+        <span class="text-xs text-slate-400 font-mono">ID: EVAL-L2-SIM</span>
+      </div>
+
+      <h3 class="text-2xl font-black text-amber-400 tracking-tight mb-2">
+        Simulador Oficial de Examen General — Nivel 2
+      </h3>
+      <p class="text-sm text-slate-300 leading-relaxed max-w-2xl">
+        Evaluación integradora de alta exigencia. Esta prueba valida el dominio integral del razonamiento aritmético, algebraico, geométrico y estadístico necesario para desbloquear el Nivel 3 (Élite).
+      </p>
+    </div>
+
+    <!-- Panel de Normas del Examen -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Regla 1: Tiempo -->
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
+        <div class="p-2.5 bg-amber-500/10 text-amber-400 rounded-lg shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tiempo Límite</h5>
+          <p class="text-lg font-black text-white">30 Minutos</p>
+          <p class="text-[11px] text-slate-400">El envío es automático al agotarse el tiempo.</p>
+        </div>
+      </div>
+
+      <!-- Regla 2: Sin Calculadora -->
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
+        <div class="p-2.5 bg-rose-500/10 text-rose-400 rounded-lg shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+        </div>
+        <div>
+          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Calculadora</h5>
+          <p class="text-lg font-black text-rose-400">Estrictamente Prohibida</p>
+          <p class="text-[11px] text-slate-400">Desarrolla tus operaciones manualmente.</p>
+        </div>
+      </div>
+
+      <!-- Regla 3: Aprobación -->
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-start space-x-3">
+        <div class="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-lg shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+          <h5 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Criterio de Pase</h5>
+          <p class="text-lg font-black text-emerald-400">≥ 70% Requerido</p>
+          <p class="text-[11px] text-slate-400">Requisito único para liberar el Nivel 3.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advertencia Final -->
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-xl">
+      <p class="text-xs text-amber-200 font-medium leading-relaxed">
+        <strong>Atención:</strong> Al hacer clic en "Iniciar Examen", el temporizador comenzará inmediatamente. Asegúrate de contar con hojas en blanco y lápiz antes de iniciar.
+      </p>
+    </div>
+  </div>
+`
 
 const quizzesDataL2 = {
   1: {
