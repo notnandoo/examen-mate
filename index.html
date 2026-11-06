@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plataforma de Preparación - Examen de Matemática</title>
+  <title>Plataforma de Preparación - Examen Específico USAC</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,14 +18,15 @@
   </svg>
   <div>
     <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider block">Tiempo Restante</span>
-    <span id="quizTimerDisplay" class="text-xl font-mono font-black text-amber-400">30:00</span>
+    <span id="quizTimerDisplay" class="text-xl font-mono font-black text-amber-400">60:00</span>
   </div>
 </div>
+
   <!-- HEADER -->
-  <header class="bg-slate-900 text-white shadow-md">
+  <header class="bg-slate-900 text-white shadow-md transition-colors duration-300" id="main-header">
     <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div>
-        <h1 class="text-xl font-bold tracking-tight">Preparación Examen de Matemática</h1>
+        <h1 class="text-xl font-bold tracking-tight">Preparación Examen Específico USAC</h1>
         <p id="header-subtitle" class="text-xs text-slate-400">Nivel 1: Fundamentos y Operaciones Esenciales</p>
       </div>
       <div class="flex items-center gap-4">
@@ -44,11 +45,11 @@
       </div>
       <!-- SELECTORES DE NIVEL CON MODO DIOS -->
       <div class="p-2 flex items-center gap-2">
-        <span class="text-xs text-slate-400 font-medium">Nivel:</span>
+        <span class="text-xs text-slate-400 font-medium">Modo:</span>
         <div class="bg-slate-900 p-1 rounded-lg border border-slate-800 flex gap-1">
           <button onclick="handleLevel1Click()" id="btn-lvl-1" class="px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all">Nivel 1</button>
           <button onclick="handleLevel2Click()" id="btn-lvl-2" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all">Nivel 2 🔒</button>
-          <button onclick="handleLevel3Click()" id="btn-lvl-3" class="px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all">Nivel 3 🔒</button>
+          <button onclick="handleLevel3Click()" id="btn-lvl-3" class="px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all">Simulador de Examen ⏱️</button>
         </div>
       </div>
     </div>
@@ -64,7 +65,7 @@
           <h2 id="dashboard-title" class="text-2xl font-bold text-slate-900">Temario Oficial - Nivel 1</h2>
           <p id="dashboard-subtitle" class="text-sm text-slate-600">Completa cada módulo, estudia su teoría y aprueba con al menos 70 puntos para desbloquear el siguiente.</p>
         </div>
-        <div class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-xs text-amber-900 font-medium flex items-center gap-2">
+        <div id="dashboard-banner-box" class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-xs text-amber-900 font-medium flex items-center gap-2">
           <span>💡</span> <span id="level-banner-text">Construye bases sólidas resolviendo los ejercicios paso a paso.</span>
         </div>
       </div>
@@ -92,7 +93,7 @@
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-5 rounded-xl shadow-sm border border-slate-200 gap-4">
         <div>
           <h2 id="quiz-runner-title" class="text-xl font-bold text-slate-900">Evaluación del Módulo</h2>
-          <p class="text-xs text-slate-500">Responde las preguntas. Mínimo para aprobar: 70%</p>
+          <p id="quiz-runner-sub" class="text-xs text-slate-500">Responde las preguntas. Mínimo para aprobar: 70%</p>
         </div>
         <button onclick="exitQuizRunner()" class="text-sm font-semibold text-slate-600 hover:text-slate-900 px-4 py-2 border border-slate-300 rounded-lg">← Salir</button>
       </div>
@@ -123,12 +124,12 @@
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
         <div>
           <h2 class="text-2xl font-bold text-slate-900">Banco de Exámenes y Resoluciones Paso a Paso</h2>
-          <p class="text-sm text-slate-600">Las resoluciones detalladas se habilitan automáticamente al aprobar cada módulo con al menos 70%.</p>
+          <p class="text-sm text-slate-600">Las resoluciones detalladas se habilitan automáticamente al aprobar con la nota mínima requerida.</p>
         </div>
         <div class="flex gap-2 flex-wrap">
           <button onclick="renderQuizzesHub(1)" id="btn-bank-l1" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-slate-950">Nivel 1</button>
           <button onclick="renderQuizzesHub(2)" id="btn-bank-l2" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700">Nivel 2</button>
-          <button onclick="renderQuizzesHub(3)" id="btn-bank-l3" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700">Nivel 3 (Élite)</button>
+          <button onclick="renderQuizzesHub(3)" id="btn-bank-l3" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700">Simulador de Examen</button>
         </div>
       </div>
       <div id="quizzes-list-container" class="space-y-6"></div>
@@ -144,7 +145,7 @@
       </div>
       <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         <table class="w-full text-left border-collapse">
-          <thead><tr class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase bg-slate-50"><th class="py-3 px-6">Módulo</th><th class="py-3 px-6">Evaluación</th><th class="py-3 px-6">Calificación</th><th class="py-3 px-6">Estado</th><th class="py-3 px-6 text-right">Acción</th></tr></thead>
+          <thead><tr class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase bg-slate-50"><th class="py-3 px-6">Módulo / Examen</th><th class="py-3 px-6">Evaluación</th><th class="py-3 px-6">Calificación</th><th class="py-3 px-6">Estado</th><th class="py-3 px-6 text-right">Acción</th></tr></thead>
           <tbody id="grades-table-body" class="divide-y divide-slate-100 text-sm text-slate-700"></tbody>
         </table>
       </div>
@@ -153,7 +154,7 @@
   </main>
 
   <footer class="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs">
-    <p>Plataforma de Preparación de Matemática</p>
+    <p>Plataforma de Preparación Examen Específico USAC</p>
   </footer>
 
   <!-- IMPORTAR EL ARCHIVO DE DATOS EXTERNO -->
@@ -175,7 +176,7 @@
     const ExamTimer = {
       intervalId: null,
       
-      start(durationMinutes = 30) {
+      start(durationMinutes = 60) {
         if (this.intervalId) clearInterval(this.intervalId);
         
         let secondsLeft = durationMinutes * 60;
@@ -197,7 +198,7 @@
           
           if (secondsLeft <= 0) {
             this.stop();
-            alert("¡El tiempo límite de 30 minutos ha finalizado!");
+            alert("¡El tiempo límite de 60 minutos ha finalizado!");
             if (typeof submitQuizRunner === 'function') {
               submitQuizRunner();
             }
@@ -243,14 +244,8 @@
     }
 
     function handleLevel3Click() {
-      l3Clicks++; clearTimeout(timer3);
-      timer3 = setTimeout(() => { l3Clicks = 0; }, 2000);
-      if (l3Clicks >= 11) {
-        l3Clicks = 0;
-        userProgressL3 = {1:{passed:true, score:100}, 2:{passed:true, score:100}, 3:{passed:true, score:100}, 4:{passed:true, score:100}, 5:{passed:true, score:100}};
-        localStorage.setItem('math_prep_progress_l3', JSON.stringify(userProgressL3));
-        switchLevel(3); alert("🔓 [Modo Dios] ¡Nivel 3 completado!");
-      } else { switchLevel(3); }
+      // Simulador de Examen libre y desbloqueado independientemente
+      switchLevel(3);
     }
 
     let userProgressL1 = JSON.parse(localStorage.getItem('math_prep_progress_l1')) || {};
@@ -280,13 +275,14 @@
       const btn3 = document.getElementById('btn-lvl-3');
       if (isLevel1Completed()) { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all"; btn2.innerText = "Nivel 2"; }
       else { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all"; btn2.innerText = "Nivel 2 🔒"; }
-      if (isLevel2Completed()) { btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all"; btn3.innerText = "Nivel 3 (Élite)"; }
-      else { btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all"; btn3.innerText = "Nivel 3 🔒"; }
+      
+      // Simulador de Examen siempre disponible
+      btn3.className = currentLevel === 3 ? "px-3 py-1 text-xs font-bold rounded-md bg-emerald-600 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
+      btn3.innerText = "Simulador de Examen ⏱️";
     }
 
     function switchLevel(level) {
       if (level === 2 && !isLevel1Completed()) { alert("🔒 El Nivel 2 está bloqueado. Completa el Nivel 1."); return; }
-      if (level === 3 && !isLevel2Completed()) { alert("🔒 El Nivel 3 está bloqueado. Completa el Nivel 2."); return; }
 
       currentLevel = level;
       const btn1 = document.getElementById('btn-lvl-1');
@@ -297,29 +293,45 @@
       const dashTitle = document.getElementById('dashboard-title');
       const dashSub = document.getElementById('dashboard-subtitle');
       const bannerText = document.getElementById('level-banner-text');
+      const bannerBox = document.getElementById('dashboard-banner-box');
 
-      btn1.className = level === 1 ? "px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
-      btn2.className = level === 2 ? "px-3 py-1 text-xs font-bold rounded-md bg-indigo-600 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
-      btn3.className = level === 3 ? "px-3 py-1 text-xs font-bold rounded-md bg-emerald-700 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
-
+      // Colores dinámicos según selección
       if (level === 1) {
+        btn1.className = "px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all";
+        btn2.className = isLevel1Completed() ? "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all";
+        btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
+        
         headerSub.innerText = "Nivel 1: Fundamentos y Operaciones Esenciales";
         headerLabel.innerText = "Progreso Nivel 1";
+        headerLabel.className = "text-xs text-amber-400 font-semibold block";
         dashTitle.innerText = "Temario Oficial - Nivel 1";
         dashSub.innerText = "Completa cada módulo, estudia su teoría y aprueba con al menos 70 puntos.";
         bannerText.innerText = "Construye bases sólidas resolviendo los ejercicios paso a paso.";
+        bannerBox.className = "bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-xs text-amber-900 font-medium flex items-center gap-2";
       } else if (level === 2) {
-        headerSub.innerText = "Nivel 2: Razonamiento Avanzado";
+        btn1.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
+        btn2.className = "px-3 py-1 text-xs font-bold rounded-md bg-indigo-600 text-white transition-all";
+        btn3.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
+
+        headerSub.innerText = "Nivel 2: Razonamiento Avanzado y Simuladores";
         headerLabel.innerText = "Progreso Nivel 2";
+        headerLabel.className = "text-xs text-indigo-400 font-semibold block";
         dashTitle.innerText = "Temario Avanzado - Nivel 2";
-        dashSub.innerText = "Problemas complejos de razonamiento y simulador de examen general (Módulo 8).";
+        dashSub.innerText = "Problemas complejos de razonamiento, ecuaciones y análisis cuantitativo.";
         bannerText.innerText = "Entrenamiento intensivo y simulacro cronometrado de 30 minutos.";
+        bannerBox.className = "bg-indigo-50 border border-indigo-200 px-4 py-2 rounded-xl text-xs text-indigo-900 font-medium flex items-center gap-2";
       } else {
-        headerSub.innerText = "Nivel 3: Profundización de Élite";
-        headerLabel.innerText = "Progreso Nivel 3";
-        dashTitle.innerText = "Seminario de Élite - Nivel 3";
-        dashSub.innerText = "Módulos culminantes de profundización analítica y casos complejos.";
-        bannerText.innerText = "Nivel máximo de perfeccionamiento conceptual.";
+        btn1.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
+        btn2.className = isLevel1Completed() ? "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all";
+        btn3.className = "px-3 py-1 text-xs font-bold rounded-md bg-emerald-600 text-white transition-all";
+
+        headerSub.innerText = "Simulador de Examen Contrarreloj (60 Minutos)";
+        headerLabel.innerText = "Simulador de Examen";
+        headerLabel.className = "text-xs text-emerald-400 font-semibold block";
+        dashTitle.innerText = "Simulador de Examen (20 Preguntas Aleatorias)";
+        dashSub.innerText = "Prueba de 60 minutos con 20 preguntas seleccionadas al azar de un amplio banco de reactivos. Se requieren al menos 11 aciertos para aprobar.";
+        bannerText.innerText = "Condiciones reales de examen: 60 minutos, 20 preguntas en rotación continua.";
+        bannerBox.className = "bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-xl text-xs text-emerald-900 font-medium flex items-center gap-2";
       }
 
       switchTab('dashboard');
@@ -328,6 +340,7 @@
     }
 
     function isModuleUnlocked(id) {
+      if (currentLevel === 3) return true; // El simulador de examen siempre está libre
       if (id === 1 || id === "1") return true;
       const prevId = parseInt(id) - 1;
       const progress = getActiveProgress();
@@ -351,26 +364,32 @@
       document.getElementById('view-quiz-results').classList.add('hidden');
       document.getElementById('view-quizzes').classList.add('hidden');
       document.getElementById('view-grades').classList.add('hidden');
-      ExamTimer.stop(); // Detiene y oculta el cronómetro al cambiar de vista
+      ExamTimer.stop();
     }
 
     function switchTab(tab) {
       hideAllRooms();
-      document.getElementById('tab-dashboard').className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
-      document.getElementById('tab-quizzes').className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
-      document.getElementById('tab-grades').className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
+      const tabDashboard = document.getElementById('tab-dashboard');
+      const tabQuizzes = document.getElementById('tab-quizzes');
+      const tabGrades = document.getElementById('tab-grades');
+      
+      const activeBorderColor = currentLevel === 1 ? 'border-amber-500' : (currentLevel === 2 ? 'border-indigo-500' : 'border-emerald-500');
+
+      tabDashboard.className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
+      tabQuizzes.className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
+      tabGrades.className = "py-3 px-2 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap";
 
       if (tab === 'dashboard') {
         document.getElementById('view-dashboard').classList.remove('hidden');
-        document.getElementById('tab-dashboard').className = "py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors whitespace-nowrap";
+        tabDashboard.className = `py-3 px-2 border-b-2 ${activeBorderColor} font-medium text-sm text-white transition-colors whitespace-nowrap`;
         renderDashboard();
       } else if (tab === 'quizzes') {
         document.getElementById('view-quizzes').classList.remove('hidden');
-        document.getElementById('tab-quizzes').className = "py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors whitespace-nowrap";
+        tabQuizzes.className = `py-3 px-2 border-b-2 ${activeBorderColor} font-medium text-sm text-white transition-colors whitespace-nowrap`;
         renderQuizzesHub(currentLevel);
       } else if (tab === 'grades') {
         document.getElementById('view-grades').classList.remove('hidden');
-        document.getElementById('tab-grades').className = "py-3 px-2 border-b-2 border-amber-500 font-medium text-sm text-white transition-colors whitespace-nowrap";
+        tabGrades.className = `py-3 px-2 border-b-2 ${activeBorderColor} font-medium text-sm text-white transition-colors whitespace-nowrap`;
         renderGradesView();
       }
     }
@@ -384,11 +403,11 @@
       for (let id in modules) {
         const mod = modules[id];
         const unlocked = isModuleUnlocked(id);
-        const prog = progress[id] || { passed: false, score: null };
+        const prog = progress[id] || { passed: false, score: null, correctCount: null };
         
         let statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 border">Pendiente</span>`;
-        if (prog.passed) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border">Aprobado (${prog.score}%)</span>`;
-        else if (prog.score !== null) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-100 text-rose-800 border">No Aprobado (${prog.score}%)</span>`;
+        if (prog.passed) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border">Aprobado (${prog.correctCount !== undefined ? prog.correctCount + '/20' : prog.score + '%'})</span>`;
+        else if (prog.score !== null) statusBadge = `<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-100 text-rose-800 border">No Aprobado (${prog.correctCount !== undefined ? prog.correctCount + '/20' : prog.score + '%'})</span>`;
 
         const card = document.createElement('div');
         if (!unlocked) {
@@ -413,7 +432,7 @@
               </div>
               <p class="text-sm text-slate-600">${mod.description}</p>
             </div>
-            <div class="p-6 pt-0"><button onclick="openLesson(${id})" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition-colors">${prog.passed ? 'Repasar Módulo' : 'Entrar al Módulo'}</button></div>
+            <div class="p-6 pt-0"><button onclick="openLesson(${id})" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition-colors">${currentLevel === 3 ? 'Iniciar Simulador de 60 Minutos' : (prog.passed ? 'Repasar Módulo' : 'Entrar al Módulo')}</button></div>
           `;
         }
         grid.appendChild(card);
@@ -425,6 +444,12 @@
       currentModuleId = id;
       const modules = getActiveModules();
       const mod = modules[id];
+      
+      if (currentLevel === 3) {
+        startQuizRunner(id);
+        return;
+      }
+
       hideAllRooms();
       document.getElementById('view-lesson').classList.remove('hidden');
       document.getElementById('lesson-title').innerText = mod.title;
@@ -433,35 +458,40 @@
       document.getElementById('lesson-content').innerHTML = mod.contentHtml;
 
       const actionContainer = document.getElementById('lesson-action-container');
-      if (currentLevel === 3) {
-        actionContainer.innerHTML = `<p class="text-sm text-slate-500 italic">Módulo de estudio y profundización de élite (sin examen evaluativo).</p>`;
-      } else {
-        actionContainer.innerHTML = `<p class="text-sm text-slate-500">Nota mínima: 70%</p><button onclick="startQuizRunner(${id})" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm">Entrar al Examen →</button>`;
-      }
+      actionContainer.innerHTML = `<p class="text-sm text-slate-500">Nota mínima: 70%</p><button onclick="startQuizRunner(${id})" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-sm">Entrar al Examen →</button>`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function startQuizRunner(modId) {
       if (!isModuleUnlocked(modId)) { alert("Módulo bloqueado."); return; }
-      if (currentLevel === 3) { alert("El Nivel 3 no cuenta con exámenes evaluativos."); return; }
       activeQuizId = modId;
       const quizzes = getActiveQuizzes();
       const quiz = quizzes[modId];
       if (!quiz.questions || quiz.questions.length === 0) { alert("Próximamente disponible."); return; }
 
-      // Disparador automático del temporizador si es el Módulo 8 (Simulador Oficial)
-      if (currentLevel === 2 && modId == 8) {
+      const runnerSub = document.getElementById('quiz-runner-sub');
+
+      // Manejo de temporizadores y selección aleatoria de preguntas
+      if (currentLevel === 3) {
+        // Simulador de Examen: Selecciona 20 preguntas aleatorias de la rotación del banco
+        let shuffled = [...quiz.questions].sort(() => 0.5 - Math.random());
+        currentQuizQuestionsSubset = shuffled.slice(0, 20);
+        runnerSub.innerText = "20 preguntas de opción múltiple aleatorias. Mínimo para aprobar: 11 aciertos (60 minutos).";
+        ExamTimer.start(60);
+      } else if (currentLevel === 2 && modId == 8) {
         currentQuizQuestionsSubset = [...quiz.questions];
+        runnerSub.innerText = "Responde las preguntas. Mínimo para aprobar: 70% (30 minutos)";
         ExamTimer.start(30);
       } else {
         ExamTimer.stop();
+        runnerSub.innerText = "Responde las preguntas. Mínimo para aprobar: 70%";
         let shuffled = [...quiz.questions].sort(() => 0.5 - Math.random());
         currentQuizQuestionsSubset = shuffled.slice(0, 10);
       }
 
       hideAllRooms();
       document.getElementById('view-quiz-runner').classList.remove('hidden');
-      document.getElementById('quiz-runner-title').innerText = quiz.title;
+      document.getElementById('quiz-runner-title').innerText = currentLevel === 3 ? "Simulador Oficial de Examen USAC" : quiz.title;
       const body = document.getElementById('quiz-runner-body');
       body.innerHTML = '';
 
@@ -487,7 +517,9 @@
 
     function exitQuizRunner() {
       ExamTimer.stop();
-      if (currentModuleId) openLesson(currentModuleId); else switchTab('dashboard');
+      if (currentLevel === 3) { switchTab('dashboard'); }
+      else if (currentModuleId) openLesson(currentModuleId); 
+      else switchTab('dashboard');
     }
 
     function retryActiveQuiz() {
@@ -504,11 +536,14 @@
       });
       if (!allAnswered && !confirm("Hay preguntas sin responder. ¿Deseas enviar el examen de todos modos?")) return;
 
-      const score = Math.round((correctCount / currentQuizQuestionsSubset.length) * 100);
-      const passed = score >= 70;
+      const totalQuestions = currentQuizQuestionsSubset.length;
+      const score = Math.round((correctCount / totalQuestions) * 100);
+      
+      // En Simulador de Examen (Nivel 3), requiere al menos 11 aciertos de 20 preguntas
+      const passed = currentLevel === 3 ? (correctCount >= 11) : (score >= 70);
 
       const progress = getActiveProgress();
-      progress[activeQuizId] = { passed: passed, score: score };
+      progress[activeQuizId] = { passed: passed, score: score, correctCount: correctCount, totalQuestions: totalQuestions };
       
       if (currentLevel === 1) {
         userProgressL1 = progress;
@@ -516,6 +551,9 @@
       } else if (currentLevel === 2) {
         userProgressL2 = progress;
         localStorage.setItem('math_prep_progress_l2', JSON.stringify(progress));
+      } else if (currentLevel === 3) {
+        userProgressL3 = progress;
+        localStorage.setItem('math_prep_progress_l3', JSON.stringify(progress));
       }
 
       updateGeneralProgress();
@@ -528,12 +566,16 @@
 
       if (passed) {
         badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800";
-        badge.innerText = "EXAMEN APROBADO";
-        subtitle.innerText = `¡Excelente trabajo! Obtuviste ${score}%. Ya puedes consultar el banco y sus resoluciones paso a paso.`;
+        badge.innerText = "¡EXAMEN SIMULADOR APROBADO!";
+        subtitle.innerText = currentLevel === 3 
+          ? `¡Excelente trabajo! Respondiste correctamente ${correctCount} de 20 preguntas (${score}%). Haz alcanzado el mínimo de 11 aciertos requeridos.`
+          : `¡Excelente trabajo! Obtuviste ${score}%. Ya puedes consultar el banco y sus resoluciones paso a paso.`;
       } else {
         badge.className = "px-3 py-1 text-xs font-bold rounded-full bg-rose-100 text-rose-800";
         badge.innerText = "NO APROBADO";
-        subtitle.innerText = `Obtuviste ${score}%. Necesitas al menos 70% para aprobar y desbloquear las resoluciones.`;
+        subtitle.innerText = currentLevel === 3 
+          ? `Obtuviste ${correctCount} de 20 preguntas correctas (${score}%). Necesitas al menos 11 respuestas correctas para aprobar.`
+          : `Obtuviste ${score}%. Necesitas al menos 70% para aprobar.`;
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -548,15 +590,14 @@
 
       btnL1.className = targetLevel === 1 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-slate-950" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
       btnL2.className = targetLevel === 2 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
-      btnL3.className = targetLevel === 3 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-700 text-white" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
+      btnL3.className = targetLevel === 3 ? "px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 text-white" : "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700";
 
       const quizzes = targetLevel === 1 ? quizzesDataL1 : (targetLevel === 2 ? quizzesDataL2 : quizzesDataL3);
       const progress = targetLevel === 1 ? userProgressL1 : (targetLevel === 2 ? userProgressL2 : userProgressL3);
 
       for (let id in quizzes) {
         const quiz = quizzes[id];
-        if (targetLevel === 3 && (!quiz.questions || quiz.questions.length === 0)) continue;
-        const prog = progress[id] || { passed: false, score: null };
+        const prog = progress[id] || { passed: false, score: null, correctCount: null };
         const isPassed = prog.passed;
         const hasQuestions = quiz.questions && quiz.questions.length > 0;
 
@@ -570,7 +611,7 @@
 
             questionsReviewHtml += `
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                <p class="font-bold text-slate-900 text-xs">Problema ${idx + 1}: ${q.question}</p>
+                <p class="font-bold text-slate-900 text-xs">Reactivo ${idx + 1}: ${q.question}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optionsHtml}</div>
                 <div class="text-xs p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900">
                   <strong>Resolución Paso a Paso:</strong> ${q.explanation}
@@ -582,8 +623,8 @@
           questionsReviewHtml = `
             <div class="p-6 rounded-xl border border-amber-200 bg-amber-50 text-center space-y-2">
               <span class="text-2xl">🔒</span>
-              <h4 class="font-bold text-amber-900 text-sm">Banco y Resoluciones Bloqueadas</h4>
-              <p class="text-xs text-amber-800">Aprueba la evaluación de este módulo con al menos 70% para desbloquear las preguntas y sus resoluciones.</p>
+              <h4 class="font-bold text-amber-900 text-sm">Banco de Preguntas y Resoluciones Bloqueadas</h4>
+              <p class="text-xs text-amber-800">${targetLevel === 3 ? 'Aprueba el Simulador de Examen con al menos 11 aciertos de 20 para desbloquear el banco completo y sus resoluciones.' : 'Aprueba la evaluación con al menos 70% para desbloquear las resoluciones.'}</p>
             </div>
           `;
         }
@@ -593,11 +634,11 @@
         card.innerHTML = `
           <div class="flex justify-between items-start gap-2 border-b border-slate-100 pb-3">
             <div>
-              <span class="text-xs font-bold text-indigo-600 uppercase">Módulo ${id}</span>
+              <span class="text-xs font-bold text-emerald-600 uppercase">${targetLevel === 3 ? 'Simulador de Examen' : 'Evaluación Módulo ' + id}</span>
               <h3 class="font-bold text-slate-900 text-lg">${quiz.title}</h3>
             </div>
             <span class="px-3 py-1 text-xs font-semibold rounded-full ${prog.passed ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}">
-              ${prog.score !== null ? `Nota: ${prog.score}%` : 'Pendiente'}
+              ${prog.score !== null ? (prog.correctCount !== undefined ? `Aciertos: ${prog.correctCount}/20 (${prog.score}%)` : `Nota: ${prog.score}%`) : 'Pendiente'}
             </span>
           </div>
           <div class="space-y-3 max-h-96 overflow-y-auto pr-2">${questionsReviewHtml}</div>
@@ -620,7 +661,7 @@
         const unlocked = isModuleUnlocked(id);
         if (unlocked) unlockedCount++;
 
-        const prog = progress[id] || { passed: false, score: null };
+        const prog = progress[id] || { passed: false, score: null, correctCount: null };
         if (prog.score !== null) { totalScore += prog.score; evaluatedCount++; if (prog.passed) passedCount++; }
 
         let statusText = `<span class="px-2 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-500">Pendiente</span>`;
@@ -631,12 +672,12 @@
         const tr = document.createElement('tr');
         tr.className = "hover:bg-slate-50";
         tr.innerHTML = `
-          <td class="py-3 px-6 font-medium text-slate-900">Módulo ${id}</td>
+          <td class="py-3 px-6 font-medium text-slate-900">${currentLevel === 3 ? 'Simulador de Examen' : 'Módulo ' + id}</td>
           <td class="py-3 px-6 text-slate-600">${quiz ? quiz.title : 'Estudio'}</td>
-          <td class="py-3 px-6 font-bold ${prog.score >= 70 ? 'text-emerald-600' : 'text-slate-400'}">${prog.score !== null ? prog.score + '%' : '---'}</td>
+          <td class="py-3 px-6 font-bold ${prog.score >= (currentLevel === 3 ? 55 : 70) ? 'text-emerald-600' : 'text-slate-400'}">${prog.score !== null ? (prog.correctCount !== undefined ? `${prog.correctCount}/20 (${prog.score}%)` : prog.score + '%') : '---'}</td>
           <td class="py-3 px-6">${statusText}</td>
           <td class="py-3 px-6 text-right">
-            <button onclick="startQuizRunner(${id})" ${!unlocked || currentLevel === 3 || !quiz || !quiz.questions.length ? 'disabled' : ''} class="text-xs font-semibold text-blue-600 hover:text-blue-800 ${!unlocked || currentLevel === 3 || !quiz || !quiz.questions.length ? 'opacity-40 cursor-not-allowed' : ''}">Evaluar</button>
+            <button onclick="startQuizRunner(${id})" ${!unlocked || !quiz || !quiz.questions.length ? 'disabled' : ''} class="text-xs font-semibold text-blue-600 hover:text-blue-800 ${!unlocked || !quiz || !quiz.questions.length ? 'opacity-40 cursor-not-allowed' : ''}">Evaluar</button>
           </td>
         `;
         tbody.appendChild(tr);
