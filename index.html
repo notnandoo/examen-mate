@@ -29,10 +29,6 @@
         <p id="header-subtitle" class="text-xs text-slate-400">Nivel 1: Fundamentos y Operaciones Esenciales</p>
       </div>
       <div class="flex items-center gap-4">
-        <div id="exam-timer-box" class="hidden bg-rose-950 border border-rose-700 px-4 py-2 rounded-lg text-center animate-pulse">
-          <span class="text-xs text-rose-300 font-semibold block">Tiempo Restante</span>
-          <span id="exam-timer-display" class="text-lg font-mono font-bold text-white">30:00</span>
-        </div>
         <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg text-right">
           <span id="header-progress-label" class="text-xs text-amber-400 font-semibold block">Progreso Nivel 1</span>
           <span id="general-progress-pct" class="text-lg font-bold">0% Completado</span>
@@ -169,11 +165,58 @@
     let activeQuizId = null;
     let currentQuizQuestionsSubset = [];
     let currentModuleId = null;
-    let examTimerInterval = null;
-    let secondsRemaining = 1800;
 
     let l1Clicks = 0, l2Clicks = 0, l3Clicks = 0;
     let timer1 = null, timer2 = null, timer3 = null;
+
+    // ==========================================
+    // TEMPORIZADOR AISLADO Y BLINDADO (ExamTimer)
+    // ==========================================
+    const ExamTimer = {
+      intervalId: null,
+      
+      start(durationMinutes = 30) {
+        if (this.intervalId) clearInterval(this.intervalId);
+        
+        let secondsLeft = durationMinutes * 60;
+        const banner = document.getElementById('quizTimerBanner');
+        const display = document.getElementById('quizTimerDisplay');
+        
+        if (!banner || !display) {
+          console.warn("Elementos del temporizador no encontrados en el DOM.");
+          return;
+        }
+        
+        banner.classList.remove('hidden');
+        
+        this.intervalId = setInterval(() => {
+          const mins = Math.floor(secondsLeft / 60);
+          const secs = secondsLeft % 60;
+          
+          display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+          
+          if (secondsLeft <= 0) {
+            this.stop();
+            alert("¡El tiempo límite de 30 minutos ha finalizado!");
+            if (typeof submitQuizRunner === 'function') {
+              submitQuizRunner();
+            }
+            return;
+          }
+          
+          secondsLeft--;
+        }, 1000);
+      },
+      
+      stop() {
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        }
+        const banner = document.getElementById('quizTimerBanner');
+        if (banner) banner.classList.add('hidden');
+      }
+    };
 
     function handleLevel1Click() {
       l1Clicks++; clearTimeout(timer1);
@@ -308,8 +351,7 @@
       document.getElementById('view-quiz-results').classList.add('hidden');
       document.getElementById('view-quizzes').classList.add('hidden');
       document.getElementById('view-grades').classList.add('hidden');
-      document.getElementById('exam-timer-box').classList.add('hidden');
-      clearInterval(examTimerInterval);
+      ExamTimer.stop(); // Detiene y oculta el cronómetro al cambiar de vista
     }
 
     function switchTab(tab) {
@@ -406,13 +448,13 @@
       const quizzes = getActiveQuizzes();
       const quiz = quizzes[modId];
       if (!quiz.questions || quiz.questions.length === 0) { alert("Próximamente disponible."); return; }
-if (modId === 8) {
-  startExamTimer(30); // Arranca los 30 minutos exclusivos del Simulador Élite
-}
+
+      // Disparador automático del temporizador si es el Módulo 8 (Simulador Oficial)
       if (currentLevel === 2 && modId == 8) {
         currentQuizQuestionsSubset = [...quiz.questions];
-        startExamTimer(1800);
+        ExamTimer.start(30);
       } else {
+        ExamTimer.stop();
         let shuffled = [...quiz.questions].sort(() => 0.5 - Math.random());
         currentQuizQuestionsSubset = shuffled.slice(0, 10);
       }
@@ -443,56 +485,8 @@ if (modId === 8) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-  examTimerInterval = null;
-
-function startExamTimer(durationMinutes = 30) {
-  // Limpiar cualquier intervalo previo por seguridad
-  if (examTimerInterval) {
-    clearInterval(examTimerInterval);
-  }
-
-  let timerSeconds = durationMinutes * 60;
-  
-  const timerBanner = document.getElementById('quizTimerBanner');
-  const timerDisplay = document.getElementById('quizTimerDisplay');
-
-  if (!timerBanner || !timerDisplay) {
-    console.error("Error crítico: No se encontró 'quizTimerBanner' o 'quizTimerDisplay' en el HTML.");
-    return;
-  }
-
-  // Mostrar el banner flotante quitando la clase hidden
-  timerBanner.classList.remove('hidden');
-
-  examTimerInterval = setInterval(() => {
-    const minutes = Math.floor(timerSeconds / 60);
-    const seconds = timerSeconds % 60;
-
-    // Formatear a MM:SS
-    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    timerDisplay.textContent = formattedTime;
-    
-    // Imprimir en consola para verificar que el ciclo se ejecuta
-    console.log("Cronómetro activo - Tiempo restante:", formattedTime);
-
-    if (timerSeconds <= 0) {
-      clearInterval(examTimerInterval);
-      timerBanner.classList.add('hidden');
-      alert("¡El tiempo límite de 30 minutos ha finalizado!");
-      if (typeof submitQuizRunner === 'function') {
-        submitQuizRunner();
-      }
-      return;
-    }
-
-    timerSeconds--;
-  }, 1000);
-}
-
-
     function exitQuizRunner() {
-      clearInterval(examTimerInterval);
-      document.getElementById('exam-timer-box').classList.add('hidden');
+      ExamTimer.stop();
       if (currentModuleId) openLesson(currentModuleId); else switchTab('dashboard');
     }
 
@@ -501,16 +495,15 @@ function startExamTimer(durationMinutes = 30) {
     }
 
     function submitQuizRunner() {
-      clearInterval(examTimerInterval);
-      document.getElementById('exam-timer-box').classList.add('hidden');
+      ExamTimer.stop();
       let correctCount = 0, allAnswered = true;
       currentQuizQuestionsSubset.forEach((q) => {
         const selected = document.querySelector(`input[name="runner_q_${q.id}"]:checked`);
         if (!selected) { allAnswered = false; return; }
         if (parseInt(selected.value) === q.correct) correctCount++;
       });
-      if (!allAnswered && secondsRemaining > 0 && !confirm("Hay preguntas sin responder. ¿Deseas enviar el examen de todos modos?")) return;
-stopExamTimer();
+      if (!allAnswered && !confirm("Hay preguntas sin responder. ¿Deseas enviar el examen de todos modos?")) return;
+
       const score = Math.round((correctCount / currentQuizQuestionsSubset.length) * 100);
       const passed = score >= 70;
 
