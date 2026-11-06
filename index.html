@@ -244,7 +244,6 @@
     }
 
     function handleLevel3Click() {
-      // Simulador de Examen libre y desbloqueado independientemente
       switchLevel(3);
     }
 
@@ -276,7 +275,6 @@
       if (isLevel1Completed()) { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all"; btn2.innerText = "Nivel 2"; }
       else { btn2.className = "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all"; btn2.innerText = "Nivel 2 🔒"; }
       
-      // Simulador de Examen siempre disponible
       btn3.className = currentLevel === 3 ? "px-3 py-1 text-xs font-bold rounded-md bg-emerald-600 text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all";
       btn3.innerText = "Simulador de Examen ⏱️";
     }
@@ -295,7 +293,6 @@
       const bannerText = document.getElementById('level-banner-text');
       const bannerBox = document.getElementById('dashboard-banner-box');
 
-      // Colores dinámicos según selección
       if (level === 1) {
         btn1.className = "px-3 py-1 text-xs font-bold rounded-md bg-amber-500 text-slate-950 transition-all";
         btn2.className = isLevel1Completed() ? "px-3 py-1 text-xs font-bold rounded-md text-slate-300 hover:text-white transition-all" : "px-3 py-1 text-xs font-bold rounded-md text-slate-500 cursor-not-allowed transition-all";
@@ -340,7 +337,7 @@
     }
 
     function isModuleUnlocked(id) {
-      if (currentLevel === 3) return true; // El simulador de examen siempre está libre
+      if (currentLevel === 3) return true;
       if (id === 1 || id === "1") return true;
       const prevId = parseInt(id) - 1;
       const progress = getActiveProgress();
@@ -471,9 +468,7 @@
 
       const runnerSub = document.getElementById('quiz-runner-sub');
 
-      // Manejo de temporizadores y selección aleatoria de preguntas
       if (currentLevel === 3) {
-        // Simulador de Examen: Selecciona 20 preguntas aleatorias de la rotación del banco
         let shuffled = [...quiz.questions].sort(() => 0.5 - Math.random());
         currentQuizQuestionsSubset = shuffled.slice(0, 20);
         runnerSub.innerText = "20 preguntas de opción múltiple aleatorias. Mínimo para aprobar: 11 aciertos (60 minutos).";
@@ -538,8 +533,6 @@
 
       const totalQuestions = currentQuizQuestionsSubset.length;
       const score = Math.round((correctCount / totalQuestions) * 100);
-      
-      // En Simulador de Examen (Nivel 3), requiere al menos 11 aciertos de 20 preguntas
       const passed = currentLevel === 3 ? (correctCount >= 11) : (score >= 70);
 
       const progress = getActiveProgress();
