@@ -443,77 +443,52 @@ if (modId === 8) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function startExamTimer(seconds) {
-      secondsRemaining = seconds;
-      const timerBox = document.getElementById('exam-timer-box');
-      const timerDisplay = document.getElementById('exam-timer-display');
-      timerBox.classList.remove('hidden');
-      clearInterval(examTimerInterval);
-      examTimerInterval = setInterval(() => {
-        secondsRemaining--;
-        let mins = Math.floor(secondsRemaining / 60);
-        let secs = secondsRemaining % 60;
-        timerDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        if (secondsRemaining <= 0) {
-          clearInterval(examTimerInterval);
-          alert("⏱️ ¡Tiempo finalizado!");
-          submitQuizRunner();
-        }
-      }, 1000);
-    }
-    examTimerInterval = null;
+  let examTimerInterval = null;
 
 function startExamTimer(durationMinutes = 30) {
-  let timerSeconds = durationMinutes * 60;
-  
-  // Buscar los elementos por sus IDs exactos
-  const timerBanner = document.getElementById('quizTimerBanner') || document.getElementById('exam-timer-box');
-  const timerDisplay = document.getElementById('quizTimerDisplay');
-
-  if (timerBanner) timerBanner.classList.remove('hidden');
-
-  // Limpiar cualquier temporizador previo activo
-  if (typeof examTimerInterval !== 'undefined' && examTimerInterval) {
+  // Limpiar cualquier intervalo previo por seguridad
+  if (examTimerInterval) {
     clearInterval(examTimerInterval);
   }
 
-  // Iniciar el intervalo de descuento por segundo
+  let timerSeconds = durationMinutes * 60;
+  
+  const timerBanner = document.getElementById('quizTimerBanner');
+  const timerDisplay = document.getElementById('quizTimerDisplay');
+
+  if (!timerBanner || !timerDisplay) {
+    console.error("Error crítico: No se encontró 'quizTimerBanner' o 'quizTimerDisplay' en el HTML.");
+    return;
+  }
+
+  // Mostrar el banner flotante quitando la clase hidden
+  timerBanner.classList.remove('hidden');
+
   examTimerInterval = setInterval(() => {
     const minutes = Math.floor(timerSeconds / 60);
     const seconds = timerSeconds % 60;
 
-    // Formatear texto MM:SS
+    // Formatear a MM:SS
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    timerDisplay.textContent = formattedTime;
     
-    if (timerDisplay) {
-      timerDisplay.textContent = formattedTime;
-    }
+    // Imprimir en consola para verificar que el ciclo se ejecuta
+    console.log("Cronómetro activo - Tiempo restante:", formattedTime);
 
-    // Alerta visual de color rojo cuando falten menos de 5 minutos
-    if (timerSeconds <= 300 && timerBanner) {
-      timerBanner.classList.add('border-rose-500');
-    }
-
-    // Descontar 1 segundo
-    timerSeconds--;
-
-    // Al llegar a cero, detener el reloj y enviar la prueba
-    if (timerSeconds < 0) {
+    if (timerSeconds <= 0) {
       clearInterval(examTimerInterval);
-      if (timerBanner) timerBanner.classList.add('hidden');
-      alert("¡El tiempo límite de 30 minutos ha finalizado! Evaluando examen...");
+      timerBanner.classList.add('hidden');
+      alert("¡El tiempo límite de 30 minutos ha finalizado!");
       if (typeof submitQuizRunner === 'function') {
         submitQuizRunner();
       }
+      return;
     }
+
+    timerSeconds--;
   }, 1000);
 }
 
-function stopExamTimer() {
-  clearInterval(examTimerInterval);
-  const timerBanner = document.getElementById('quizTimerBanner');
-  if (timerBanner) timerBanner.classList.add('hidden');
-}
 
     function exitQuizRunner() {
       clearInterval(examTimerInterval);
