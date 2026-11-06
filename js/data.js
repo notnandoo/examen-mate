@@ -3728,7 +3728,292 @@ const quizzesDataL3 = {
     ],
     "correct": 1,
     "explanation": "Es una progresión aritmética con una diferencia constante de +4. El siguiente término es 24 + 4 = 28."
+  },
+      {
+    id: 251,
+    question: "Si el sistema de ecuaciones 3x - 2y = 12 y 6x - ky = 24 tiene infinitas soluciones, ¿cuál es el valor de la constante k?",
+    options: ["k = 2", "k = 4", "k = -4", "k = 6"],
+    correct: 1,
+    explanation: "Para que un sistema lineal tenga infinitas soluciones, sus ecuaciones deben ser dependientes (la segunda es múltiplo directo de la primera). Multiplicando 3x - 2y = 12 por 2 obtenemos 6x - 4y = 24. Comparando con 6x - ky = 24, deducimos que -k = -4, por lo tanto k = 4."
+  },
+  {
+    id: 252,
+    question: "Resuelve la ecuación cuadrática 2x² - 5x - 3 = 0. ¿Cuál es el conjunto solución correcto?",
+    options: ["x = 3 y x = -1/2", "x = -3 y x = 1/2", "x = 1/2 y x = 3", "x = -1 y x = 6"],
+    correct: 0,
+    explanation: "Factorizando por descomposición: 2x² - 5x - 3 = (2x + 1)(x - 3) = 0. Al igualar cada factor a cero obtenemos x = -1/2 y x = 3."
+  },
+  {
+    id: 253,
+    question: "Determina las raíces de la función polinomial f(x) = x³ - 4x² + x + 6 sabiendo que x = 2 es una de sus soluciones.",
+    options: ["x = 2, x = 3, x = -1", "x = 2, x = -3, x = 1", "x = 2, x = 4, x = -1", "x = 2, x = 1, x = 3"],
+    correct: 0,
+    explanation: "Aplicando división sintética por (x - 2), el cociente resulta x² - 2x - 3. Factorizando el cuadrático: (x - 3)(x + 1) = 0. Las raíces finales son x = 2, x = 3 y x = -1."
+  },
+  {
+    id: 254,
+    question: "Al simplificar la expresión algebraica dividida: [ (a² - b²) / (a + b) ] ÷ [ (a - b) / (a + b) ], ¿cuál es el resultado reducido?",
+    options: ["a + b", "a - b", "1", "(a + b)²"],
+    correct: 0,
+    explanation: "Factorizamos la diferencia de cuadrados: a² - b² = (a - b)(a + b). El primer término se reduce a (a - b). Dividir entre (a - b)/(a + b) equivale a multiplicar por su recíproco: (a - b) * [ (a + b) / (a - b) ] = a + b."
+  },
+  {
+    id: 255,
+    question: "Si log₂(x) + log₂(x - 2) = 3, ¿cuál es el único valor de x que satisface la ecuación?",
+    options: ["x = 4", "x = 2", "x = 8", "x = -2"],
+    correct: 0,
+    explanation: "Usando la propiedad de la suma de logaritmos: log₂[x(x - 2)] = 3. Convertimos a forma exponencial: x(x - 2) = 2³ = 8 ⇒ x² - 2x - 8 = 0. Factorizando (x - 4)(x + 2) = 0. Como el dominio del logaritmo exige x > 2, la única solución real es x = 4."
+  },
+  {
+    id: 256,
+    question: "En el polinomio P(x) = x² + bx + 12, la diferencia entre sus dos raíces reales es 1. ¿Cuál es el valor positivo del coeficiente b?",
+    options: ["b = 7", "b = 8", "b = 9", "b = 13"],
+    correct: 0,
+    explanation: "Por Teorema de Vieta: r₁ * r₂ = 12 y r₁ - r₂ = 1. Los enteros que cumplen esto son 4 y 3 (4*3 = 12 y 4-3 = 1). La suma de raíces es 7. Como r₁ + r₂ = -b, b es 7 si las raíces son -3 y -4."
+  },
+  {
+    id: 257,
+    question: "Determina el valor numérico de la expresión con potencias: (3^(n+2) - 3^n) / (3^(n+1) + 3^n)",
+    options: ["2", "3", "8/4", "3/2"],
+    correct: 0,
+    explanation: "Factorizamos 3^n en el numerador y denominador: Numerador = 3^n (3² - 1) = 3^n (8). Denominador = 3^n (3¹ + 1) = 3^n (4). Cancelando 3^n queda 8 / 4 = 2."
+  },
+  {
+    id: 258,
+    question: "Un tanque de almacenamiento posee dos tuberías de llenado. La tubería A lo llena en 6 horas y la tubería B en 12 horas. Si ambas operan juntas con un desague C que lo vacía en 24 horas, ¿cuántas horas tardará en llenarse?",
+    options: ["4.8 horas", "4.0 horas", "3.6 horas", "5.2 horas"],
+    correct: 0,
+    explanation: "Sumamos las tasas por hora: Tasa neta = 1/6 + 1/12 - 1/24. Convertimos a denominador 24: (4 + 2 - 1) / 24 = 5/24 de tanque por hora. El tiempo total es 24 / 5 = 4.8 horas."
+  },
+  {
+    id: 259,
+    question: "Calcula el valor de la suma infinita de la progresión geométrica: S = 12 + 4 + 4/3 + 4/9 + ...",
+    options: ["18", "16", "20", "24"],
+    correct: 0,
+    explanation: "El primer término a = 12 y la razón r = 4/12 = 1/3. La suma infinita es S = a / (1 - r) = 12 / (1 - 1/3) = 12 / (2/3) = 18."
+  },
+  {
+    id: 260,
+    question: "En la ecuación con valor absoluto |2x - 7| = 3x - 1, ¿cuál es la solución real válida?",
+    options: ["x = 8/5", "x = -6", "x = 8/5 y x = -6", "x = 2"],
+    correct: 0,
+    explanation: "Evaluando casos: 2x - 7 = 3x - 1 da x = -6 (descartado pues 3(-6)-1 es negativo). El caso 2x - 7 = -(3x - 1) da 5x = 8 ⇒ x = 8/5. Al comprobar, 8/5 satisface la condición."
+  },
+  {
+    id: 261,
+    question: "¿Para qué valores del parámetro m la ecuación x² + (m + 2)x + 9 = 0 tiene una única solución real doble?",
+    options: ["m = 4 y m = -8", "m = 6 y m = -6", "m = 2 y m = -4", "m = 0 y m = 9"],
+    correct: 0,
+    explanation: "El discriminante Δ debe ser cero: Δ = (m + 2)² - 4(1)(9) = 0 ⇒ (m + 2)² = 36 ⇒ m + 2 = ±6. Obtenemos m = 4 y m = -8."
+  },
+  {
+    id: 262,
+    question: "Resuelve la inecuación racional (x - 3) / (x + 2) ≤ 0 e indica su intervalo de solución.",
+    options: ["(-2, 3]", "[-2, 3]", "(-∞, -2) ∪ [3, ∞)", "(-2, 3)"],
+    correct: 0,
+    explanation: "Puntos críticos: x = 3 (numerador = 0) y x = -2 (asíntota/denominador ≠ 0). Evaluando signos, el intervalo donde es menor o igual a cero es abierto en -2 y cerrado en 3: (-2, 3]."
+  },
+  {
+    id: 263,
+    question: "Si a + b = 7 y a * b = 10, calcula sin hallar a y b el valor exacto de la suma de sus cubos: a³ + b³.",
+    options: ["133", "243", "343", "147"],
+    correct: 0,
+    explanation: "a³ + b³ = (a + b)(a² - ab + b²). Como a² + b² = (a + b)² - 2ab = 7² - 20 = 29. Por tanto, a³ + b³ = 7 * (29 - 10) = 7 * 19 = 133."
+  },
+  {
+    id: 264,
+    question: "Encuentra la función inversa de f(x) = (3x + 5) / (2x - 1) para x ≠ 1/2.",
+    options: ["f⁻¹(x) = (x + 5) / (2x - 3)", "f⁻¹(x) = (3x - 5) / (2x + 1)", "f⁻¹(x) = (2x - 1) / (3x + 5)", "f⁻¹(x) = (x - 5) / (3 - 2x)"],
+    correct: 0,
+    explanation: "Despejando x de y = (3x + 5)/(2x - 1) ⇒ y(2x - 1) = 3x + 5 ⇒ x(2y - 3) = y + 5 ⇒ x = (y + 5)/(2y - 3). Intercambiando variables resulta f⁻¹(x) = (x + 5)/(2x - 3)."
+  },
+  {
+    id: 265,
+    question: "En el desarrollo de (2x + 3)⁴ por Teorema del Binomio, ¿cuál es el coeficiente del término de grado 3 (x³)?",
+    options: ["96", "48", "32", "108"],
+    correct: 0,
+    explanation: "El término es: ₄C₁ * (2x)³ * (3)¹ = 4 * (8x³) * 3 = 96x³. El coeficiente es 96."
+  },
+  {
+    id: 266,
+    question: "Si 9^x - 4 * 3^x + 3 = 0, halla la suma de los valores de x que satisfacen la ecuación.",
+    options: ["1", "0", "2", "3"],
+    correct: 0,
+    explanation: "Sustituyendo u = 3^x: u² - 4u + 3 = 0 ⇒ (u - 1)(u - 3) = 0. Entonces 3^x = 1 ⇒ x = 0; y 3^x = 3 ⇒ x = 1. La suma es 0 + 1 = 1."
+  },
+  {
+    id: 267,
+    question: "Dada la matriz A = [[2, 1], [4, 3]], calcula su matriz inversa A⁻¹.",
+    options: ["[[1.5, -0.5], [-2, 1]]", "[[3, -1], [-4, 2]]", "[[1, 0.5], [2, 1.5]]", "[[-1.5, 0.5], [2, -1]]"],
+    correct: 0,
+    explanation: "det(A) = 2(3) - 1(4) = 2. A⁻¹ = (1/det) * [[3, -1], [-4, 2]] = [[1.5, -0.5], [-2, 1]]."
+  },
+  {
+    id: 268,
+    question: "Determina el residuo al dividir P(x) = 2x⁴ - 3x³ + x - 5 entre (x - 2) utilizando el Teorema del Residuo.",
+    options: ["5", "3", "0", "-1"],
+    correct: 0,
+    explanation: "Por el Teorema del Residuo, sustituimos x = 2: P(2) = 2(16) - 3(8) + 2 - 5 = 32 - 24 + 2 - 5 = 5."
+  },
+  {
+    id: 269,
+    question: "¿Cuál es la simplificación mínima de la expresión trigonométrica (1 - cos²θ) / (sinθ * cosθ)?",
+    options: ["tanθ", "cotθ", "sinθ", "secθ"],
+    correct: 0,
+    explanation: "Usando 1 - cos²θ = sin²θ: sin²θ / (sinθ * cosθ) = sinθ / cosθ = tanθ."
+  },
+  {
+    id: 270,
+    question: "Se mezclan 20 litros de una solución líquida al 30% con 30 litros de otra al 50%. ¿Cuál es la concentración final del total de 50 litros?",
+    options: ["42%", "40%", "45%", "38%"],
+    correct: 0,
+    explanation: "Volumen puro 1: 20 * 0.30 = 6 L. Volumen puro 2: 30 * 0.50 = 15 L. Total puro = 21 L. Porcentaje = (21 / 50) * 100 = 42%."
+  },
+
+  // -------------------------------------------------------------
+  // MÓDULO 2: GEOMETRÍA ANALÍTICA Y ESPACIAL (21 - 40)
+  // -------------------------------------------------------------
+  {
+    id: 271,
+    question: "Un triángulo rectángulo tiene hipotenusa de 13 cm y perímetro de 30 cm. ¿Cuál es su área?",
+    options: ["30 cm²", "60 cm²", "25 cm²", "32.5 cm²"],
+    correct: 0,
+    explanation: "Catetos a + b = 30 - 13 = 17. Elevando al cuadrado: a² + 2ab + b² = 289. Como a² + b² = 13² = 169, entonces 2ab = 120 ⇒ ab = 60. Área = (a*b)/2 = 30 cm²."
+  },
+  {
+    id: 272,
+    question: "En un círculo de radio r = 10 cm, un sector circular posee un ángulo central de 72°. ¿Cuál es su área en función de π?",
+    options: ["20π cm²", "10π cm²", "15π cm²", "25π cm²"],
+    correct: 0,
+    explanation: "Área = (72 / 360) * π * 10² = (1/5) * 100π = 20π cm²."
+  },
+  {
+    id: 273,
+    question: "Un cilindro recto de altura h = 8 cm está inscrito en una esfera de radio R = 5 cm. ¿Cuál es el volumen del cilindro?",
+    options: ["72π cm³", "64π cm³", "80π cm³", "96π cm³"],
+    correct: 0,
+    explanation: "El radio r del cilindro se obtiene por Pitágoras: r² + (h/2)² = R² ⇒ r² + 4² = 5² ⇒ r² = 9. Volumen = π * r² * h = π * 9 * 8 = 72π cm³."
+  },
+  {
+    id: 274,
+    question: "¿Cuál es la ecuación de la recta que pasa por P(2, -3) y es perpendicular a 4x - 2y + 7 = 0?",
+    options: ["x + 2y + 4 = 0", "2x + y - 1 = 0", "x - 2y - 8 = 0", "4x + 2y - 2 = 0"],
+    correct: 0,
+    explanation: "Pendiente original m₁ = -4/(-2) = 2. Pendiente perpendicular m₂ = -1/2. Recta: y - (-3) = -1/2(x - 2) ⇒ 2y + 6 = -x + 2 ⇒ x + 2y + 4 = 0."
+  },
+  {
+    id: 275,
+    question: "Un cono invertido de radio r = 6 cm y altura h = 8 cm contiene agua hasta una altura de 4 cm. ¿Qué volumen de agua contiene?",
+    options: ["12π cm³", "24π cm³", "48π cm³", "96π cm³"],
+    correct: 0,
+    explanation: "Por semejanza, al reducir la altura a la mitad (4 cm), el radio también se reduce a la mitad (r' = 3 cm). Volumen = (1/3)π * 3² * 4 = 12π cm³."
+  },
+  {
+    id: 276,
+    question: "¿Cuánto mide cada ángulo interior de un decágono regular (10 lados)?",
+    options: ["144°", "140°", "150°", "135°"],
+    correct: 0,
+    explanation: "Ángulo interior = [(n - 2) * 180°] / n = [(10 - 2) * 180°] / 10 = 144°."
+  },
+  {
+    id: 277,
+    question: "Si el cateto 'a' de un triángulo rectángulo aumenta 20% y el cateto 'b' disminuye 20%, ¿qué le sucede al área?",
+    options: ["Disminuye un 4%", "Permanese igual", "Aumenta un 4%", "Disminuye un 2%"],
+    correct: 0,
+    explanation: "Nueva área = (1.2a * 0.8b)/2 = 0.96 (ab/2). Disminuye un 4% respecto al área original."
+  },
+  {
+    id: 278,
+    question: "Calcula el centro y el radio de la circunferencia x² + y² - 6x + 8y - 11 = 0.",
+    options: ["C(3, -4), R = 6", "C(-3, 4), R = 6", "C(3, -4), R = 36", "C(-6, 8), R = 11"],
+    correct: 0,
+    explanation: "Completando cuadrados: (x - 3)² + (y + 4)² = 11 + 9 + 16 = 36. Centro (3, -4) y R = √36 = 6."
+  },
+  {
+    id: 279,
+    question: "Dos vehículos salen del mismo punto: uno viaja al norte a 12 km/h y otro al este a 16 km/h. ¿Qué distancia los separa tras 3 horas?",
+    options: ["60 km", "48 km", "80 km", "52 km"],
+    correct: 0,
+    explanation: "Distancias recorridas: 36 km y 48 km. Separación = √(36² + 48²) = √(1296 + 2304) = √3600 = 60 km."
+  },
+  {
+    id: 280,
+    question: "Calcula el perímetro total de una figura compuesta por un cuadrado de lado 8 cm y un semicírculo superpuesto en su lado superior.",
+    options: ["24 + 4π cm", "32 + 4π cm", "24 + 8π cm", "32 + 8π cm"],
+    correct: 0,
+    explanation: "Perímetro = 3 lados del cuadrado (24 cm) + longitud de semicircunferencia (π * r = 4π cm) = 24 + 4π cm."
+  },
+  {
+    id: 281,
+    question: "Tres vértices de un paralelogramo ABCD son A(1, 2), B(5, 4) y C(7, 9). Determina las coordenadas del vértice D.",
+    options: ["D(3, 7)", "D(2, 6)", "D(4, 7)", "D(3, 8)"],
+    correct: 0,
+    explanation: "Punto medio de AC = (4, 5.5). Para BD: (5 + x_d)/2 = 4 ⇒ x_d = 3; (4 + y_d)/2 = 5.5 ⇒ y_d = 7. El vértice D es (3, 7)."
+  },
+  {
+    id: 282,
+    question: "La diagonal principal de un cubo mide 6√3 cm. ¿Cuál es su volumen total?",
+    options: ["216 cm³", "108 cm³", "72 cm³", "36 cm³"],
+    correct: 0,
+    explanation: "Diagonal D = a√3 ⇒ 6√3 = a√3 ⇒ Arista a = 6 cm. Volumen = 6³ = 216 cm³."
+  },
+  {
+    id: 283,
+    question: "En un triángulo rectángulo con hipotenusa de 16 cm y un ángulo agudo de 30°, ¿cuánto mide el cateto opuesto a dicho ángulo?",
+    options: ["8 cm", "8√3 cm", "4 cm", "12 cm"],
+    correct: 0,
+    explanation: "Cateto opuesto = Hipotenusa * sin(30°) = 16 * 0.5 = 8 cm."
+  },
+  {
+    id: 284,
+    question: "Halla la distancia más corta del punto P(3, 4) a la recta 3x + 4y - 5 = 0.",
+    options: ["4 unidades", "5 unidades", "3 unidades", "2.5 unidades"],
+    correct: 0,
+    explanation: "d = |3(3) + 4(4) - 5| / √(3² + 4²) = |9 + 16 - 5| / 5 = 20 / 5 = 4."
+  },
+  {
+    id: 285,
+    question: "Una pirámide de base cuadrada tiene lado de 10 cm y altura de 12 cm. ¿Cuál es su área lateral total?",
+    options: ["260 cm²", "240 cm²", "360 cm²", "130 cm²"],
+    correct: 0,
+    explanation: "Apotema lateral = √(12² + 5²) = 13 cm. Área lateral = 4 * (10 * 13 / 2) = 260 cm²."
+  },
+  {
+    id: 286,
+    question: "Dos polígonos semejantes están en razón de lados 2:5. Si el menor tiene área de 48 cm², ¿cuál es el área del mayor?",
+    options: ["300 cm²", "120 cm²", "240 cm²", "600 cm²"],
+    correct: 0,
+    explanation: "Razón de áreas = (5/2)² = 25/4. Área mayor = 48 * (25/4) = 300 cm²."
+  },
+  {
+    id: 287,
+    question: "Un trapecio isósceles posee bases de 10 cm y 22 cm, con lados no paralelos de 10 cm. ¿Cuál es su área?",
+    options: ["128 cm²", "160 cm²", "96 cm²", "144 cm²"],
+    correct: 0,
+    explanation: "Base de triángulo lateral = (22 - 10)/2 = 6 cm. Altura h = √(10² - 6²) = 8 cm. Área = [(10 + 22)/2] * 8 = 128 cm²."
+  },
+  {
+    id: 288,
+    question: "¿Cuál es la ecuación del eje de simetría de la parábola f(x) = -2x² + 12x - 5?",
+    options: ["x = 3", "x = -3", "x = 6", "x = -6"],
+    correct: 0,
+    explanation: "Eje de simetría x = -b / (2a) = -12 / (2 * -2) = 3."
+  },
+  {
+    id: 289,
+    question: "Un disco gira 5 vueltas completas recorriendo 31.416 metros. ¿Cuál es el radio del disco en metros? (π ≈ 3.1416)",
+    options: ["1.0 metro", "0.5 metros", "2.0 metros", "1.5 metros"],
+    correct: 0,
+    explanation: "Distancia = 5 * (2πr) = 10πr. 31.416 = 10(3.1416)r ⇒ r = 1.0 m."
+  },
+  {
+    id: 290,
+    question: "En un hexágono regular inscrito en un círculo de radio R = 6 cm, ¿cuál es su perímetro exterior?",
+    options: ["36 cm", "18 cm", "24 cm", "42 cm"],
+    correct: 0,
+    explanation: "El lado de un hexágono regular inscrito es igual al radio del círculo (lado = 6 cm). Perímetro = 6 * 6 = 36 cm."
   }
+];
 ]
   }
 };
